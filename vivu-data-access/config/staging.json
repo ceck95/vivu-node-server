@@ -32,7 +32,7 @@
       "name": "default",
       "streams": [{
         "type": "rotating-file",
-        "path": " /home/nhutjs/vivu/log/vivu-data-access/error.log",
+        "path": " /home/dev/vivu/log/vivu-node-server/vivu-data-access/error.log",
         "period": "1d",
         "count": 3,
         "level": "warn"
