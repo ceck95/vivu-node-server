@@ -2,10 +2,10 @@
   "apps": [{
     "name": "vivu",
     "script": "server.js",
-    "cwd": "/home/nhutjs/vivu/vivu-node-server/vivu-api",
+    "cwd": "/home/dev/vivu/vivu-node-server/vivu-api",
     "watch": false,
     "env": {
-      "NODE_ENV": "staging",
+      "NODE_ENV": "staging"
     },
     "env_production": {
       "NODE_ENV": "production"
@@ -15,10 +15,10 @@
   }, {
     "name": "vivu-data-access",
     "script": "server.js",
-    "cwd": "/home/nhutjs/vivu/vivu-node-server/vivu-data-access",
+    "cwd": "/home/dev/vivu/vivu-node-server/vivu-data-access",
     "watch": false,
     "env": {
-      "NODE_ENV": "staging",
+      "NODE_ENV": "staging"
     },
     "env_production": {
       "NODE_ENV": "production"
