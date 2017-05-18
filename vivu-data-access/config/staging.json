@@ -7,8 +7,8 @@
     "postgres": {
       "default": {
         "connection": {
-          "user": "nhutuit",
-          "password": "nhutnhut",
+          "user": "test",
+          "password": "12312311",
           "database": "vivu",
           "host": "localhost",
           "port": 5432,
