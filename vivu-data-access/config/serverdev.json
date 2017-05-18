@@ -1,0 +1,28 @@
+{
+  "db": {
+    "postgres": {
+      "default": {
+        "connection": {
+          "user": "nexx",
+          "password": "12312311",
+          "database": "gvn",
+          "host": "nex-development.ckvkc6ha51l1.ap-southeast-1.rds.amazonaws.com",
+          "port": 5432,
+          "max": 20,
+          "min": 4
+        },
+        "schema": "hc"
+      }
+    },
+    "mongodb": {
+      "default": {
+        "connection": "mongodb://ec2-52-77-247-204.ap-southeast-1.compute.amazonaws.com:27017/gvn_dev",
+        "log": {
+          "level": "error"
+        }
+      }
+    }
+
+  }
+
+}

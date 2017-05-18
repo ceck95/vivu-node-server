@@ -1,0 +1,44 @@
+{
+  "apps": [{
+    "name": "vivu",
+    "script": "server.js",
+    "cwd": "/home/nhutdev/my-project/luan-an/vivu/vivu-api",
+    "watch": false,
+    "env": {
+      "NODE_ENV": "development",
+    },
+    "env_production": {
+      "NODE_ENV": "production"
+    },
+    "out_file": "/dev/null",
+    "error_file": "/dev/null"
+  }, {
+    "name": "vivu-data-access",
+    "script": "server.js",
+    "cwd": "/home/nhutdev/my-project/luan-an/vivu/vivu-data-access",
+    "watch": false,
+    "env": {
+      "NODE_ENV": "development",
+    },
+    "env_production": {
+      "NODE_ENV": "production"
+    },
+    "out_file": "/dev/null",
+    "error_file": "/dev/null"
+
+  }, {
+    "name": "mongo",
+    "script": "app.js",
+    "cwd": "/home/nhutdev/my-project/nodejs/services/mongo-express",
+    "watch": false,
+    "env": {
+      "NODE_ENV": "development",
+    },
+    "env_production": {
+      "NODE_ENV": "production"
+    },
+    "out_file": "/dev/null",
+    "error_file": "/dev/null"
+
+  }]
+}

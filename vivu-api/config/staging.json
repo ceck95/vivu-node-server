@@ -1,0 +1,39 @@
+{
+  "server": {
+    "host": "localhost",
+    "port": "3000",
+    "domain": "vivu.nhutuit.com",
+    "basePath": "/api"
+  },
+  "logger": {
+    "isDebug": true,
+    "name": "default",
+    "streams": [{
+      "type": "rotating-file",
+      "path": "/home/nhutjs/vivu/log/vivu-node-server/vivu-api/error.log",
+      "period": "1d",
+      "count": 3,
+      "level": "warn"
+    }]
+  },
+"email": {
+    "default": {
+      "protocol": "smtps",
+      "sender": "VivuShop",
+      "email": "sunnyboy1019@gmail.com",
+      "password": "nhutnhut",
+      "host": "smtp.gmail.com",
+      "port": ""
+    }
+  },
+"static": {
+    "storage": {
+      "default": {
+        "type": "local",
+        "absolutePath": "/home/nhutjs/vivu/static",
+        "host": "cdn.vivu.nhutuit.com",
+        "basePath": "/uploads"
+      }
+    }
+  }
+}

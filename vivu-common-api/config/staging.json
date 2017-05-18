@@ -1,0 +1,12 @@
+{
+  "email": {
+    "default": {
+      "protocol": "smtps",
+      "sender": "VivuShop",
+      "email": "sunnyboy1019@gmail.com",
+      "password": "nhutnhut",
+      "host": "smtp.gmail.com",
+      "port": "465"
+    }
+  }
+}

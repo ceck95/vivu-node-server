@@ -1,0 +1,24 @@
+{
+  "imageSizes": {
+    "avatar": [{
+      "type": "384x384",
+      "width": 384,
+      "height": 384
+    }]
+  },
+  "i18n": {
+    "language": "vi_VN",
+    "country": "VN",
+    "province": "79",
+    "dateFormat": "dd/mm/yyyy",
+    "timezone": "Asia/Ho_Chi_Minh"
+  },
+  "security": {
+    "randomLength": 64,
+    "saltRounds": 10
+  },
+  "logger": {
+    "level": "debug",
+    "name": "default"
+  }
+}

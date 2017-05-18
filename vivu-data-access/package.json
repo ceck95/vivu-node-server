@@ -1,0 +1,28 @@
+{
+  "name": "shop-data-access",
+  "version": "0.1.0",
+  "description": "Shop data access API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "NhutJS",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.4.6",
+    "bunyan": "^1.8.0",
+    "bunyan-format": "^0.2.1",
+    "config": "^1.20.1",
+    "vivu-common-api": "file:../vivu-common-api",
+    "hoek": "^4.0.0",
+    "minimist": "^1.2.0",
+    "moment": "^2.13.0",
+    "moment-timezone": "^0.5.4",
+    "node-data-access": "git+ssh://git@github.com:nhutuit/node-data-access.git",
+    "node-helpers": "git+ssh://git@github.com:nhutuit/node-helpers.git",
+    "node-mongo": "git+ssh://git@github.com:nhutuit/node-mongo.git",
+    "node-pg": "git+ssh://git@github.com:nhutuit/node-pg.git",
+    "pg": "^6.1.0",
+    "thrift": "^0.9.3"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "server": {
+    "host": "localhost",
+    "port": "9021"
+  },
+  "db": {
+    "postgres": {
+      "default": {
+        "connection": {
+          "user": "nhutuit",
+          "password": "nhutnhut",
+          "database": "vivu",
+          "host": "localhost",
+          "port": 5432,
+          "max": 20,
+          "min": 0
+        },
+        "schema": "vv",
+        "primaryKeyName": "id"
+      }
+    },
+    "mongodb": {
+      "default": {
+        "connection": "mongodb://localhost:27017/vivu",
+        "log": {
+          "level": "error"
+        }
+      }
+    },
+    "logger": {
+      "isDebug": true,
+      "name": "default",
+      "streams": [{
+        "type": "rotating-file",
+        "path": " /home/nhutjs/vivu/log/vivu-data-access/error.log",
+        "period": "1d",
+        "count": 3,
+        "level": "warn"
+      }]
+    }
+
+  }
+
+}

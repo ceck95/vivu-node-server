@@ -1,0 +1,39 @@
+{
+  "server": {
+    "host": "localhost",
+    "port": "9021"
+  },
+  "db": {
+    "postgres": {
+      "default": {
+        "connection": {
+          "database": "vivu",
+          "user": "nexxid",
+          "password": "nhutnhut",
+          "port": 5432,
+          "ssl": false,
+          "max": 20,
+          "min": 4,
+          "idleTimeoutMillis": 1000
+        },
+        "schema": "vv",
+        "primaryKeyName": "id"
+      }
+    },
+    "mongodb": {
+      "default": {
+        "connection": "mongodb://localhost:27017/vivu",
+        "log": {
+          "level": "error"
+        }
+      }
+    }
+
+  },
+  "i18n": {
+    "language": "vi_VN",
+    "country": "VN",
+    "dateFormat": "dd/mm/yyyy",
+    "timezone": "Asia/Ho_Chi_Minh"
+  }
+}

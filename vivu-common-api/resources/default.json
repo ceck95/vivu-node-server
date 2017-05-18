@@ -1,0 +1,19 @@
+{
+  "order": {
+    "checkoutMethod": {
+      "cashOnDelivery": "CASH_ON_DELIVERY",
+      "bank": "BANK",
+      "credit": "CREDIT"
+    },
+    "status": {
+      "new": 0
+    }
+  },
+  "status": {
+    "inactive": 0,
+    "active": 1,
+    "disabled": 2,
+    "deleted": 3
+  }
+
+}

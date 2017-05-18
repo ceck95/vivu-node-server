@@ -1,0 +1,39 @@
+{
+  "db": {
+    "postgres": {
+      "default": {
+        "connection": {
+          "user": "nexid",
+          "password": "L#&!&#TVTwO5X&y1",
+          "database": "gvn",
+          "host": "nexid.ckvkc6ha51l1.ap-southeast-1.rds.amazonaws.com",
+          "port": 5432,
+          "max": 20,
+          "min": 0
+        },
+        "schema": "hc"
+      }
+    },
+    "mongodb": {
+      "default": {
+        "connection": "mongodb://localhost:27017/gvn",
+        "log": {
+          "level": "error"
+        }
+      }
+    },
+    "logger": {
+      "isDebug": true,
+      "name": "default",
+      "streams": [{
+        "type": "rotating-file",
+        "path": " /home/gvn/testing/log/gvn-data-access-api/error.log",
+        "period": "1d",
+        "count": 3,
+        "level": "warn"
+      }]
+    }
+
+  }
+
+}

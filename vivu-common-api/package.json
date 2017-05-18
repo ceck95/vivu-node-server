@@ -1,0 +1,21 @@
+{
+  "name": "vivu-common-api",
+  "version": "0.1.0",
+  "description": "Shop Common API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "vivu",
+    "common",
+    "api"
+  ],
+  "author": "Tran Van Nhut",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.4.1",
+    "config": "^1.21.0",
+    "node-helpers": "git+ssh://git@github.com:nhutuit/node-helpers.git"
+  }
+}
