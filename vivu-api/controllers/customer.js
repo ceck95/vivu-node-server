@@ -63,7 +63,11 @@ class CustomerController {
               modelCustomerAddress.type = type.CustomerAddress;
               modelCustomerAddress.isDefault = true;
               modelCustomerAddress.phone = rawCustomer.phone;
-              modelCustomerAddress.fullName = `${opts.province},${opts.district},${opts.ward},${form.address.street},${opts.country}`;
+              modelCustomerAddress.fullName = opts.fullName;
+              modelCustomerAddress.province = opts.province;
+              modelCustomerAddress.district = opts.district;
+              modelCustomerAddress.ward = opts.ward;
+              modelCustomerAddress.country = opts.country;
 
               return customerAddressStore.insertOne(modelCustomerAddress).then(rawAddress => {
 
@@ -142,7 +146,14 @@ class CustomerController {
           });
 
         }).catch(err => {
-
+          let errors = request.errorManager.translate(err),
+            errorCode = request.errorManager.getCode(errors);
+          if (errorCode === '201') {
+            return reply(request.errorManager.translate({
+              code: '508',
+              source: 'insert customer'
+            })).code(400);
+          }
           return helpers.HAPI.replyError(request, reply, err, {
             log: ['register', 'insert customer']
           });

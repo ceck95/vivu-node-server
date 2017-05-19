@@ -3,5 +3,6 @@
   "504": "Checkout type don't exist",
   "505": "Product is not yet",
   "506": "Cart was ordered",
-  "507": "Cannot delete default address of customer"
+  "507": "Cannot delete default address of customer",
+  "508": "Phone number was exist"
 }

@@ -24,68 +24,79 @@ class OrderController extends BaseController {
     selectOptions.includes = [customerAddressStore.tableAlias, orderPaymentStore.tableAlias];
     return orderStore.getManyByCustomer(profile.id, selectOptions).then(orders => {
 
-      let listIds = [];
-      orders.forEach(e => {
-        listIds.push(e.id);
-      });
-      console.log(orders);
-      selectOptions.includes = [productStore.tableAlias, productColorStore.tableAlias];
+      let listIds = [],
+        respFunc = (orderItems) => {
+          orders.forEach((e, i) => {
+            orders[i] = orderStore.createModel(orders[i]).responseObject({
+              schema: orderSchema.responseItem
+            });
 
-      return orderItemStore.getManyByOrder(listIds, selectOptions).then(orderItems => {
+            orders[i].address = customerAddressStore.createModel(e.address).responseObject({
+              schema: customerAddressSchema.response
+            });
 
-        orderItems.forEach((e, i) => {
-          orderItems[i] = orderItemStore.createModel(orderItems[i]).responseObject({
-            schema: orderItemSchema.responseItem
-          });
+            orders[i].orderPayment = orderPaymentStore.createModel(e.orderPayment).responseObject({
+              schema: orderPaymentSchema.response
+            });
 
-          orderItems[i].product = productStore.createModel(e.product).responseObject({
-            schema: productSchema.responseOneForQuoteItem
-          });
-          orderItems[i].product.productColor = productColorStore.createModel(e.productColor).responseObject({
-            schema: productColorSchema.responseOne
-          });
-
-        });
-
-
-        orders.forEach((e, i) => {
-          orders[i] = orderStore.createModel(orders[i]).responseObject({
-            schema: orderSchema.responseItem
-          });
-
-          orders[i].address = customerAddressStore.createModel(e.address).responseObject({
-            schema: customerAddressSchema.response
-          });
-
-          orders[i].orderPayment = orderPaymentStore.createModel(e.orderPayment).responseObject({
-            schema: orderPaymentSchema.response
-          });
-          orderItems.forEach(a => {
-            if (e.id === a.orderId) {
-              if (!orders[i].orderItems) {
-                orders[i].orderItems = [];
-              }
-              orders[i].orderItems.push(a);
+            if (orderItems.length > 0) {
+              orderItems.forEach(a => {
+                if (e.id === a.orderId) {
+                  if (!orders[i].orderItems) {
+                    orders[i].orderItems = [];
+                  }
+                  orders[i].orderItems.push(a);
+                }
+              });
             }
           });
 
-        });
 
-
-        return reply(helpers.Json.response(request, {
-          meta: {
-            message: 'Get orders successfully'
-          },
-          data: {
-            orders: orders
-          }
-        }));
-
-      }).catch(err => {
-        return helpers.HAPI.replyError(request, reply, err, {
-          log: ['errors', 'get order item by order']
-        });
+          return reply(helpers.Json.response(request, {
+            meta: {
+              message: 'Get orders successfully'
+            },
+            data: {
+              orders: orders
+            }
+          }));
+        };
+      orders.forEach(e => {
+        listIds.push(e.id);
       });
+
+      selectOptions.includes = [productStore.tableAlias, productColorStore.tableAlias];
+
+      if (listIds.length > 0) {
+
+        return orderItemStore.getManyByOrder(listIds, selectOptions).then(orderItems => {
+
+          orderItems.forEach((e, i) => {
+            orderItems[i] = orderItemStore.createModel(orderItems[i]).responseObject({
+              schema: orderItemSchema.responseItem
+            });
+
+            orderItems[i].product = productStore.createModel(e.product).responseObject({
+              schema: productSchema.responseOneForQuoteItem
+            });
+            orderItems[i].product.productColor = productColorStore.createModel(e.productColor).responseObject({
+              schema: productColorSchema.responseOne
+            });
+
+          });
+
+
+          return respFunc(orderItems);
+
+        }).catch(err => {
+          return helpers.HAPI.replyError(request, reply, err, {
+            log: ['errors', 'get order item by order']
+          });
+        });
+
+      }
+
+      return respFunc([]);
 
     }).catch(err => {
       return helpers.HAPI.replyError(request, reply, err, {
