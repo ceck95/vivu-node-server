@@ -17,7 +17,7 @@ customerAddressRoutes.addRoute({
   method: 'PUT',
   path: '/customer-address',
   config: {
-    auth: 'validate_basic',
+    auth: 'merge_validate',
     handler: customerAddressRoutes.controller.insertCustomerAddress,
     description: 'Add address customer',
     notes: 'Return customer address',
@@ -42,7 +42,7 @@ customerAddressRoutes.addRoute({
   method: 'POST',
   path: '/customer-address/{id}',
   config: {
-    auth: 'validate_token',
+    auth: 'merge_validate',
     handler: customerAddressRoutes.controller.updateCustomerAddress,
     description: 'Add address customer',
     notes: 'Return customer address',
@@ -101,7 +101,7 @@ customerAddressRoutes.addRoute({
   method: 'DELETE',
   path: '/customer-address/{id}',
   config: {
-    auth: 'merge_validate',
+    auth: 'validate_token',
     handler: customerAddressRoutes.controller.deleteCustomize,
     description: 'Delete address customer',
     notes: 'Return customer address',
