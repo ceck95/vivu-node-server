@@ -148,7 +148,7 @@ class Product extends helpers.models.Base {
   }
 
   get serviceActions() {
-    return ['getManyByCategoryGroup', 'getOneProduct', 'getManyByCategory', 'getOneProductAndProductColor'];
+    return ['getManyByCategoryGroupHome', 'getOneProduct', 'getManyByCategory', 'getOneProductAndProductColor'];
   }
 
 }

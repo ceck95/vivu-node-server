@@ -28,6 +28,8 @@ class CategoryGroup extends helpers.models.Base {
     this.notes = '';
     this.urlKey = '';
     this.metaDesc = {};
+    this.coverImagePath = '';
+    this.showPageHome = null;
 
 
     if (data) {
@@ -46,7 +48,9 @@ class CategoryGroup extends helpers.models.Base {
       created_at: this.createdAt,
       updated_at: this.updatedAt,
       created_by: this.createdBy,
-      updated_by: this.updatedBy
+      updated_by: this.updatedBy,
+      cover_image_path: this.coverImagePath,
+      show_page_home: this.showPageHome
     };
   }
 

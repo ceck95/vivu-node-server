@@ -27,6 +27,8 @@ vv.models.CategoryGroup = module.exports.CategoryGroup = function(args) {
   this.updatedAt = null;
   this.createdBy = null;
   this.updatedBy = null;
+  this.coverImagePath = null;
+  this.showPageHome = null;
   if (args) {
     if (args.id !== undefined && args.id !== null) {
       this.id = args.id;
@@ -60,6 +62,12 @@ vv.models.CategoryGroup = module.exports.CategoryGroup = function(args) {
     }
     if (args.updatedBy !== undefined && args.updatedBy !== null) {
       this.updatedBy = args.updatedBy;
+    }
+    if (args.coverImagePath !== undefined && args.coverImagePath !== null) {
+      this.coverImagePath = args.coverImagePath;
+    }
+    if (args.showPageHome !== undefined && args.showPageHome !== null) {
+      this.showPageHome = args.showPageHome;
     }
   }
 };
@@ -154,6 +162,20 @@ vv.models.CategoryGroup.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
+      case 12:
+      if (ftype == Thrift.Type.STRING) {
+        this.coverImagePath = input.readString();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 13:
+      if (ftype == Thrift.Type.BOOL) {
+        this.showPageHome = input.readBool();
+      } else {
+        input.skip(ftype);
+      }
+      break;
       default:
         input.skip(ftype);
     }
@@ -218,6 +240,16 @@ vv.models.CategoryGroup.prototype.write = function(output) {
   if (this.updatedBy !== null && this.updatedBy !== undefined) {
     output.writeFieldBegin('updatedBy', Thrift.Type.STRING, 11);
     output.writeString(this.updatedBy);
+    output.writeFieldEnd();
+  }
+  if (this.coverImagePath !== null && this.coverImagePath !== undefined) {
+    output.writeFieldBegin('coverImagePath', Thrift.Type.STRING, 12);
+    output.writeString(this.coverImagePath);
+    output.writeFieldEnd();
+  }
+  if (this.showPageHome !== null && this.showPageHome !== undefined) {
+    output.writeFieldBegin('showPageHome', Thrift.Type.BOOL, 13);
+    output.writeBool(this.showPageHome);
     output.writeFieldEnd();
   }
   output.writeFieldStop();

@@ -4195,7 +4195,7 @@ vv.service.VIVUDataService_productFilterPagination_result.prototype.write = func
   return;
 };
 
-vv.service.VIVUDataService_productGetManyByCategoryGroup_args = function(args) {
+vv.service.VIVUDataService_productGetManyByCategoryGroupHome_args = function(args) {
   this.categoryGroupId = null;
   this.options = null;
   if (args) {
@@ -4207,8 +4207,8 @@ vv.service.VIVUDataService_productGetManyByCategoryGroup_args = function(args) {
     }
   }
 };
-vv.service.VIVUDataService_productGetManyByCategoryGroup_args.prototype = {};
-vv.service.VIVUDataService_productGetManyByCategoryGroup_args.prototype.read = function(input) {
+vv.service.VIVUDataService_productGetManyByCategoryGroupHome_args.prototype = {};
+vv.service.VIVUDataService_productGetManyByCategoryGroupHome_args.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -4245,8 +4245,8 @@ vv.service.VIVUDataService_productGetManyByCategoryGroup_args.prototype.read = f
   return;
 };
 
-vv.service.VIVUDataService_productGetManyByCategoryGroup_args.prototype.write = function(output) {
-  output.writeStructBegin('VIVUDataService_productGetManyByCategoryGroup_args');
+vv.service.VIVUDataService_productGetManyByCategoryGroupHome_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_productGetManyByCategoryGroupHome_args');
   if (this.categoryGroupId !== null && this.categoryGroupId !== undefined) {
     output.writeFieldBegin('categoryGroupId', Thrift.Type.I32, 1);
     output.writeI32(this.categoryGroupId);
@@ -4262,7 +4262,7 @@ vv.service.VIVUDataService_productGetManyByCategoryGroup_args.prototype.write = 
   return;
 };
 
-vv.service.VIVUDataService_productGetManyByCategoryGroup_result = function(args) {
+vv.service.VIVUDataService_productGetManyByCategoryGroupHome_result = function(args) {
   this.success = null;
   this.ex = null;
   if (args instanceof exception_ttypes.DBExceptions) {
@@ -4278,8 +4278,8 @@ vv.service.VIVUDataService_productGetManyByCategoryGroup_result = function(args)
     }
   }
 };
-vv.service.VIVUDataService_productGetManyByCategoryGroup_result.prototype = {};
-vv.service.VIVUDataService_productGetManyByCategoryGroup_result.prototype.read = function(input) {
+vv.service.VIVUDataService_productGetManyByCategoryGroupHome_result.prototype = {};
+vv.service.VIVUDataService_productGetManyByCategoryGroupHome_result.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -4330,8 +4330,8 @@ vv.service.VIVUDataService_productGetManyByCategoryGroup_result.prototype.read =
   return;
 };
 
-vv.service.VIVUDataService_productGetManyByCategoryGroup_result.prototype.write = function(output) {
-  output.writeStructBegin('VIVUDataService_productGetManyByCategoryGroup_result');
+vv.service.VIVUDataService_productGetManyByCategoryGroupHome_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_productGetManyByCategoryGroupHome_result');
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
@@ -5235,6 +5235,175 @@ vv.service.VIVUDataService_categoryGroupGetAllActive_result.prototype.write = fu
   return;
 };
 
+vv.service.VIVUDataService_categoryGroupGetMany_args = function(args) {
+  this.pks = null;
+  if (args) {
+    if (args.pks !== undefined && args.pks !== null) {
+      this.pks = Thrift.copyList(args.pks, [null]);
+    }
+  }
+};
+vv.service.VIVUDataService_categoryGroupGetMany_args.prototype = {};
+vv.service.VIVUDataService_categoryGroupGetMany_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.LIST) {
+        var _size112 = 0;
+        var _rtmp3116;
+        this.pks = [];
+        var _etype115 = 0;
+        _rtmp3116 = input.readListBegin();
+        _etype115 = _rtmp3116.etype;
+        _size112 = _rtmp3116.size;
+        for (var _i117 = 0; _i117 < _size112; ++_i117)
+        {
+          var elem118 = null;
+          elem118 = input.readI32();
+          this.pks.push(elem118);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_categoryGroupGetMany_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_categoryGroupGetMany_args');
+  if (this.pks !== null && this.pks !== undefined) {
+    output.writeFieldBegin('pks', Thrift.Type.LIST, 1);
+    output.writeListBegin(Thrift.Type.I32, this.pks.length);
+    for (var iter119 in this.pks)
+    {
+      if (this.pks.hasOwnProperty(iter119))
+      {
+        iter119 = this.pks[iter119];
+        output.writeI32(iter119);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_categoryGroupGetMany_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = Thrift.copyList(args.success, [category_group_ttypes.CategoryGroup]);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_categoryGroupGetMany_result.prototype = {};
+vv.service.VIVUDataService_categoryGroupGetMany_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.LIST) {
+        var _size120 = 0;
+        var _rtmp3124;
+        this.success = [];
+        var _etype123 = 0;
+        _rtmp3124 = input.readListBegin();
+        _etype123 = _rtmp3124.etype;
+        _size120 = _rtmp3124.size;
+        for (var _i125 = 0; _i125 < _size120; ++_i125)
+        {
+          var elem126 = null;
+          elem126 = new category_group_ttypes.CategoryGroup();
+          elem126.read(input);
+          this.success.push(elem126);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_categoryGroupGetMany_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_categoryGroupGetMany_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+    for (var iter127 in this.success)
+    {
+      if (this.success.hasOwnProperty(iter127))
+      {
+        iter127 = this.success[iter127];
+        iter127.write(output);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
 vv.service.VIVUDataService_categoryGetAllActive_args = function(args) {
 };
 vv.service.VIVUDataService_categoryGetAllActive_args.prototype = {};
@@ -5295,19 +5464,19 @@ vv.service.VIVUDataService_categoryGetAllActive_result.prototype.read = function
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size112 = 0;
-        var _rtmp3116;
+        var _size128 = 0;
+        var _rtmp3132;
         this.success = [];
-        var _etype115 = 0;
-        _rtmp3116 = input.readListBegin();
-        _etype115 = _rtmp3116.etype;
-        _size112 = _rtmp3116.size;
-        for (var _i117 = 0; _i117 < _size112; ++_i117)
+        var _etype131 = 0;
+        _rtmp3132 = input.readListBegin();
+        _etype131 = _rtmp3132.etype;
+        _size128 = _rtmp3132.size;
+        for (var _i133 = 0; _i133 < _size128; ++_i133)
         {
-          var elem118 = null;
-          elem118 = new category_ttypes.Category();
-          elem118.read(input);
-          this.success.push(elem118);
+          var elem134 = null;
+          elem134 = new category_ttypes.Category();
+          elem134.read(input);
+          this.success.push(elem134);
         }
         input.readListEnd();
       } else {
@@ -5336,12 +5505,12 @@ vv.service.VIVUDataService_categoryGetAllActive_result.prototype.write = functio
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter119 in this.success)
+    for (var iter135 in this.success)
     {
-      if (this.success.hasOwnProperty(iter119))
+      if (this.success.hasOwnProperty(iter135))
       {
-        iter119 = this.success[iter119];
-        iter119.write(output);
+        iter135 = this.success[iter135];
+        iter135.write(output);
       }
     }
     output.writeListEnd();
@@ -6223,19 +6392,19 @@ vv.service.VIVUDataService_quoteItemGetManyByQuote_result.prototype.read = funct
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size120 = 0;
-        var _rtmp3124;
+        var _size136 = 0;
+        var _rtmp3140;
         this.success = [];
-        var _etype123 = 0;
-        _rtmp3124 = input.readListBegin();
-        _etype123 = _rtmp3124.etype;
-        _size120 = _rtmp3124.size;
-        for (var _i125 = 0; _i125 < _size120; ++_i125)
+        var _etype139 = 0;
+        _rtmp3140 = input.readListBegin();
+        _etype139 = _rtmp3140.etype;
+        _size136 = _rtmp3140.size;
+        for (var _i141 = 0; _i141 < _size136; ++_i141)
         {
-          var elem126 = null;
-          elem126 = new quote_item_ttypes.QuoteItem();
-          elem126.read(input);
-          this.success.push(elem126);
+          var elem142 = null;
+          elem142 = new quote_item_ttypes.QuoteItem();
+          elem142.read(input);
+          this.success.push(elem142);
         }
         input.readListEnd();
       } else {
@@ -6264,12 +6433,12 @@ vv.service.VIVUDataService_quoteItemGetManyByQuote_result.prototype.write = func
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter127 in this.success)
+    for (var iter143 in this.success)
     {
-      if (this.success.hasOwnProperty(iter127))
+      if (this.success.hasOwnProperty(iter143))
       {
-        iter127 = this.success[iter127];
-        iter127.write(output);
+        iter143 = this.success[iter143];
+        iter143.write(output);
       }
     }
     output.writeListEnd();
@@ -6980,19 +7149,19 @@ vv.service.VIVUDataService_orderInsertMany_args.prototype.read = function(input)
     {
       case 1:
       if (ftype == Thrift.Type.LIST) {
-        var _size128 = 0;
-        var _rtmp3132;
+        var _size144 = 0;
+        var _rtmp3148;
         this.models = [];
-        var _etype131 = 0;
-        _rtmp3132 = input.readListBegin();
-        _etype131 = _rtmp3132.etype;
-        _size128 = _rtmp3132.size;
-        for (var _i133 = 0; _i133 < _size128; ++_i133)
+        var _etype147 = 0;
+        _rtmp3148 = input.readListBegin();
+        _etype147 = _rtmp3148.etype;
+        _size144 = _rtmp3148.size;
+        for (var _i149 = 0; _i149 < _size144; ++_i149)
         {
-          var elem134 = null;
-          elem134 = new order_ttypes.OrderInsert();
-          elem134.read(input);
-          this.models.push(elem134);
+          var elem150 = null;
+          elem150 = new order_ttypes.OrderInsert();
+          elem150.read(input);
+          this.models.push(elem150);
         }
         input.readListEnd();
       } else {
@@ -7016,12 +7185,12 @@ vv.service.VIVUDataService_orderInsertMany_args.prototype.write = function(outpu
   if (this.models !== null && this.models !== undefined) {
     output.writeFieldBegin('models', Thrift.Type.LIST, 1);
     output.writeListBegin(Thrift.Type.STRUCT, this.models.length);
-    for (var iter135 in this.models)
+    for (var iter151 in this.models)
     {
-      if (this.models.hasOwnProperty(iter135))
+      if (this.models.hasOwnProperty(iter151))
       {
-        iter135 = this.models[iter135];
-        iter135.write(output);
+        iter151 = this.models[iter151];
+        iter151.write(output);
       }
     }
     output.writeListEnd();
@@ -7064,19 +7233,19 @@ vv.service.VIVUDataService_orderInsertMany_result.prototype.read = function(inpu
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size136 = 0;
-        var _rtmp3140;
+        var _size152 = 0;
+        var _rtmp3156;
         this.success = [];
-        var _etype139 = 0;
-        _rtmp3140 = input.readListBegin();
-        _etype139 = _rtmp3140.etype;
-        _size136 = _rtmp3140.size;
-        for (var _i141 = 0; _i141 < _size136; ++_i141)
+        var _etype155 = 0;
+        _rtmp3156 = input.readListBegin();
+        _etype155 = _rtmp3156.etype;
+        _size152 = _rtmp3156.size;
+        for (var _i157 = 0; _i157 < _size152; ++_i157)
         {
-          var elem142 = null;
-          elem142 = new order_ttypes.Order();
-          elem142.read(input);
-          this.success.push(elem142);
+          var elem158 = null;
+          elem158 = new order_ttypes.Order();
+          elem158.read(input);
+          this.success.push(elem158);
         }
         input.readListEnd();
       } else {
@@ -7105,12 +7274,12 @@ vv.service.VIVUDataService_orderInsertMany_result.prototype.write = function(out
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter143 in this.success)
+    for (var iter159 in this.success)
     {
-      if (this.success.hasOwnProperty(iter143))
+      if (this.success.hasOwnProperty(iter159))
       {
-        iter143 = this.success[iter143];
-        iter143.write(output);
+        iter159 = this.success[iter159];
+        iter159.write(output);
       }
     }
     output.writeListEnd();
@@ -7540,18 +7709,18 @@ vv.service.VIVUDataService_orderGetMany_args.prototype.read = function(input) {
     {
       case 1:
       if (ftype == Thrift.Type.LIST) {
-        var _size144 = 0;
-        var _rtmp3148;
+        var _size160 = 0;
+        var _rtmp3164;
         this.pks = [];
-        var _etype147 = 0;
-        _rtmp3148 = input.readListBegin();
-        _etype147 = _rtmp3148.etype;
-        _size144 = _rtmp3148.size;
-        for (var _i149 = 0; _i149 < _size144; ++_i149)
+        var _etype163 = 0;
+        _rtmp3164 = input.readListBegin();
+        _etype163 = _rtmp3164.etype;
+        _size160 = _rtmp3164.size;
+        for (var _i165 = 0; _i165 < _size160; ++_i165)
         {
-          var elem150 = null;
-          elem150 = input.readI32();
-          this.pks.push(elem150);
+          var elem166 = null;
+          elem166 = input.readI32();
+          this.pks.push(elem166);
         }
         input.readListEnd();
       } else {
@@ -7575,12 +7744,12 @@ vv.service.VIVUDataService_orderGetMany_args.prototype.write = function(output) 
   if (this.pks !== null && this.pks !== undefined) {
     output.writeFieldBegin('pks', Thrift.Type.LIST, 1);
     output.writeListBegin(Thrift.Type.I32, this.pks.length);
-    for (var iter151 in this.pks)
+    for (var iter167 in this.pks)
     {
-      if (this.pks.hasOwnProperty(iter151))
+      if (this.pks.hasOwnProperty(iter167))
       {
-        iter151 = this.pks[iter151];
-        output.writeI32(iter151);
+        iter167 = this.pks[iter167];
+        output.writeI32(iter167);
       }
     }
     output.writeListEnd();
@@ -7609,189 +7778,6 @@ vv.service.VIVUDataService_orderGetMany_result = function(args) {
 };
 vv.service.VIVUDataService_orderGetMany_result.prototype = {};
 vv.service.VIVUDataService_orderGetMany_result.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 0:
-      if (ftype == Thrift.Type.LIST) {
-        var _size152 = 0;
-        var _rtmp3156;
-        this.success = [];
-        var _etype155 = 0;
-        _rtmp3156 = input.readListBegin();
-        _etype155 = _rtmp3156.etype;
-        _size152 = _rtmp3156.size;
-        for (var _i157 = 0; _i157 < _size152; ++_i157)
-        {
-          var elem158 = null;
-          elem158 = new order_ttypes.Order();
-          elem158.read(input);
-          this.success.push(elem158);
-        }
-        input.readListEnd();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 1:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.ex = new exception_ttypes.DBExceptions();
-        this.ex.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      default:
-        input.skip(ftype);
-    }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
-};
-
-vv.service.VIVUDataService_orderGetMany_result.prototype.write = function(output) {
-  output.writeStructBegin('VIVUDataService_orderGetMany_result');
-  if (this.success !== null && this.success !== undefined) {
-    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
-    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter159 in this.success)
-    {
-      if (this.success.hasOwnProperty(iter159))
-      {
-        iter159 = this.success[iter159];
-        iter159.write(output);
-      }
-    }
-    output.writeListEnd();
-    output.writeFieldEnd();
-  }
-  if (this.ex !== null && this.ex !== undefined) {
-    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
-    this.ex.write(output);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
-};
-
-vv.service.VIVUDataService_orderGetManyOneRelation_args = function(args) {
-  this.pks = null;
-  this.options = null;
-  if (args) {
-    if (args.pks !== undefined && args.pks !== null) {
-      this.pks = Thrift.copyList(args.pks, [null]);
-    }
-    if (args.options !== undefined && args.options !== null) {
-      this.options = new options_ttypes.SelectOptions(args.options);
-    }
-  }
-};
-vv.service.VIVUDataService_orderGetManyOneRelation_args.prototype = {};
-vv.service.VIVUDataService_orderGetManyOneRelation_args.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 1:
-      if (ftype == Thrift.Type.LIST) {
-        var _size160 = 0;
-        var _rtmp3164;
-        this.pks = [];
-        var _etype163 = 0;
-        _rtmp3164 = input.readListBegin();
-        _etype163 = _rtmp3164.etype;
-        _size160 = _rtmp3164.size;
-        for (var _i165 = 0; _i165 < _size160; ++_i165)
-        {
-          var elem166 = null;
-          elem166 = input.readI32();
-          this.pks.push(elem166);
-        }
-        input.readListEnd();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 2:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.options = new options_ttypes.SelectOptions();
-        this.options.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      default:
-        input.skip(ftype);
-    }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
-};
-
-vv.service.VIVUDataService_orderGetManyOneRelation_args.prototype.write = function(output) {
-  output.writeStructBegin('VIVUDataService_orderGetManyOneRelation_args');
-  if (this.pks !== null && this.pks !== undefined) {
-    output.writeFieldBegin('pks', Thrift.Type.LIST, 1);
-    output.writeListBegin(Thrift.Type.I32, this.pks.length);
-    for (var iter167 in this.pks)
-    {
-      if (this.pks.hasOwnProperty(iter167))
-      {
-        iter167 = this.pks[iter167];
-        output.writeI32(iter167);
-      }
-    }
-    output.writeListEnd();
-    output.writeFieldEnd();
-  }
-  if (this.options !== null && this.options !== undefined) {
-    output.writeFieldBegin('options', Thrift.Type.STRUCT, 2);
-    this.options.write(output);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
-};
-
-vv.service.VIVUDataService_orderGetManyOneRelation_result = function(args) {
-  this.success = null;
-  this.ex = null;
-  if (args instanceof exception_ttypes.DBExceptions) {
-    this.ex = args;
-    return;
-  }
-  if (args) {
-    if (args.success !== undefined && args.success !== null) {
-      this.success = Thrift.copyList(args.success, [order_ttypes.Order]);
-    }
-    if (args.ex !== undefined && args.ex !== null) {
-      this.ex = args.ex;
-    }
-  }
-};
-vv.service.VIVUDataService_orderGetManyOneRelation_result.prototype = {};
-vv.service.VIVUDataService_orderGetManyOneRelation_result.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -7842,8 +7828,8 @@ vv.service.VIVUDataService_orderGetManyOneRelation_result.prototype.read = funct
   return;
 };
 
-vv.service.VIVUDataService_orderGetManyOneRelation_result.prototype.write = function(output) {
-  output.writeStructBegin('VIVUDataService_orderGetManyOneRelation_result');
+vv.service.VIVUDataService_orderGetMany_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_orderGetMany_result');
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
@@ -7853,6 +7839,189 @@ vv.service.VIVUDataService_orderGetManyOneRelation_result.prototype.write = func
       {
         iter175 = this.success[iter175];
         iter175.write(output);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_orderGetManyOneRelation_args = function(args) {
+  this.pks = null;
+  this.options = null;
+  if (args) {
+    if (args.pks !== undefined && args.pks !== null) {
+      this.pks = Thrift.copyList(args.pks, [null]);
+    }
+    if (args.options !== undefined && args.options !== null) {
+      this.options = new options_ttypes.SelectOptions(args.options);
+    }
+  }
+};
+vv.service.VIVUDataService_orderGetManyOneRelation_args.prototype = {};
+vv.service.VIVUDataService_orderGetManyOneRelation_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.LIST) {
+        var _size176 = 0;
+        var _rtmp3180;
+        this.pks = [];
+        var _etype179 = 0;
+        _rtmp3180 = input.readListBegin();
+        _etype179 = _rtmp3180.etype;
+        _size176 = _rtmp3180.size;
+        for (var _i181 = 0; _i181 < _size176; ++_i181)
+        {
+          var elem182 = null;
+          elem182 = input.readI32();
+          this.pks.push(elem182);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.options = new options_ttypes.SelectOptions();
+        this.options.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_orderGetManyOneRelation_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_orderGetManyOneRelation_args');
+  if (this.pks !== null && this.pks !== undefined) {
+    output.writeFieldBegin('pks', Thrift.Type.LIST, 1);
+    output.writeListBegin(Thrift.Type.I32, this.pks.length);
+    for (var iter183 in this.pks)
+    {
+      if (this.pks.hasOwnProperty(iter183))
+      {
+        iter183 = this.pks[iter183];
+        output.writeI32(iter183);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.options !== null && this.options !== undefined) {
+    output.writeFieldBegin('options', Thrift.Type.STRUCT, 2);
+    this.options.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_orderGetManyOneRelation_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = Thrift.copyList(args.success, [order_ttypes.Order]);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_orderGetManyOneRelation_result.prototype = {};
+vv.service.VIVUDataService_orderGetManyOneRelation_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.LIST) {
+        var _size184 = 0;
+        var _rtmp3188;
+        this.success = [];
+        var _etype187 = 0;
+        _rtmp3188 = input.readListBegin();
+        _etype187 = _rtmp3188.etype;
+        _size184 = _rtmp3188.size;
+        for (var _i189 = 0; _i189 < _size184; ++_i189)
+        {
+          var elem190 = null;
+          elem190 = new order_ttypes.Order();
+          elem190.read(input);
+          this.success.push(elem190);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_orderGetManyOneRelation_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_orderGetManyOneRelation_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+    for (var iter191 in this.success)
+    {
+      if (this.success.hasOwnProperty(iter191))
+      {
+        iter191 = this.success[iter191];
+        iter191.write(output);
       }
     }
     output.writeListEnd();
@@ -7928,19 +8097,19 @@ vv.service.VIVUDataService_orderGetAll_result.prototype.read = function(input) {
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size176 = 0;
-        var _rtmp3180;
+        var _size192 = 0;
+        var _rtmp3196;
         this.success = [];
-        var _etype179 = 0;
-        _rtmp3180 = input.readListBegin();
-        _etype179 = _rtmp3180.etype;
-        _size176 = _rtmp3180.size;
-        for (var _i181 = 0; _i181 < _size176; ++_i181)
+        var _etype195 = 0;
+        _rtmp3196 = input.readListBegin();
+        _etype195 = _rtmp3196.etype;
+        _size192 = _rtmp3196.size;
+        for (var _i197 = 0; _i197 < _size192; ++_i197)
         {
-          var elem182 = null;
-          elem182 = new order_ttypes.Order();
-          elem182.read(input);
-          this.success.push(elem182);
+          var elem198 = null;
+          elem198 = new order_ttypes.Order();
+          elem198.read(input);
+          this.success.push(elem198);
         }
         input.readListEnd();
       } else {
@@ -7969,12 +8138,12 @@ vv.service.VIVUDataService_orderGetAll_result.prototype.write = function(output)
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter183 in this.success)
+    for (var iter199 in this.success)
     {
-      if (this.success.hasOwnProperty(iter183))
+      if (this.success.hasOwnProperty(iter199))
       {
-        iter183 = this.success[iter183];
-        iter183.write(output);
+        iter199 = this.success[iter199];
+        iter199.write(output);
       }
     }
     output.writeListEnd();
@@ -8075,19 +8244,19 @@ vv.service.VIVUDataService_orderGetAllStatus_result.prototype.read = function(in
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size184 = 0;
-        var _rtmp3188;
+        var _size200 = 0;
+        var _rtmp3204;
         this.success = [];
-        var _etype187 = 0;
-        _rtmp3188 = input.readListBegin();
-        _etype187 = _rtmp3188.etype;
-        _size184 = _rtmp3188.size;
-        for (var _i189 = 0; _i189 < _size184; ++_i189)
+        var _etype203 = 0;
+        _rtmp3204 = input.readListBegin();
+        _etype203 = _rtmp3204.etype;
+        _size200 = _rtmp3204.size;
+        for (var _i205 = 0; _i205 < _size200; ++_i205)
         {
-          var elem190 = null;
-          elem190 = new order_ttypes.Order();
-          elem190.read(input);
-          this.success.push(elem190);
+          var elem206 = null;
+          elem206 = new order_ttypes.Order();
+          elem206.read(input);
+          this.success.push(elem206);
         }
         input.readListEnd();
       } else {
@@ -8116,12 +8285,12 @@ vv.service.VIVUDataService_orderGetAllStatus_result.prototype.write = function(o
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter191 in this.success)
+    for (var iter207 in this.success)
     {
-      if (this.success.hasOwnProperty(iter191))
+      if (this.success.hasOwnProperty(iter207))
       {
-        iter191 = this.success[iter191];
-        iter191.write(output);
+        iter207 = this.success[iter207];
+        iter207.write(output);
       }
     }
     output.writeListEnd();
@@ -8197,19 +8366,19 @@ vv.service.VIVUDataService_orderGetAllActive_result.prototype.read = function(in
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size192 = 0;
-        var _rtmp3196;
+        var _size208 = 0;
+        var _rtmp3212;
         this.success = [];
-        var _etype195 = 0;
-        _rtmp3196 = input.readListBegin();
-        _etype195 = _rtmp3196.etype;
-        _size192 = _rtmp3196.size;
-        for (var _i197 = 0; _i197 < _size192; ++_i197)
+        var _etype211 = 0;
+        _rtmp3212 = input.readListBegin();
+        _etype211 = _rtmp3212.etype;
+        _size208 = _rtmp3212.size;
+        for (var _i213 = 0; _i213 < _size208; ++_i213)
         {
-          var elem198 = null;
-          elem198 = new order_ttypes.Order();
-          elem198.read(input);
-          this.success.push(elem198);
+          var elem214 = null;
+          elem214 = new order_ttypes.Order();
+          elem214.read(input);
+          this.success.push(elem214);
         }
         input.readListEnd();
       } else {
@@ -8238,12 +8407,12 @@ vv.service.VIVUDataService_orderGetAllActive_result.prototype.write = function(o
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter199 in this.success)
+    for (var iter215 in this.success)
     {
-      if (this.success.hasOwnProperty(iter199))
+      if (this.success.hasOwnProperty(iter215))
       {
-        iter199 = this.success[iter199];
-        iter199.write(output);
+        iter215 = this.success[iter215];
+        iter215.write(output);
       }
     }
     output.writeListEnd();
@@ -8319,19 +8488,19 @@ vv.service.VIVUDataService_orderGetAllInactive_result.prototype.read = function(
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size200 = 0;
-        var _rtmp3204;
+        var _size216 = 0;
+        var _rtmp3220;
         this.success = [];
-        var _etype203 = 0;
-        _rtmp3204 = input.readListBegin();
-        _etype203 = _rtmp3204.etype;
-        _size200 = _rtmp3204.size;
-        for (var _i205 = 0; _i205 < _size200; ++_i205)
+        var _etype219 = 0;
+        _rtmp3220 = input.readListBegin();
+        _etype219 = _rtmp3220.etype;
+        _size216 = _rtmp3220.size;
+        for (var _i221 = 0; _i221 < _size216; ++_i221)
         {
-          var elem206 = null;
-          elem206 = new order_ttypes.Order();
-          elem206.read(input);
-          this.success.push(elem206);
+          var elem222 = null;
+          elem222 = new order_ttypes.Order();
+          elem222.read(input);
+          this.success.push(elem222);
         }
         input.readListEnd();
       } else {
@@ -8360,12 +8529,12 @@ vv.service.VIVUDataService_orderGetAllInactive_result.prototype.write = function
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter207 in this.success)
+    for (var iter223 in this.success)
     {
-      if (this.success.hasOwnProperty(iter207))
+      if (this.success.hasOwnProperty(iter223))
       {
-        iter207 = this.success[iter207];
-        iter207.write(output);
+        iter223 = this.success[iter223];
+        iter223.write(output);
       }
     }
     output.writeListEnd();
@@ -8441,19 +8610,19 @@ vv.service.VIVUDataService_orderGetAllDisabled_result.prototype.read = function(
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size208 = 0;
-        var _rtmp3212;
+        var _size224 = 0;
+        var _rtmp3228;
         this.success = [];
-        var _etype211 = 0;
-        _rtmp3212 = input.readListBegin();
-        _etype211 = _rtmp3212.etype;
-        _size208 = _rtmp3212.size;
-        for (var _i213 = 0; _i213 < _size208; ++_i213)
+        var _etype227 = 0;
+        _rtmp3228 = input.readListBegin();
+        _etype227 = _rtmp3228.etype;
+        _size224 = _rtmp3228.size;
+        for (var _i229 = 0; _i229 < _size224; ++_i229)
         {
-          var elem214 = null;
-          elem214 = new order_ttypes.Order();
-          elem214.read(input);
-          this.success.push(elem214);
+          var elem230 = null;
+          elem230 = new order_ttypes.Order();
+          elem230.read(input);
+          this.success.push(elem230);
         }
         input.readListEnd();
       } else {
@@ -8482,12 +8651,12 @@ vv.service.VIVUDataService_orderGetAllDisabled_result.prototype.write = function
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter215 in this.success)
+    for (var iter231 in this.success)
     {
-      if (this.success.hasOwnProperty(iter215))
+      if (this.success.hasOwnProperty(iter231))
       {
-        iter215 = this.success[iter215];
-        iter215.write(output);
+        iter231 = this.success[iter231];
+        iter231.write(output);
       }
     }
     output.writeListEnd();
@@ -8563,19 +8732,19 @@ vv.service.VIVUDataService_orderGetAllDeleted_result.prototype.read = function(i
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size216 = 0;
-        var _rtmp3220;
+        var _size232 = 0;
+        var _rtmp3236;
         this.success = [];
-        var _etype219 = 0;
-        _rtmp3220 = input.readListBegin();
-        _etype219 = _rtmp3220.etype;
-        _size216 = _rtmp3220.size;
-        for (var _i221 = 0; _i221 < _size216; ++_i221)
+        var _etype235 = 0;
+        _rtmp3236 = input.readListBegin();
+        _etype235 = _rtmp3236.etype;
+        _size232 = _rtmp3236.size;
+        for (var _i237 = 0; _i237 < _size232; ++_i237)
         {
-          var elem222 = null;
-          elem222 = new order_ttypes.Order();
-          elem222.read(input);
-          this.success.push(elem222);
+          var elem238 = null;
+          elem238 = new order_ttypes.Order();
+          elem238.read(input);
+          this.success.push(elem238);
         }
         input.readListEnd();
       } else {
@@ -8604,12 +8773,12 @@ vv.service.VIVUDataService_orderGetAllDeleted_result.prototype.write = function(
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter223 in this.success)
+    for (var iter239 in this.success)
     {
-      if (this.success.hasOwnProperty(iter223))
+      if (this.success.hasOwnProperty(iter239))
       {
-        iter223 = this.success[iter223];
-        iter223.write(output);
+        iter239 = this.success[iter239];
+        iter239.write(output);
       }
     }
     output.writeListEnd();
@@ -8725,19 +8894,19 @@ vv.service.VIVUDataService_orderFilter_result.prototype.read = function(input) {
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size224 = 0;
-        var _rtmp3228;
+        var _size240 = 0;
+        var _rtmp3244;
         this.success = [];
-        var _etype227 = 0;
-        _rtmp3228 = input.readListBegin();
-        _etype227 = _rtmp3228.etype;
-        _size224 = _rtmp3228.size;
-        for (var _i229 = 0; _i229 < _size224; ++_i229)
+        var _etype243 = 0;
+        _rtmp3244 = input.readListBegin();
+        _etype243 = _rtmp3244.etype;
+        _size240 = _rtmp3244.size;
+        for (var _i245 = 0; _i245 < _size240; ++_i245)
         {
-          var elem230 = null;
-          elem230 = new order_ttypes.Order();
-          elem230.read(input);
-          this.success.push(elem230);
+          var elem246 = null;
+          elem246 = new order_ttypes.Order();
+          elem246.read(input);
+          this.success.push(elem246);
         }
         input.readListEnd();
       } else {
@@ -8766,12 +8935,12 @@ vv.service.VIVUDataService_orderFilter_result.prototype.write = function(output)
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter231 in this.success)
+    for (var iter247 in this.success)
     {
-      if (this.success.hasOwnProperty(iter231))
+      if (this.success.hasOwnProperty(iter247))
       {
-        iter231 = this.success[iter231];
-        iter231.write(output);
+        iter247 = this.success[iter247];
+        iter247.write(output);
       }
     }
     output.writeListEnd();
@@ -9277,19 +9446,19 @@ vv.service.VIVUDataService_orderGetManyByCustomer_result.prototype.read = functi
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size232 = 0;
-        var _rtmp3236;
+        var _size248 = 0;
+        var _rtmp3252;
         this.success = [];
-        var _etype235 = 0;
-        _rtmp3236 = input.readListBegin();
-        _etype235 = _rtmp3236.etype;
-        _size232 = _rtmp3236.size;
-        for (var _i237 = 0; _i237 < _size232; ++_i237)
+        var _etype251 = 0;
+        _rtmp3252 = input.readListBegin();
+        _etype251 = _rtmp3252.etype;
+        _size248 = _rtmp3252.size;
+        for (var _i253 = 0; _i253 < _size248; ++_i253)
         {
-          var elem238 = null;
-          elem238 = new order_ttypes.Order();
-          elem238.read(input);
-          this.success.push(elem238);
+          var elem254 = null;
+          elem254 = new order_ttypes.Order();
+          elem254.read(input);
+          this.success.push(elem254);
         }
         input.readListEnd();
       } else {
@@ -9318,12 +9487,12 @@ vv.service.VIVUDataService_orderGetManyByCustomer_result.prototype.write = funct
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter239 in this.success)
+    for (var iter255 in this.success)
     {
-      if (this.success.hasOwnProperty(iter239))
+      if (this.success.hasOwnProperty(iter255))
       {
-        iter239 = this.success[iter239];
-        iter239.write(output);
+        iter255 = this.success[iter255];
+        iter255.write(output);
       }
     }
     output.writeListEnd();
@@ -9489,19 +9658,19 @@ vv.service.VIVUDataService_orderItemInsertMany_args.prototype.read = function(in
     {
       case 1:
       if (ftype == Thrift.Type.LIST) {
-        var _size240 = 0;
-        var _rtmp3244;
+        var _size256 = 0;
+        var _rtmp3260;
         this.insert = [];
-        var _etype243 = 0;
-        _rtmp3244 = input.readListBegin();
-        _etype243 = _rtmp3244.etype;
-        _size240 = _rtmp3244.size;
-        for (var _i245 = 0; _i245 < _size240; ++_i245)
+        var _etype259 = 0;
+        _rtmp3260 = input.readListBegin();
+        _etype259 = _rtmp3260.etype;
+        _size256 = _rtmp3260.size;
+        for (var _i261 = 0; _i261 < _size256; ++_i261)
         {
-          var elem246 = null;
-          elem246 = new order_item_ttypes.OrderItemInsert();
-          elem246.read(input);
-          this.insert.push(elem246);
+          var elem262 = null;
+          elem262 = new order_item_ttypes.OrderItemInsert();
+          elem262.read(input);
+          this.insert.push(elem262);
         }
         input.readListEnd();
       } else {
@@ -9525,12 +9694,12 @@ vv.service.VIVUDataService_orderItemInsertMany_args.prototype.write = function(o
   if (this.insert !== null && this.insert !== undefined) {
     output.writeFieldBegin('insert', Thrift.Type.LIST, 1);
     output.writeListBegin(Thrift.Type.STRUCT, this.insert.length);
-    for (var iter247 in this.insert)
+    for (var iter263 in this.insert)
     {
-      if (this.insert.hasOwnProperty(iter247))
+      if (this.insert.hasOwnProperty(iter263))
       {
-        iter247 = this.insert[iter247];
-        iter247.write(output);
+        iter263 = this.insert[iter263];
+        iter263.write(output);
       }
     }
     output.writeListEnd();
@@ -9559,189 +9728,6 @@ vv.service.VIVUDataService_orderItemInsertMany_result = function(args) {
 };
 vv.service.VIVUDataService_orderItemInsertMany_result.prototype = {};
 vv.service.VIVUDataService_orderItemInsertMany_result.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 0:
-      if (ftype == Thrift.Type.LIST) {
-        var _size248 = 0;
-        var _rtmp3252;
-        this.success = [];
-        var _etype251 = 0;
-        _rtmp3252 = input.readListBegin();
-        _etype251 = _rtmp3252.etype;
-        _size248 = _rtmp3252.size;
-        for (var _i253 = 0; _i253 < _size248; ++_i253)
-        {
-          var elem254 = null;
-          elem254 = new order_item_ttypes.OrderItem();
-          elem254.read(input);
-          this.success.push(elem254);
-        }
-        input.readListEnd();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 1:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.ex = new exception_ttypes.DBExceptions();
-        this.ex.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      default:
-        input.skip(ftype);
-    }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
-};
-
-vv.service.VIVUDataService_orderItemInsertMany_result.prototype.write = function(output) {
-  output.writeStructBegin('VIVUDataService_orderItemInsertMany_result');
-  if (this.success !== null && this.success !== undefined) {
-    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
-    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter255 in this.success)
-    {
-      if (this.success.hasOwnProperty(iter255))
-      {
-        iter255 = this.success[iter255];
-        iter255.write(output);
-      }
-    }
-    output.writeListEnd();
-    output.writeFieldEnd();
-  }
-  if (this.ex !== null && this.ex !== undefined) {
-    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
-    this.ex.write(output);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
-};
-
-vv.service.VIVUDataService_orderItemGetManyByOrder_args = function(args) {
-  this.pks = null;
-  this.options = null;
-  if (args) {
-    if (args.pks !== undefined && args.pks !== null) {
-      this.pks = Thrift.copyList(args.pks, [null]);
-    }
-    if (args.options !== undefined && args.options !== null) {
-      this.options = new options_ttypes.SelectOptions(args.options);
-    }
-  }
-};
-vv.service.VIVUDataService_orderItemGetManyByOrder_args.prototype = {};
-vv.service.VIVUDataService_orderItemGetManyByOrder_args.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 1:
-      if (ftype == Thrift.Type.LIST) {
-        var _size256 = 0;
-        var _rtmp3260;
-        this.pks = [];
-        var _etype259 = 0;
-        _rtmp3260 = input.readListBegin();
-        _etype259 = _rtmp3260.etype;
-        _size256 = _rtmp3260.size;
-        for (var _i261 = 0; _i261 < _size256; ++_i261)
-        {
-          var elem262 = null;
-          elem262 = input.readI32();
-          this.pks.push(elem262);
-        }
-        input.readListEnd();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 2:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.options = new options_ttypes.SelectOptions();
-        this.options.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      default:
-        input.skip(ftype);
-    }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
-};
-
-vv.service.VIVUDataService_orderItemGetManyByOrder_args.prototype.write = function(output) {
-  output.writeStructBegin('VIVUDataService_orderItemGetManyByOrder_args');
-  if (this.pks !== null && this.pks !== undefined) {
-    output.writeFieldBegin('pks', Thrift.Type.LIST, 1);
-    output.writeListBegin(Thrift.Type.I32, this.pks.length);
-    for (var iter263 in this.pks)
-    {
-      if (this.pks.hasOwnProperty(iter263))
-      {
-        iter263 = this.pks[iter263];
-        output.writeI32(iter263);
-      }
-    }
-    output.writeListEnd();
-    output.writeFieldEnd();
-  }
-  if (this.options !== null && this.options !== undefined) {
-    output.writeFieldBegin('options', Thrift.Type.STRUCT, 2);
-    this.options.write(output);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
-};
-
-vv.service.VIVUDataService_orderItemGetManyByOrder_result = function(args) {
-  this.success = null;
-  this.ex = null;
-  if (args instanceof exception_ttypes.DBExceptions) {
-    this.ex = args;
-    return;
-  }
-  if (args) {
-    if (args.success !== undefined && args.success !== null) {
-      this.success = Thrift.copyList(args.success, [order_item_ttypes.OrderItem]);
-    }
-    if (args.ex !== undefined && args.ex !== null) {
-      this.ex = args.ex;
-    }
-  }
-};
-vv.service.VIVUDataService_orderItemGetManyByOrder_result.prototype = {};
-vv.service.VIVUDataService_orderItemGetManyByOrder_result.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -9792,8 +9778,8 @@ vv.service.VIVUDataService_orderItemGetManyByOrder_result.prototype.read = funct
   return;
 };
 
-vv.service.VIVUDataService_orderItemGetManyByOrder_result.prototype.write = function(output) {
-  output.writeStructBegin('VIVUDataService_orderItemGetManyByOrder_result');
+vv.service.VIVUDataService_orderItemInsertMany_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_orderItemInsertMany_result');
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
@@ -9803,6 +9789,189 @@ vv.service.VIVUDataService_orderItemGetManyByOrder_result.prototype.write = func
       {
         iter271 = this.success[iter271];
         iter271.write(output);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_orderItemGetManyByOrder_args = function(args) {
+  this.pks = null;
+  this.options = null;
+  if (args) {
+    if (args.pks !== undefined && args.pks !== null) {
+      this.pks = Thrift.copyList(args.pks, [null]);
+    }
+    if (args.options !== undefined && args.options !== null) {
+      this.options = new options_ttypes.SelectOptions(args.options);
+    }
+  }
+};
+vv.service.VIVUDataService_orderItemGetManyByOrder_args.prototype = {};
+vv.service.VIVUDataService_orderItemGetManyByOrder_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.LIST) {
+        var _size272 = 0;
+        var _rtmp3276;
+        this.pks = [];
+        var _etype275 = 0;
+        _rtmp3276 = input.readListBegin();
+        _etype275 = _rtmp3276.etype;
+        _size272 = _rtmp3276.size;
+        for (var _i277 = 0; _i277 < _size272; ++_i277)
+        {
+          var elem278 = null;
+          elem278 = input.readI32();
+          this.pks.push(elem278);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.options = new options_ttypes.SelectOptions();
+        this.options.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_orderItemGetManyByOrder_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_orderItemGetManyByOrder_args');
+  if (this.pks !== null && this.pks !== undefined) {
+    output.writeFieldBegin('pks', Thrift.Type.LIST, 1);
+    output.writeListBegin(Thrift.Type.I32, this.pks.length);
+    for (var iter279 in this.pks)
+    {
+      if (this.pks.hasOwnProperty(iter279))
+      {
+        iter279 = this.pks[iter279];
+        output.writeI32(iter279);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.options !== null && this.options !== undefined) {
+    output.writeFieldBegin('options', Thrift.Type.STRUCT, 2);
+    this.options.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_orderItemGetManyByOrder_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = Thrift.copyList(args.success, [order_item_ttypes.OrderItem]);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_orderItemGetManyByOrder_result.prototype = {};
+vv.service.VIVUDataService_orderItemGetManyByOrder_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.LIST) {
+        var _size280 = 0;
+        var _rtmp3284;
+        this.success = [];
+        var _etype283 = 0;
+        _rtmp3284 = input.readListBegin();
+        _etype283 = _rtmp3284.etype;
+        _size280 = _rtmp3284.size;
+        for (var _i285 = 0; _i285 < _size280; ++_i285)
+        {
+          var elem286 = null;
+          elem286 = new order_item_ttypes.OrderItem();
+          elem286.read(input);
+          this.success.push(elem286);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_orderItemGetManyByOrder_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_orderItemGetManyByOrder_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+    for (var iter287 in this.success)
+    {
+      if (this.success.hasOwnProperty(iter287))
+      {
+        iter287 = this.success[iter287];
+        iter287.write(output);
       }
     }
     output.writeListEnd();
@@ -10094,19 +10263,19 @@ vv.service.VIVUDataService_orderStatusHistoryInsertMany_args.prototype.read = fu
     {
       case 1:
       if (ftype == Thrift.Type.LIST) {
-        var _size272 = 0;
-        var _rtmp3276;
+        var _size288 = 0;
+        var _rtmp3292;
         this.models = [];
-        var _etype275 = 0;
-        _rtmp3276 = input.readListBegin();
-        _etype275 = _rtmp3276.etype;
-        _size272 = _rtmp3276.size;
-        for (var _i277 = 0; _i277 < _size272; ++_i277)
+        var _etype291 = 0;
+        _rtmp3292 = input.readListBegin();
+        _etype291 = _rtmp3292.etype;
+        _size288 = _rtmp3292.size;
+        for (var _i293 = 0; _i293 < _size288; ++_i293)
         {
-          var elem278 = null;
-          elem278 = new order_status_history_ttypes.OrderStatusHistoryInsert();
-          elem278.read(input);
-          this.models.push(elem278);
+          var elem294 = null;
+          elem294 = new order_status_history_ttypes.OrderStatusHistoryInsert();
+          elem294.read(input);
+          this.models.push(elem294);
         }
         input.readListEnd();
       } else {
@@ -10130,12 +10299,12 @@ vv.service.VIVUDataService_orderStatusHistoryInsertMany_args.prototype.write = f
   if (this.models !== null && this.models !== undefined) {
     output.writeFieldBegin('models', Thrift.Type.LIST, 1);
     output.writeListBegin(Thrift.Type.STRUCT, this.models.length);
-    for (var iter279 in this.models)
+    for (var iter295 in this.models)
     {
-      if (this.models.hasOwnProperty(iter279))
+      if (this.models.hasOwnProperty(iter295))
       {
-        iter279 = this.models[iter279];
-        iter279.write(output);
+        iter295 = this.models[iter295];
+        iter295.write(output);
       }
     }
     output.writeListEnd();
@@ -10178,19 +10347,19 @@ vv.service.VIVUDataService_orderStatusHistoryInsertMany_result.prototype.read = 
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size280 = 0;
-        var _rtmp3284;
+        var _size296 = 0;
+        var _rtmp3300;
         this.success = [];
-        var _etype283 = 0;
-        _rtmp3284 = input.readListBegin();
-        _etype283 = _rtmp3284.etype;
-        _size280 = _rtmp3284.size;
-        for (var _i285 = 0; _i285 < _size280; ++_i285)
+        var _etype299 = 0;
+        _rtmp3300 = input.readListBegin();
+        _etype299 = _rtmp3300.etype;
+        _size296 = _rtmp3300.size;
+        for (var _i301 = 0; _i301 < _size296; ++_i301)
         {
-          var elem286 = null;
-          elem286 = new order_status_history_ttypes.OrderStatusHistory();
-          elem286.read(input);
-          this.success.push(elem286);
+          var elem302 = null;
+          elem302 = new order_status_history_ttypes.OrderStatusHistory();
+          elem302.read(input);
+          this.success.push(elem302);
         }
         input.readListEnd();
       } else {
@@ -10219,12 +10388,12 @@ vv.service.VIVUDataService_orderStatusHistoryInsertMany_result.prototype.write =
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter287 in this.success)
+    for (var iter303 in this.success)
     {
-      if (this.success.hasOwnProperty(iter287))
+      if (this.success.hasOwnProperty(iter303))
       {
-        iter287 = this.success[iter287];
-        iter287.write(output);
+        iter303 = this.success[iter303];
+        iter303.write(output);
       }
     }
     output.writeListEnd();
@@ -10654,18 +10823,18 @@ vv.service.VIVUDataService_orderStatusHistoryGetMany_args.prototype.read = funct
     {
       case 1:
       if (ftype == Thrift.Type.LIST) {
-        var _size288 = 0;
-        var _rtmp3292;
+        var _size304 = 0;
+        var _rtmp3308;
         this.pks = [];
-        var _etype291 = 0;
-        _rtmp3292 = input.readListBegin();
-        _etype291 = _rtmp3292.etype;
-        _size288 = _rtmp3292.size;
-        for (var _i293 = 0; _i293 < _size288; ++_i293)
+        var _etype307 = 0;
+        _rtmp3308 = input.readListBegin();
+        _etype307 = _rtmp3308.etype;
+        _size304 = _rtmp3308.size;
+        for (var _i309 = 0; _i309 < _size304; ++_i309)
         {
-          var elem294 = null;
-          elem294 = input.readI32();
-          this.pks.push(elem294);
+          var elem310 = null;
+          elem310 = input.readI32();
+          this.pks.push(elem310);
         }
         input.readListEnd();
       } else {
@@ -10689,12 +10858,12 @@ vv.service.VIVUDataService_orderStatusHistoryGetMany_args.prototype.write = func
   if (this.pks !== null && this.pks !== undefined) {
     output.writeFieldBegin('pks', Thrift.Type.LIST, 1);
     output.writeListBegin(Thrift.Type.I32, this.pks.length);
-    for (var iter295 in this.pks)
+    for (var iter311 in this.pks)
     {
-      if (this.pks.hasOwnProperty(iter295))
+      if (this.pks.hasOwnProperty(iter311))
       {
-        iter295 = this.pks[iter295];
-        output.writeI32(iter295);
+        iter311 = this.pks[iter311];
+        output.writeI32(iter311);
       }
     }
     output.writeListEnd();
@@ -10723,189 +10892,6 @@ vv.service.VIVUDataService_orderStatusHistoryGetMany_result = function(args) {
 };
 vv.service.VIVUDataService_orderStatusHistoryGetMany_result.prototype = {};
 vv.service.VIVUDataService_orderStatusHistoryGetMany_result.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 0:
-      if (ftype == Thrift.Type.LIST) {
-        var _size296 = 0;
-        var _rtmp3300;
-        this.success = [];
-        var _etype299 = 0;
-        _rtmp3300 = input.readListBegin();
-        _etype299 = _rtmp3300.etype;
-        _size296 = _rtmp3300.size;
-        for (var _i301 = 0; _i301 < _size296; ++_i301)
-        {
-          var elem302 = null;
-          elem302 = new order_status_history_ttypes.OrderStatusHistory();
-          elem302.read(input);
-          this.success.push(elem302);
-        }
-        input.readListEnd();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 1:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.ex = new exception_ttypes.DBExceptions();
-        this.ex.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      default:
-        input.skip(ftype);
-    }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
-};
-
-vv.service.VIVUDataService_orderStatusHistoryGetMany_result.prototype.write = function(output) {
-  output.writeStructBegin('VIVUDataService_orderStatusHistoryGetMany_result');
-  if (this.success !== null && this.success !== undefined) {
-    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
-    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter303 in this.success)
-    {
-      if (this.success.hasOwnProperty(iter303))
-      {
-        iter303 = this.success[iter303];
-        iter303.write(output);
-      }
-    }
-    output.writeListEnd();
-    output.writeFieldEnd();
-  }
-  if (this.ex !== null && this.ex !== undefined) {
-    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
-    this.ex.write(output);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
-};
-
-vv.service.VIVUDataService_orderStatusHistoryGetManyOneRelation_args = function(args) {
-  this.pks = null;
-  this.options = null;
-  if (args) {
-    if (args.pks !== undefined && args.pks !== null) {
-      this.pks = Thrift.copyList(args.pks, [null]);
-    }
-    if (args.options !== undefined && args.options !== null) {
-      this.options = new options_ttypes.SelectOptions(args.options);
-    }
-  }
-};
-vv.service.VIVUDataService_orderStatusHistoryGetManyOneRelation_args.prototype = {};
-vv.service.VIVUDataService_orderStatusHistoryGetManyOneRelation_args.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 1:
-      if (ftype == Thrift.Type.LIST) {
-        var _size304 = 0;
-        var _rtmp3308;
-        this.pks = [];
-        var _etype307 = 0;
-        _rtmp3308 = input.readListBegin();
-        _etype307 = _rtmp3308.etype;
-        _size304 = _rtmp3308.size;
-        for (var _i309 = 0; _i309 < _size304; ++_i309)
-        {
-          var elem310 = null;
-          elem310 = input.readI32();
-          this.pks.push(elem310);
-        }
-        input.readListEnd();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 2:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.options = new options_ttypes.SelectOptions();
-        this.options.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      default:
-        input.skip(ftype);
-    }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
-};
-
-vv.service.VIVUDataService_orderStatusHistoryGetManyOneRelation_args.prototype.write = function(output) {
-  output.writeStructBegin('VIVUDataService_orderStatusHistoryGetManyOneRelation_args');
-  if (this.pks !== null && this.pks !== undefined) {
-    output.writeFieldBegin('pks', Thrift.Type.LIST, 1);
-    output.writeListBegin(Thrift.Type.I32, this.pks.length);
-    for (var iter311 in this.pks)
-    {
-      if (this.pks.hasOwnProperty(iter311))
-      {
-        iter311 = this.pks[iter311];
-        output.writeI32(iter311);
-      }
-    }
-    output.writeListEnd();
-    output.writeFieldEnd();
-  }
-  if (this.options !== null && this.options !== undefined) {
-    output.writeFieldBegin('options', Thrift.Type.STRUCT, 2);
-    this.options.write(output);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
-};
-
-vv.service.VIVUDataService_orderStatusHistoryGetManyOneRelation_result = function(args) {
-  this.success = null;
-  this.ex = null;
-  if (args instanceof exception_ttypes.DBExceptions) {
-    this.ex = args;
-    return;
-  }
-  if (args) {
-    if (args.success !== undefined && args.success !== null) {
-      this.success = Thrift.copyList(args.success, [order_status_history_ttypes.OrderStatusHistory]);
-    }
-    if (args.ex !== undefined && args.ex !== null) {
-      this.ex = args.ex;
-    }
-  }
-};
-vv.service.VIVUDataService_orderStatusHistoryGetManyOneRelation_result.prototype = {};
-vv.service.VIVUDataService_orderStatusHistoryGetManyOneRelation_result.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -10956,8 +10942,8 @@ vv.service.VIVUDataService_orderStatusHistoryGetManyOneRelation_result.prototype
   return;
 };
 
-vv.service.VIVUDataService_orderStatusHistoryGetManyOneRelation_result.prototype.write = function(output) {
-  output.writeStructBegin('VIVUDataService_orderStatusHistoryGetManyOneRelation_result');
+vv.service.VIVUDataService_orderStatusHistoryGetMany_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_orderStatusHistoryGetMany_result');
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
@@ -10967,6 +10953,189 @@ vv.service.VIVUDataService_orderStatusHistoryGetManyOneRelation_result.prototype
       {
         iter319 = this.success[iter319];
         iter319.write(output);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_orderStatusHistoryGetManyOneRelation_args = function(args) {
+  this.pks = null;
+  this.options = null;
+  if (args) {
+    if (args.pks !== undefined && args.pks !== null) {
+      this.pks = Thrift.copyList(args.pks, [null]);
+    }
+    if (args.options !== undefined && args.options !== null) {
+      this.options = new options_ttypes.SelectOptions(args.options);
+    }
+  }
+};
+vv.service.VIVUDataService_orderStatusHistoryGetManyOneRelation_args.prototype = {};
+vv.service.VIVUDataService_orderStatusHistoryGetManyOneRelation_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.LIST) {
+        var _size320 = 0;
+        var _rtmp3324;
+        this.pks = [];
+        var _etype323 = 0;
+        _rtmp3324 = input.readListBegin();
+        _etype323 = _rtmp3324.etype;
+        _size320 = _rtmp3324.size;
+        for (var _i325 = 0; _i325 < _size320; ++_i325)
+        {
+          var elem326 = null;
+          elem326 = input.readI32();
+          this.pks.push(elem326);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.options = new options_ttypes.SelectOptions();
+        this.options.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_orderStatusHistoryGetManyOneRelation_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_orderStatusHistoryGetManyOneRelation_args');
+  if (this.pks !== null && this.pks !== undefined) {
+    output.writeFieldBegin('pks', Thrift.Type.LIST, 1);
+    output.writeListBegin(Thrift.Type.I32, this.pks.length);
+    for (var iter327 in this.pks)
+    {
+      if (this.pks.hasOwnProperty(iter327))
+      {
+        iter327 = this.pks[iter327];
+        output.writeI32(iter327);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.options !== null && this.options !== undefined) {
+    output.writeFieldBegin('options', Thrift.Type.STRUCT, 2);
+    this.options.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_orderStatusHistoryGetManyOneRelation_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = Thrift.copyList(args.success, [order_status_history_ttypes.OrderStatusHistory]);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_orderStatusHistoryGetManyOneRelation_result.prototype = {};
+vv.service.VIVUDataService_orderStatusHistoryGetManyOneRelation_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.LIST) {
+        var _size328 = 0;
+        var _rtmp3332;
+        this.success = [];
+        var _etype331 = 0;
+        _rtmp3332 = input.readListBegin();
+        _etype331 = _rtmp3332.etype;
+        _size328 = _rtmp3332.size;
+        for (var _i333 = 0; _i333 < _size328; ++_i333)
+        {
+          var elem334 = null;
+          elem334 = new order_status_history_ttypes.OrderStatusHistory();
+          elem334.read(input);
+          this.success.push(elem334);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_orderStatusHistoryGetManyOneRelation_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_orderStatusHistoryGetManyOneRelation_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+    for (var iter335 in this.success)
+    {
+      if (this.success.hasOwnProperty(iter335))
+      {
+        iter335 = this.success[iter335];
+        iter335.write(output);
       }
     }
     output.writeListEnd();
@@ -11042,19 +11211,19 @@ vv.service.VIVUDataService_orderStatusHistoryGetAll_result.prototype.read = func
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size320 = 0;
-        var _rtmp3324;
+        var _size336 = 0;
+        var _rtmp3340;
         this.success = [];
-        var _etype323 = 0;
-        _rtmp3324 = input.readListBegin();
-        _etype323 = _rtmp3324.etype;
-        _size320 = _rtmp3324.size;
-        for (var _i325 = 0; _i325 < _size320; ++_i325)
+        var _etype339 = 0;
+        _rtmp3340 = input.readListBegin();
+        _etype339 = _rtmp3340.etype;
+        _size336 = _rtmp3340.size;
+        for (var _i341 = 0; _i341 < _size336; ++_i341)
         {
-          var elem326 = null;
-          elem326 = new order_status_history_ttypes.OrderStatusHistory();
-          elem326.read(input);
-          this.success.push(elem326);
+          var elem342 = null;
+          elem342 = new order_status_history_ttypes.OrderStatusHistory();
+          elem342.read(input);
+          this.success.push(elem342);
         }
         input.readListEnd();
       } else {
@@ -11083,12 +11252,12 @@ vv.service.VIVUDataService_orderStatusHistoryGetAll_result.prototype.write = fun
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter327 in this.success)
+    for (var iter343 in this.success)
     {
-      if (this.success.hasOwnProperty(iter327))
+      if (this.success.hasOwnProperty(iter343))
       {
-        iter327 = this.success[iter327];
-        iter327.write(output);
+        iter343 = this.success[iter343];
+        iter343.write(output);
       }
     }
     output.writeListEnd();
@@ -11189,19 +11358,19 @@ vv.service.VIVUDataService_orderStatusHistoryGetAllStatus_result.prototype.read 
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size328 = 0;
-        var _rtmp3332;
+        var _size344 = 0;
+        var _rtmp3348;
         this.success = [];
-        var _etype331 = 0;
-        _rtmp3332 = input.readListBegin();
-        _etype331 = _rtmp3332.etype;
-        _size328 = _rtmp3332.size;
-        for (var _i333 = 0; _i333 < _size328; ++_i333)
+        var _etype347 = 0;
+        _rtmp3348 = input.readListBegin();
+        _etype347 = _rtmp3348.etype;
+        _size344 = _rtmp3348.size;
+        for (var _i349 = 0; _i349 < _size344; ++_i349)
         {
-          var elem334 = null;
-          elem334 = new order_status_history_ttypes.OrderStatusHistory();
-          elem334.read(input);
-          this.success.push(elem334);
+          var elem350 = null;
+          elem350 = new order_status_history_ttypes.OrderStatusHistory();
+          elem350.read(input);
+          this.success.push(elem350);
         }
         input.readListEnd();
       } else {
@@ -11230,12 +11399,12 @@ vv.service.VIVUDataService_orderStatusHistoryGetAllStatus_result.prototype.write
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter335 in this.success)
+    for (var iter351 in this.success)
     {
-      if (this.success.hasOwnProperty(iter335))
+      if (this.success.hasOwnProperty(iter351))
       {
-        iter335 = this.success[iter335];
-        iter335.write(output);
+        iter351 = this.success[iter351];
+        iter351.write(output);
       }
     }
     output.writeListEnd();
@@ -11311,19 +11480,19 @@ vv.service.VIVUDataService_orderStatusHistoryGetAllActive_result.prototype.read 
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size336 = 0;
-        var _rtmp3340;
+        var _size352 = 0;
+        var _rtmp3356;
         this.success = [];
-        var _etype339 = 0;
-        _rtmp3340 = input.readListBegin();
-        _etype339 = _rtmp3340.etype;
-        _size336 = _rtmp3340.size;
-        for (var _i341 = 0; _i341 < _size336; ++_i341)
+        var _etype355 = 0;
+        _rtmp3356 = input.readListBegin();
+        _etype355 = _rtmp3356.etype;
+        _size352 = _rtmp3356.size;
+        for (var _i357 = 0; _i357 < _size352; ++_i357)
         {
-          var elem342 = null;
-          elem342 = new order_status_history_ttypes.OrderStatusHistory();
-          elem342.read(input);
-          this.success.push(elem342);
+          var elem358 = null;
+          elem358 = new order_status_history_ttypes.OrderStatusHistory();
+          elem358.read(input);
+          this.success.push(elem358);
         }
         input.readListEnd();
       } else {
@@ -11352,12 +11521,12 @@ vv.service.VIVUDataService_orderStatusHistoryGetAllActive_result.prototype.write
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter343 in this.success)
+    for (var iter359 in this.success)
     {
-      if (this.success.hasOwnProperty(iter343))
+      if (this.success.hasOwnProperty(iter359))
       {
-        iter343 = this.success[iter343];
-        iter343.write(output);
+        iter359 = this.success[iter359];
+        iter359.write(output);
       }
     }
     output.writeListEnd();
@@ -11433,19 +11602,19 @@ vv.service.VIVUDataService_orderStatusHistoryGetAllInactive_result.prototype.rea
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size344 = 0;
-        var _rtmp3348;
+        var _size360 = 0;
+        var _rtmp3364;
         this.success = [];
-        var _etype347 = 0;
-        _rtmp3348 = input.readListBegin();
-        _etype347 = _rtmp3348.etype;
-        _size344 = _rtmp3348.size;
-        for (var _i349 = 0; _i349 < _size344; ++_i349)
+        var _etype363 = 0;
+        _rtmp3364 = input.readListBegin();
+        _etype363 = _rtmp3364.etype;
+        _size360 = _rtmp3364.size;
+        for (var _i365 = 0; _i365 < _size360; ++_i365)
         {
-          var elem350 = null;
-          elem350 = new order_status_history_ttypes.OrderStatusHistory();
-          elem350.read(input);
-          this.success.push(elem350);
+          var elem366 = null;
+          elem366 = new order_status_history_ttypes.OrderStatusHistory();
+          elem366.read(input);
+          this.success.push(elem366);
         }
         input.readListEnd();
       } else {
@@ -11474,12 +11643,12 @@ vv.service.VIVUDataService_orderStatusHistoryGetAllInactive_result.prototype.wri
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter351 in this.success)
+    for (var iter367 in this.success)
     {
-      if (this.success.hasOwnProperty(iter351))
+      if (this.success.hasOwnProperty(iter367))
       {
-        iter351 = this.success[iter351];
-        iter351.write(output);
+        iter367 = this.success[iter367];
+        iter367.write(output);
       }
     }
     output.writeListEnd();
@@ -11555,19 +11724,19 @@ vv.service.VIVUDataService_orderStatusHistoryGetAllDisabled_result.prototype.rea
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size352 = 0;
-        var _rtmp3356;
+        var _size368 = 0;
+        var _rtmp3372;
         this.success = [];
-        var _etype355 = 0;
-        _rtmp3356 = input.readListBegin();
-        _etype355 = _rtmp3356.etype;
-        _size352 = _rtmp3356.size;
-        for (var _i357 = 0; _i357 < _size352; ++_i357)
+        var _etype371 = 0;
+        _rtmp3372 = input.readListBegin();
+        _etype371 = _rtmp3372.etype;
+        _size368 = _rtmp3372.size;
+        for (var _i373 = 0; _i373 < _size368; ++_i373)
         {
-          var elem358 = null;
-          elem358 = new order_status_history_ttypes.OrderStatusHistory();
-          elem358.read(input);
-          this.success.push(elem358);
+          var elem374 = null;
+          elem374 = new order_status_history_ttypes.OrderStatusHistory();
+          elem374.read(input);
+          this.success.push(elem374);
         }
         input.readListEnd();
       } else {
@@ -11596,12 +11765,12 @@ vv.service.VIVUDataService_orderStatusHistoryGetAllDisabled_result.prototype.wri
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter359 in this.success)
+    for (var iter375 in this.success)
     {
-      if (this.success.hasOwnProperty(iter359))
+      if (this.success.hasOwnProperty(iter375))
       {
-        iter359 = this.success[iter359];
-        iter359.write(output);
+        iter375 = this.success[iter375];
+        iter375.write(output);
       }
     }
     output.writeListEnd();
@@ -11677,19 +11846,19 @@ vv.service.VIVUDataService_orderStatusHistoryGetAllDeleted_result.prototype.read
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size360 = 0;
-        var _rtmp3364;
+        var _size376 = 0;
+        var _rtmp3380;
         this.success = [];
-        var _etype363 = 0;
-        _rtmp3364 = input.readListBegin();
-        _etype363 = _rtmp3364.etype;
-        _size360 = _rtmp3364.size;
-        for (var _i365 = 0; _i365 < _size360; ++_i365)
+        var _etype379 = 0;
+        _rtmp3380 = input.readListBegin();
+        _etype379 = _rtmp3380.etype;
+        _size376 = _rtmp3380.size;
+        for (var _i381 = 0; _i381 < _size376; ++_i381)
         {
-          var elem366 = null;
-          elem366 = new order_status_history_ttypes.OrderStatusHistory();
-          elem366.read(input);
-          this.success.push(elem366);
+          var elem382 = null;
+          elem382 = new order_status_history_ttypes.OrderStatusHistory();
+          elem382.read(input);
+          this.success.push(elem382);
         }
         input.readListEnd();
       } else {
@@ -11718,12 +11887,12 @@ vv.service.VIVUDataService_orderStatusHistoryGetAllDeleted_result.prototype.writ
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter367 in this.success)
+    for (var iter383 in this.success)
     {
-      if (this.success.hasOwnProperty(iter367))
+      if (this.success.hasOwnProperty(iter383))
       {
-        iter367 = this.success[iter367];
-        iter367.write(output);
+        iter383 = this.success[iter383];
+        iter383.write(output);
       }
     }
     output.writeListEnd();
@@ -11839,19 +12008,19 @@ vv.service.VIVUDataService_orderStatusHistoryFilter_result.prototype.read = func
     {
       case 0:
       if (ftype == Thrift.Type.LIST) {
-        var _size368 = 0;
-        var _rtmp3372;
+        var _size384 = 0;
+        var _rtmp3388;
         this.success = [];
-        var _etype371 = 0;
-        _rtmp3372 = input.readListBegin();
-        _etype371 = _rtmp3372.etype;
-        _size368 = _rtmp3372.size;
-        for (var _i373 = 0; _i373 < _size368; ++_i373)
+        var _etype387 = 0;
+        _rtmp3388 = input.readListBegin();
+        _etype387 = _rtmp3388.etype;
+        _size384 = _rtmp3388.size;
+        for (var _i389 = 0; _i389 < _size384; ++_i389)
         {
-          var elem374 = null;
-          elem374 = new order_status_history_ttypes.OrderStatusHistory();
-          elem374.read(input);
-          this.success.push(elem374);
+          var elem390 = null;
+          elem390 = new order_status_history_ttypes.OrderStatusHistory();
+          elem390.read(input);
+          this.success.push(elem390);
         }
         input.readListEnd();
       } else {
@@ -11880,12 +12049,12 @@ vv.service.VIVUDataService_orderStatusHistoryFilter_result.prototype.write = fun
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.LIST, 0);
     output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
-    for (var iter375 in this.success)
+    for (var iter391 in this.success)
     {
-      if (this.success.hasOwnProperty(iter375))
+      if (this.success.hasOwnProperty(iter391))
       {
-        iter375 = this.success[iter375];
-        iter375.write(output);
+        iter391 = this.success[iter391];
+        iter391.write(output);
       }
     }
     output.writeListEnd();
@@ -13904,7 +14073,7 @@ vv.service.VIVUDataServiceClient.prototype.recv_productFilterPagination = functi
   }
   return callback('productFilterPagination failed: unknown result');
 };
-vv.service.VIVUDataServiceClient.prototype.productGetManyByCategoryGroup = function(categoryGroupId, options, callback) {
+vv.service.VIVUDataServiceClient.prototype.productGetManyByCategoryGroupHome = function(categoryGroupId, options, callback) {
   this._seqid = this.new_seqid();
   if (callback === undefined) {
     var _defer = Q.defer();
@@ -13915,18 +14084,18 @@ vv.service.VIVUDataServiceClient.prototype.productGetManyByCategoryGroup = funct
         _defer.resolve(result);
       }
     };
-    this.send_productGetManyByCategoryGroup(categoryGroupId, options);
+    this.send_productGetManyByCategoryGroupHome(categoryGroupId, options);
     return _defer.promise;
   } else {
     this._reqs[this.seqid()] = callback;
-    this.send_productGetManyByCategoryGroup(categoryGroupId, options);
+    this.send_productGetManyByCategoryGroupHome(categoryGroupId, options);
   }
 };
 
-vv.service.VIVUDataServiceClient.prototype.send_productGetManyByCategoryGroup = function(categoryGroupId, options) {
+vv.service.VIVUDataServiceClient.prototype.send_productGetManyByCategoryGroupHome = function(categoryGroupId, options) {
   var output = new this.pClass(this.output);
-  output.writeMessageBegin('productGetManyByCategoryGroup', Thrift.MessageType.CALL, this.seqid());
-  var args = new vv.service.VIVUDataService_productGetManyByCategoryGroup_args();
+  output.writeMessageBegin('productGetManyByCategoryGroupHome', Thrift.MessageType.CALL, this.seqid());
+  var args = new vv.service.VIVUDataService_productGetManyByCategoryGroupHome_args();
   args.categoryGroupId = categoryGroupId;
   args.options = options;
   args.write(output);
@@ -13934,7 +14103,7 @@ vv.service.VIVUDataServiceClient.prototype.send_productGetManyByCategoryGroup = 
   return this.output.flush();
 };
 
-vv.service.VIVUDataServiceClient.prototype.recv_productGetManyByCategoryGroup = function(input,mtype,rseqid) {
+vv.service.VIVUDataServiceClient.prototype.recv_productGetManyByCategoryGroupHome = function(input,mtype,rseqid) {
   var callback = this._reqs[rseqid] || function() {};
   delete this._reqs[rseqid];
   if (mtype == Thrift.MessageType.EXCEPTION) {
@@ -13943,7 +14112,7 @@ vv.service.VIVUDataServiceClient.prototype.recv_productGetManyByCategoryGroup = 
     input.readMessageEnd();
     return callback(x);
   }
-  var result = new vv.service.VIVUDataService_productGetManyByCategoryGroup_result();
+  var result = new vv.service.VIVUDataService_productGetManyByCategoryGroupHome_result();
   result.read(input);
   input.readMessageEnd();
 
@@ -13953,7 +14122,7 @@ vv.service.VIVUDataServiceClient.prototype.recv_productGetManyByCategoryGroup = 
   if (null !== result.success) {
     return callback(null, result.success);
   }
-  return callback('productGetManyByCategoryGroup failed: unknown result');
+  return callback('productGetManyByCategoryGroupHome failed: unknown result');
 };
 vv.service.VIVUDataServiceClient.prototype.productGetOneProduct = function(urlKey, callback) {
   this._seqid = this.new_seqid();
@@ -14256,6 +14425,56 @@ vv.service.VIVUDataServiceClient.prototype.recv_categoryGroupGetAllActive = func
     return callback(null, result.success);
   }
   return callback('categoryGroupGetAllActive failed: unknown result');
+};
+vv.service.VIVUDataServiceClient.prototype.categoryGroupGetMany = function(pks, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_categoryGroupGetMany(pks);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_categoryGroupGetMany(pks);
+  }
+};
+
+vv.service.VIVUDataServiceClient.prototype.send_categoryGroupGetMany = function(pks) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('categoryGroupGetMany', Thrift.MessageType.CALL, this.seqid());
+  var args = new vv.service.VIVUDataService_categoryGroupGetMany_args();
+  args.pks = pks;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+vv.service.VIVUDataServiceClient.prototype.recv_categoryGroupGetMany = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new vv.service.VIVUDataService_categoryGroupGetMany_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.ex) {
+    return callback(result.ex);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('categoryGroupGetMany failed: unknown result');
 };
 vv.service.VIVUDataServiceClient.prototype.categoryGetAllActive = function(callback) {
   this._seqid = this.new_seqid();
@@ -18109,38 +18328,38 @@ vv.service.VIVUDataServiceProcessor.prototype.process_productFilterPagination = 
   }
 }
 
-vv.service.VIVUDataServiceProcessor.prototype.process_productGetManyByCategoryGroup = function(seqid, input, output) {
-  var args = new vv.service.VIVUDataService_productGetManyByCategoryGroup_args();
+vv.service.VIVUDataServiceProcessor.prototype.process_productGetManyByCategoryGroupHome = function(seqid, input, output) {
+  var args = new vv.service.VIVUDataService_productGetManyByCategoryGroupHome_args();
   args.read(input);
   input.readMessageEnd();
-  if (this._handler.productGetManyByCategoryGroup.length === 2) {
-    Q.fcall(this._handler.productGetManyByCategoryGroup, args.categoryGroupId, args.options)
+  if (this._handler.productGetManyByCategoryGroupHome.length === 2) {
+    Q.fcall(this._handler.productGetManyByCategoryGroupHome, args.categoryGroupId, args.options)
       .then(function(result) {
-        var result = new vv.service.VIVUDataService_productGetManyByCategoryGroup_result({success: result});
-        output.writeMessageBegin("productGetManyByCategoryGroup", Thrift.MessageType.REPLY, seqid);
+        var result = new vv.service.VIVUDataService_productGetManyByCategoryGroupHome_result({success: result});
+        output.writeMessageBegin("productGetManyByCategoryGroupHome", Thrift.MessageType.REPLY, seqid);
         result.write(output);
         output.writeMessageEnd();
         output.flush();
       }, function (err) {
         if (err instanceof exception_ttypes.DBExceptions) {
-          var result = new vv.service.VIVUDataService_productGetManyByCategoryGroup_result(err);
-          output.writeMessageBegin("productGetManyByCategoryGroup", Thrift.MessageType.REPLY, seqid);
+          var result = new vv.service.VIVUDataService_productGetManyByCategoryGroupHome_result(err);
+          output.writeMessageBegin("productGetManyByCategoryGroupHome", Thrift.MessageType.REPLY, seqid);
         } else {
           var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-          output.writeMessageBegin("productGetManyByCategoryGroup", Thrift.MessageType.EXCEPTION, seqid);
+          output.writeMessageBegin("productGetManyByCategoryGroupHome", Thrift.MessageType.EXCEPTION, seqid);
         }
         result.write(output);
         output.writeMessageEnd();
         output.flush();
       });
   } else {
-    this._handler.productGetManyByCategoryGroup(args.categoryGroupId, args.options, function (err, result) {
+    this._handler.productGetManyByCategoryGroupHome(args.categoryGroupId, args.options, function (err, result) {
       if (err == null || err instanceof exception_ttypes.DBExceptions) {
-        var result = new vv.service.VIVUDataService_productGetManyByCategoryGroup_result((err != null ? err : {success: result}));
-        output.writeMessageBegin("productGetManyByCategoryGroup", Thrift.MessageType.REPLY, seqid);
+        var result = new vv.service.VIVUDataService_productGetManyByCategoryGroupHome_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("productGetManyByCategoryGroupHome", Thrift.MessageType.REPLY, seqid);
       } else {
         var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
-        output.writeMessageBegin("productGetManyByCategoryGroup", Thrift.MessageType.EXCEPTION, seqid);
+        output.writeMessageBegin("productGetManyByCategoryGroupHome", Thrift.MessageType.EXCEPTION, seqid);
       }
       result.write(output);
       output.writeMessageEnd();
@@ -18381,6 +18600,46 @@ vv.service.VIVUDataServiceProcessor.prototype.process_categoryGroupGetAllActive 
       } else {
         var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
         output.writeMessageBegin("categoryGroupGetAllActive", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+vv.service.VIVUDataServiceProcessor.prototype.process_categoryGroupGetMany = function(seqid, input, output) {
+  var args = new vv.service.VIVUDataService_categoryGroupGetMany_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.categoryGroupGetMany.length === 1) {
+    Q.fcall(this._handler.categoryGroupGetMany, args.pks)
+      .then(function(result) {
+        var result = new vv.service.VIVUDataService_categoryGroupGetMany_result({success: result});
+        output.writeMessageBegin("categoryGroupGetMany", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        if (err instanceof exception_ttypes.DBExceptions) {
+          var result = new vv.service.VIVUDataService_categoryGroupGetMany_result(err);
+          output.writeMessageBegin("categoryGroupGetMany", Thrift.MessageType.REPLY, seqid);
+        } else {
+          var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("categoryGroupGetMany", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.categoryGroupGetMany(args.pks, function (err, result) {
+      if (err == null || err instanceof exception_ttypes.DBExceptions) {
+        var result = new vv.service.VIVUDataService_categoryGroupGetMany_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("categoryGroupGetMany", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("categoryGroupGetMany", Thrift.MessageType.EXCEPTION, seqid);
       }
       result.write(output);
       output.writeMessageEnd();

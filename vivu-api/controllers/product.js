@@ -112,13 +112,13 @@ class ProductController {
     selectOptions.includes = [productColorStore.tableAlias, categoryStore.tableAlias, categoryGroupStore.tableAlias];
 
     listCategoryGroupId.forEach(e => {
-      listPromise.push(productStore.getManyByCategoryGroup(e, selectOptions));
+      listPromise.push(productStore.getManyByCategoryGroupHome(e, selectOptions));
     });
 
     selectOptions.limit = query.filter.limitProductRight;
     selectOptions.order = 'base_price';
     listCategoryGroupId.forEach(e => {
-      listPromiseProductPrice.push(productStore.getManyByCategoryGroup(e, selectOptions));
+      listPromiseProductPrice.push(productStore.getManyByCategoryGroupHome(e, selectOptions));
     });
 
     return BPromise.all(listPromise).then(results => {

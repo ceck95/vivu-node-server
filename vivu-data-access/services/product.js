@@ -40,14 +40,14 @@ class ProductService extends nodePg.services.Base {
     return exceptionHelper;
   }
 
-  getManyByCategoryGroup(categoryGroupId, opts, result) {
+  getManyByCategoryGroupHome(categoryGroupId, opts, result) {
 
     opts = opts || {};
     let categoryGroup = new CategoryGroup(),
       tableAlias = (new Product()).tableAlias;
 
     return this.getAllConditionRelation({
-      where: [`${categoryGroup.tableAlias}.id = $1`, `${tableAlias}.status = ${helpers.Const.status.ACTIVE}`],
+      where: [`${categoryGroup.tableAlias}.id = $1`, `${tableAlias}.status = ${helpers.Const.status.ACTIVE}`, `${categoryGroup.tableAlias}.show_page_home = true`],
       args: [categoryGroupId],
       limit: opts.limit,
       order: opts.order

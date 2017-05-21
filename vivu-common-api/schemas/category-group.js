@@ -17,6 +17,8 @@ let response = Joi.object({
   priority: Joi.number(),
   notes: Joi.string().allow(['']),
   urlKey: Joi.string(),
+  coverImagePath: Joi.string().allow(['']),
+  showPageHome: Joi.boolean().default(false),
   categories: Joi.array().items(categorySchema.response)
 });
 
