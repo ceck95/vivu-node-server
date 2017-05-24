@@ -31,6 +31,8 @@ var order_ttypes = require('./order_types')
 var order_item_ttypes = require('./order_item_types')
 var order_payment_ttypes = require('./order_payment_types')
 var order_status_history_ttypes = require('./order_status_history_types')
+var system_setting_ttypes = require('./system_setting_types')
+var slide_ttypes = require('./slide_types')
 
 
 var ttypes = module.exports = {};

@@ -30,5 +30,7 @@ module.exports = {
   Order: require('../models/order'),
   OrderItem: require('../models/order-item'),
   OrderPayment: require('../models/order-payment'),
-  OrderStatusHistory: require('../models/order-status-history')
+  OrderStatusHistory: require('../models/order-status-history'),
+  SystemSetting: require('../models/system-setting'),
+  Slide: require('../models/slide')
 };

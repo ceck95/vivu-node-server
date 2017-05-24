@@ -31,6 +31,8 @@ var order_ttypes = require('./order_types')
 var order_item_ttypes = require('./order_item_types')
 var order_payment_ttypes = require('./order_payment_types')
 var order_status_history_ttypes = require('./order_status_history_types')
+var system_setting_ttypes = require('./system_setting_types')
+var slide_ttypes = require('./slide_types')
 
 
 var ttypes = require('./service_types');
@@ -12461,6 +12463,4702 @@ vv.service.VIVUDataService_orderStatusHistoryGetOrCreate_result.prototype.write 
   return;
 };
 
+vv.service.VIVUDataService_systemSettingInsertOne_args = function(args) {
+  this.insert = null;
+  if (args) {
+    if (args.insert !== undefined && args.insert !== null) {
+      this.insert = new system_setting_ttypes.SystemSettingInsert(args.insert);
+    }
+  }
+};
+vv.service.VIVUDataService_systemSettingInsertOne_args.prototype = {};
+vv.service.VIVUDataService_systemSettingInsertOne_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.insert = new system_setting_ttypes.SystemSettingInsert();
+        this.insert.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingInsertOne_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_systemSettingInsertOne_args');
+  if (this.insert !== null && this.insert !== undefined) {
+    output.writeFieldBegin('insert', Thrift.Type.STRUCT, 1);
+    this.insert.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingInsertOne_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = new system_setting_ttypes.SystemSetting(args.success);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_systemSettingInsertOne_result.prototype = {};
+vv.service.VIVUDataService_systemSettingInsertOne_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.success = new system_setting_ttypes.SystemSetting();
+        this.success.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingInsertOne_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_systemSettingInsertOne_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.STRUCT, 0);
+    this.success.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingInsertMany_args = function(args) {
+  this.models = null;
+  if (args) {
+    if (args.models !== undefined && args.models !== null) {
+      this.models = Thrift.copyList(args.models, [system_setting_ttypes.SystemSettingInsert]);
+    }
+  }
+};
+vv.service.VIVUDataService_systemSettingInsertMany_args.prototype = {};
+vv.service.VIVUDataService_systemSettingInsertMany_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.LIST) {
+        var _size392 = 0;
+        var _rtmp3396;
+        this.models = [];
+        var _etype395 = 0;
+        _rtmp3396 = input.readListBegin();
+        _etype395 = _rtmp3396.etype;
+        _size392 = _rtmp3396.size;
+        for (var _i397 = 0; _i397 < _size392; ++_i397)
+        {
+          var elem398 = null;
+          elem398 = new system_setting_ttypes.SystemSettingInsert();
+          elem398.read(input);
+          this.models.push(elem398);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingInsertMany_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_systemSettingInsertMany_args');
+  if (this.models !== null && this.models !== undefined) {
+    output.writeFieldBegin('models', Thrift.Type.LIST, 1);
+    output.writeListBegin(Thrift.Type.STRUCT, this.models.length);
+    for (var iter399 in this.models)
+    {
+      if (this.models.hasOwnProperty(iter399))
+      {
+        iter399 = this.models[iter399];
+        iter399.write(output);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingInsertMany_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = Thrift.copyList(args.success, [system_setting_ttypes.SystemSetting]);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_systemSettingInsertMany_result.prototype = {};
+vv.service.VIVUDataService_systemSettingInsertMany_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.LIST) {
+        var _size400 = 0;
+        var _rtmp3404;
+        this.success = [];
+        var _etype403 = 0;
+        _rtmp3404 = input.readListBegin();
+        _etype403 = _rtmp3404.etype;
+        _size400 = _rtmp3404.size;
+        for (var _i405 = 0; _i405 < _size400; ++_i405)
+        {
+          var elem406 = null;
+          elem406 = new system_setting_ttypes.SystemSetting();
+          elem406.read(input);
+          this.success.push(elem406);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingInsertMany_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_systemSettingInsertMany_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+    for (var iter407 in this.success)
+    {
+      if (this.success.hasOwnProperty(iter407))
+      {
+        iter407 = this.success[iter407];
+        iter407.write(output);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingUpdateOne_args = function(args) {
+  this.form = null;
+  if (args) {
+    if (args.form !== undefined && args.form !== null) {
+      this.form = new system_setting_ttypes.SystemSettingForm(args.form);
+    }
+  }
+};
+vv.service.VIVUDataService_systemSettingUpdateOne_args.prototype = {};
+vv.service.VIVUDataService_systemSettingUpdateOne_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.form = new system_setting_ttypes.SystemSettingForm();
+        this.form.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingUpdateOne_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_systemSettingUpdateOne_args');
+  if (this.form !== null && this.form !== undefined) {
+    output.writeFieldBegin('form', Thrift.Type.STRUCT, 1);
+    this.form.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingUpdateOne_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = new system_setting_ttypes.SystemSetting(args.success);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_systemSettingUpdateOne_result.prototype = {};
+vv.service.VIVUDataService_systemSettingUpdateOne_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.success = new system_setting_ttypes.SystemSetting();
+        this.success.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingUpdateOne_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_systemSettingUpdateOne_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.STRUCT, 0);
+    this.success.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetOneByPk_args = function(args) {
+  this.pk = null;
+  if (args) {
+    if (args.pk !== undefined && args.pk !== null) {
+      this.pk = args.pk;
+    }
+  }
+};
+vv.service.VIVUDataService_systemSettingGetOneByPk_args.prototype = {};
+vv.service.VIVUDataService_systemSettingGetOneByPk_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.I32) {
+        this.pk = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetOneByPk_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_systemSettingGetOneByPk_args');
+  if (this.pk !== null && this.pk !== undefined) {
+    output.writeFieldBegin('pk', Thrift.Type.I32, 1);
+    output.writeI32(this.pk);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetOneByPk_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = new system_setting_ttypes.SystemSetting(args.success);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_systemSettingGetOneByPk_result.prototype = {};
+vv.service.VIVUDataService_systemSettingGetOneByPk_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.success = new system_setting_ttypes.SystemSetting();
+        this.success.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetOneByPk_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_systemSettingGetOneByPk_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.STRUCT, 0);
+    this.success.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetOneRelationByPk_args = function(args) {
+  this.pk = null;
+  this.options = null;
+  if (args) {
+    if (args.pk !== undefined && args.pk !== null) {
+      this.pk = args.pk;
+    }
+    if (args.options !== undefined && args.options !== null) {
+      this.options = new options_ttypes.SelectOptions(args.options);
+    }
+  }
+};
+vv.service.VIVUDataService_systemSettingGetOneRelationByPk_args.prototype = {};
+vv.service.VIVUDataService_systemSettingGetOneRelationByPk_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.I32) {
+        this.pk = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.options = new options_ttypes.SelectOptions();
+        this.options.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetOneRelationByPk_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_systemSettingGetOneRelationByPk_args');
+  if (this.pk !== null && this.pk !== undefined) {
+    output.writeFieldBegin('pk', Thrift.Type.I32, 1);
+    output.writeI32(this.pk);
+    output.writeFieldEnd();
+  }
+  if (this.options !== null && this.options !== undefined) {
+    output.writeFieldBegin('options', Thrift.Type.STRUCT, 2);
+    this.options.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetOneRelationByPk_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = new system_setting_ttypes.SystemSetting(args.success);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_systemSettingGetOneRelationByPk_result.prototype = {};
+vv.service.VIVUDataService_systemSettingGetOneRelationByPk_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.success = new system_setting_ttypes.SystemSetting();
+        this.success.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetOneRelationByPk_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_systemSettingGetOneRelationByPk_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.STRUCT, 0);
+    this.success.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetMany_args = function(args) {
+  this.pks = null;
+  if (args) {
+    if (args.pks !== undefined && args.pks !== null) {
+      this.pks = Thrift.copyList(args.pks, [null]);
+    }
+  }
+};
+vv.service.VIVUDataService_systemSettingGetMany_args.prototype = {};
+vv.service.VIVUDataService_systemSettingGetMany_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.LIST) {
+        var _size408 = 0;
+        var _rtmp3412;
+        this.pks = [];
+        var _etype411 = 0;
+        _rtmp3412 = input.readListBegin();
+        _etype411 = _rtmp3412.etype;
+        _size408 = _rtmp3412.size;
+        for (var _i413 = 0; _i413 < _size408; ++_i413)
+        {
+          var elem414 = null;
+          elem414 = input.readI32();
+          this.pks.push(elem414);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetMany_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_systemSettingGetMany_args');
+  if (this.pks !== null && this.pks !== undefined) {
+    output.writeFieldBegin('pks', Thrift.Type.LIST, 1);
+    output.writeListBegin(Thrift.Type.I32, this.pks.length);
+    for (var iter415 in this.pks)
+    {
+      if (this.pks.hasOwnProperty(iter415))
+      {
+        iter415 = this.pks[iter415];
+        output.writeI32(iter415);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetMany_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = Thrift.copyList(args.success, [system_setting_ttypes.SystemSetting]);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_systemSettingGetMany_result.prototype = {};
+vv.service.VIVUDataService_systemSettingGetMany_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.LIST) {
+        var _size416 = 0;
+        var _rtmp3420;
+        this.success = [];
+        var _etype419 = 0;
+        _rtmp3420 = input.readListBegin();
+        _etype419 = _rtmp3420.etype;
+        _size416 = _rtmp3420.size;
+        for (var _i421 = 0; _i421 < _size416; ++_i421)
+        {
+          var elem422 = null;
+          elem422 = new system_setting_ttypes.SystemSetting();
+          elem422.read(input);
+          this.success.push(elem422);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetMany_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_systemSettingGetMany_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+    for (var iter423 in this.success)
+    {
+      if (this.success.hasOwnProperty(iter423))
+      {
+        iter423 = this.success[iter423];
+        iter423.write(output);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetManyOneRelation_args = function(args) {
+  this.pks = null;
+  this.options = null;
+  if (args) {
+    if (args.pks !== undefined && args.pks !== null) {
+      this.pks = Thrift.copyList(args.pks, [null]);
+    }
+    if (args.options !== undefined && args.options !== null) {
+      this.options = new options_ttypes.SelectOptions(args.options);
+    }
+  }
+};
+vv.service.VIVUDataService_systemSettingGetManyOneRelation_args.prototype = {};
+vv.service.VIVUDataService_systemSettingGetManyOneRelation_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.LIST) {
+        var _size424 = 0;
+        var _rtmp3428;
+        this.pks = [];
+        var _etype427 = 0;
+        _rtmp3428 = input.readListBegin();
+        _etype427 = _rtmp3428.etype;
+        _size424 = _rtmp3428.size;
+        for (var _i429 = 0; _i429 < _size424; ++_i429)
+        {
+          var elem430 = null;
+          elem430 = input.readI32();
+          this.pks.push(elem430);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.options = new options_ttypes.SelectOptions();
+        this.options.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetManyOneRelation_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_systemSettingGetManyOneRelation_args');
+  if (this.pks !== null && this.pks !== undefined) {
+    output.writeFieldBegin('pks', Thrift.Type.LIST, 1);
+    output.writeListBegin(Thrift.Type.I32, this.pks.length);
+    for (var iter431 in this.pks)
+    {
+      if (this.pks.hasOwnProperty(iter431))
+      {
+        iter431 = this.pks[iter431];
+        output.writeI32(iter431);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.options !== null && this.options !== undefined) {
+    output.writeFieldBegin('options', Thrift.Type.STRUCT, 2);
+    this.options.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetManyOneRelation_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = Thrift.copyList(args.success, [system_setting_ttypes.SystemSetting]);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_systemSettingGetManyOneRelation_result.prototype = {};
+vv.service.VIVUDataService_systemSettingGetManyOneRelation_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.LIST) {
+        var _size432 = 0;
+        var _rtmp3436;
+        this.success = [];
+        var _etype435 = 0;
+        _rtmp3436 = input.readListBegin();
+        _etype435 = _rtmp3436.etype;
+        _size432 = _rtmp3436.size;
+        for (var _i437 = 0; _i437 < _size432; ++_i437)
+        {
+          var elem438 = null;
+          elem438 = new system_setting_ttypes.SystemSetting();
+          elem438.read(input);
+          this.success.push(elem438);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetManyOneRelation_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_systemSettingGetManyOneRelation_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+    for (var iter439 in this.success)
+    {
+      if (this.success.hasOwnProperty(iter439))
+      {
+        iter439 = this.success[iter439];
+        iter439.write(output);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetAll_args = function(args) {
+};
+vv.service.VIVUDataService_systemSettingGetAll_args.prototype = {};
+vv.service.VIVUDataService_systemSettingGetAll_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    input.skip(ftype);
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetAll_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_systemSettingGetAll_args');
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetAll_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = Thrift.copyList(args.success, [system_setting_ttypes.SystemSetting]);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_systemSettingGetAll_result.prototype = {};
+vv.service.VIVUDataService_systemSettingGetAll_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.LIST) {
+        var _size440 = 0;
+        var _rtmp3444;
+        this.success = [];
+        var _etype443 = 0;
+        _rtmp3444 = input.readListBegin();
+        _etype443 = _rtmp3444.etype;
+        _size440 = _rtmp3444.size;
+        for (var _i445 = 0; _i445 < _size440; ++_i445)
+        {
+          var elem446 = null;
+          elem446 = new system_setting_ttypes.SystemSetting();
+          elem446.read(input);
+          this.success.push(elem446);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetAll_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_systemSettingGetAll_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+    for (var iter447 in this.success)
+    {
+      if (this.success.hasOwnProperty(iter447))
+      {
+        iter447 = this.success[iter447];
+        iter447.write(output);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetAllStatus_args = function(args) {
+  this.status = null;
+  if (args) {
+    if (args.status !== undefined && args.status !== null) {
+      this.status = args.status;
+    }
+  }
+};
+vv.service.VIVUDataService_systemSettingGetAllStatus_args.prototype = {};
+vv.service.VIVUDataService_systemSettingGetAllStatus_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.I32) {
+        this.status = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetAllStatus_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_systemSettingGetAllStatus_args');
+  if (this.status !== null && this.status !== undefined) {
+    output.writeFieldBegin('status', Thrift.Type.I32, 1);
+    output.writeI32(this.status);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetAllStatus_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = Thrift.copyList(args.success, [system_setting_ttypes.SystemSetting]);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_systemSettingGetAllStatus_result.prototype = {};
+vv.service.VIVUDataService_systemSettingGetAllStatus_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.LIST) {
+        var _size448 = 0;
+        var _rtmp3452;
+        this.success = [];
+        var _etype451 = 0;
+        _rtmp3452 = input.readListBegin();
+        _etype451 = _rtmp3452.etype;
+        _size448 = _rtmp3452.size;
+        for (var _i453 = 0; _i453 < _size448; ++_i453)
+        {
+          var elem454 = null;
+          elem454 = new system_setting_ttypes.SystemSetting();
+          elem454.read(input);
+          this.success.push(elem454);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetAllStatus_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_systemSettingGetAllStatus_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+    for (var iter455 in this.success)
+    {
+      if (this.success.hasOwnProperty(iter455))
+      {
+        iter455 = this.success[iter455];
+        iter455.write(output);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetAllActive_args = function(args) {
+};
+vv.service.VIVUDataService_systemSettingGetAllActive_args.prototype = {};
+vv.service.VIVUDataService_systemSettingGetAllActive_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    input.skip(ftype);
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetAllActive_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_systemSettingGetAllActive_args');
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetAllActive_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = Thrift.copyList(args.success, [system_setting_ttypes.SystemSetting]);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_systemSettingGetAllActive_result.prototype = {};
+vv.service.VIVUDataService_systemSettingGetAllActive_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.LIST) {
+        var _size456 = 0;
+        var _rtmp3460;
+        this.success = [];
+        var _etype459 = 0;
+        _rtmp3460 = input.readListBegin();
+        _etype459 = _rtmp3460.etype;
+        _size456 = _rtmp3460.size;
+        for (var _i461 = 0; _i461 < _size456; ++_i461)
+        {
+          var elem462 = null;
+          elem462 = new system_setting_ttypes.SystemSetting();
+          elem462.read(input);
+          this.success.push(elem462);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetAllActive_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_systemSettingGetAllActive_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+    for (var iter463 in this.success)
+    {
+      if (this.success.hasOwnProperty(iter463))
+      {
+        iter463 = this.success[iter463];
+        iter463.write(output);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetAllInactive_args = function(args) {
+};
+vv.service.VIVUDataService_systemSettingGetAllInactive_args.prototype = {};
+vv.service.VIVUDataService_systemSettingGetAllInactive_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    input.skip(ftype);
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetAllInactive_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_systemSettingGetAllInactive_args');
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetAllInactive_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = Thrift.copyList(args.success, [system_setting_ttypes.SystemSetting]);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_systemSettingGetAllInactive_result.prototype = {};
+vv.service.VIVUDataService_systemSettingGetAllInactive_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.LIST) {
+        var _size464 = 0;
+        var _rtmp3468;
+        this.success = [];
+        var _etype467 = 0;
+        _rtmp3468 = input.readListBegin();
+        _etype467 = _rtmp3468.etype;
+        _size464 = _rtmp3468.size;
+        for (var _i469 = 0; _i469 < _size464; ++_i469)
+        {
+          var elem470 = null;
+          elem470 = new system_setting_ttypes.SystemSetting();
+          elem470.read(input);
+          this.success.push(elem470);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetAllInactive_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_systemSettingGetAllInactive_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+    for (var iter471 in this.success)
+    {
+      if (this.success.hasOwnProperty(iter471))
+      {
+        iter471 = this.success[iter471];
+        iter471.write(output);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetAllDisabled_args = function(args) {
+};
+vv.service.VIVUDataService_systemSettingGetAllDisabled_args.prototype = {};
+vv.service.VIVUDataService_systemSettingGetAllDisabled_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    input.skip(ftype);
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetAllDisabled_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_systemSettingGetAllDisabled_args');
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetAllDisabled_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = Thrift.copyList(args.success, [system_setting_ttypes.SystemSetting]);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_systemSettingGetAllDisabled_result.prototype = {};
+vv.service.VIVUDataService_systemSettingGetAllDisabled_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.LIST) {
+        var _size472 = 0;
+        var _rtmp3476;
+        this.success = [];
+        var _etype475 = 0;
+        _rtmp3476 = input.readListBegin();
+        _etype475 = _rtmp3476.etype;
+        _size472 = _rtmp3476.size;
+        for (var _i477 = 0; _i477 < _size472; ++_i477)
+        {
+          var elem478 = null;
+          elem478 = new system_setting_ttypes.SystemSetting();
+          elem478.read(input);
+          this.success.push(elem478);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetAllDisabled_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_systemSettingGetAllDisabled_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+    for (var iter479 in this.success)
+    {
+      if (this.success.hasOwnProperty(iter479))
+      {
+        iter479 = this.success[iter479];
+        iter479.write(output);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetAllDeleted_args = function(args) {
+};
+vv.service.VIVUDataService_systemSettingGetAllDeleted_args.prototype = {};
+vv.service.VIVUDataService_systemSettingGetAllDeleted_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    input.skip(ftype);
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetAllDeleted_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_systemSettingGetAllDeleted_args');
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetAllDeleted_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = Thrift.copyList(args.success, [system_setting_ttypes.SystemSetting]);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_systemSettingGetAllDeleted_result.prototype = {};
+vv.service.VIVUDataService_systemSettingGetAllDeleted_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.LIST) {
+        var _size480 = 0;
+        var _rtmp3484;
+        this.success = [];
+        var _etype483 = 0;
+        _rtmp3484 = input.readListBegin();
+        _etype483 = _rtmp3484.etype;
+        _size480 = _rtmp3484.size;
+        for (var _i485 = 0; _i485 < _size480; ++_i485)
+        {
+          var elem486 = null;
+          elem486 = new system_setting_ttypes.SystemSetting();
+          elem486.read(input);
+          this.success.push(elem486);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetAllDeleted_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_systemSettingGetAllDeleted_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+    for (var iter487 in this.success)
+    {
+      if (this.success.hasOwnProperty(iter487))
+      {
+        iter487 = this.success[iter487];
+        iter487.write(output);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingFilter_args = function(args) {
+  this.filter = null;
+  this.query = null;
+  if (args) {
+    if (args.filter !== undefined && args.filter !== null) {
+      this.filter = new system_setting_ttypes.SystemSettingFilter(args.filter);
+    }
+    if (args.query !== undefined && args.query !== null) {
+      this.query = new pagination_ttypes.PagingQuery(args.query);
+    }
+  }
+};
+vv.service.VIVUDataService_systemSettingFilter_args.prototype = {};
+vv.service.VIVUDataService_systemSettingFilter_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.filter = new system_setting_ttypes.SystemSettingFilter();
+        this.filter.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.query = new pagination_ttypes.PagingQuery();
+        this.query.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingFilter_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_systemSettingFilter_args');
+  if (this.filter !== null && this.filter !== undefined) {
+    output.writeFieldBegin('filter', Thrift.Type.STRUCT, 1);
+    this.filter.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.query !== null && this.query !== undefined) {
+    output.writeFieldBegin('query', Thrift.Type.STRUCT, 2);
+    this.query.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingFilter_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = Thrift.copyList(args.success, [system_setting_ttypes.SystemSetting]);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_systemSettingFilter_result.prototype = {};
+vv.service.VIVUDataService_systemSettingFilter_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.LIST) {
+        var _size488 = 0;
+        var _rtmp3492;
+        this.success = [];
+        var _etype491 = 0;
+        _rtmp3492 = input.readListBegin();
+        _etype491 = _rtmp3492.etype;
+        _size488 = _rtmp3492.size;
+        for (var _i493 = 0; _i493 < _size488; ++_i493)
+        {
+          var elem494 = null;
+          elem494 = new system_setting_ttypes.SystemSetting();
+          elem494.read(input);
+          this.success.push(elem494);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingFilter_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_systemSettingFilter_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+    for (var iter495 in this.success)
+    {
+      if (this.success.hasOwnProperty(iter495))
+      {
+        iter495 = this.success[iter495];
+        iter495.write(output);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_SystemSettingFilterPagination_args = function(args) {
+  this.filter = null;
+  this.query = null;
+  if (args) {
+    if (args.filter !== undefined && args.filter !== null) {
+      this.filter = new system_setting_ttypes.SystemSettingFilter(args.filter);
+    }
+    if (args.query !== undefined && args.query !== null) {
+      this.query = new pagination_ttypes.PagingQuery(args.query);
+    }
+  }
+};
+vv.service.VIVUDataService_SystemSettingFilterPagination_args.prototype = {};
+vv.service.VIVUDataService_SystemSettingFilterPagination_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.filter = new system_setting_ttypes.SystemSettingFilter();
+        this.filter.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.query = new pagination_ttypes.PagingQuery();
+        this.query.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_SystemSettingFilterPagination_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_SystemSettingFilterPagination_args');
+  if (this.filter !== null && this.filter !== undefined) {
+    output.writeFieldBegin('filter', Thrift.Type.STRUCT, 1);
+    this.filter.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.query !== null && this.query !== undefined) {
+    output.writeFieldBegin('query', Thrift.Type.STRUCT, 2);
+    this.query.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_SystemSettingFilterPagination_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = new system_setting_ttypes.PaginationSystemSetting(args.success);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_SystemSettingFilterPagination_result.prototype = {};
+vv.service.VIVUDataService_SystemSettingFilterPagination_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.success = new system_setting_ttypes.PaginationSystemSetting();
+        this.success.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_SystemSettingFilterPagination_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_SystemSettingFilterPagination_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.STRUCT, 0);
+    this.success.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingDeleteByPk_args = function(args) {
+  this.pk = null;
+  if (args) {
+    if (args.pk !== undefined && args.pk !== null) {
+      this.pk = args.pk;
+    }
+  }
+};
+vv.service.VIVUDataService_systemSettingDeleteByPk_args.prototype = {};
+vv.service.VIVUDataService_systemSettingDeleteByPk_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.I32) {
+        this.pk = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingDeleteByPk_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_systemSettingDeleteByPk_args');
+  if (this.pk !== null && this.pk !== undefined) {
+    output.writeFieldBegin('pk', Thrift.Type.I32, 1);
+    output.writeI32(this.pk);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingDeleteByPk_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = new system_setting_ttypes.SystemSetting(args.success);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_systemSettingDeleteByPk_result.prototype = {};
+vv.service.VIVUDataService_systemSettingDeleteByPk_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.success = new system_setting_ttypes.SystemSetting();
+        this.success.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingDeleteByPk_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_systemSettingDeleteByPk_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.STRUCT, 0);
+    this.success.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetOrCreate_args = function(args) {
+  this.form = null;
+  if (args) {
+    if (args.form !== undefined && args.form !== null) {
+      this.form = new system_setting_ttypes.SystemSettingForm(args.form);
+    }
+  }
+};
+vv.service.VIVUDataService_systemSettingGetOrCreate_args.prototype = {};
+vv.service.VIVUDataService_systemSettingGetOrCreate_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.form = new system_setting_ttypes.SystemSettingForm();
+        this.form.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetOrCreate_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_systemSettingGetOrCreate_args');
+  if (this.form !== null && this.form !== undefined) {
+    output.writeFieldBegin('form', Thrift.Type.STRUCT, 1);
+    this.form.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetOrCreate_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = new system_setting_ttypes.SystemSetting(args.success);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_systemSettingGetOrCreate_result.prototype = {};
+vv.service.VIVUDataService_systemSettingGetOrCreate_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.success = new system_setting_ttypes.SystemSetting();
+        this.success.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_systemSettingGetOrCreate_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_systemSettingGetOrCreate_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.STRUCT, 0);
+    this.success.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideInsertOne_args = function(args) {
+  this.insert = null;
+  if (args) {
+    if (args.insert !== undefined && args.insert !== null) {
+      this.insert = new slide_ttypes.SlideInsert(args.insert);
+    }
+  }
+};
+vv.service.VIVUDataService_slideInsertOne_args.prototype = {};
+vv.service.VIVUDataService_slideInsertOne_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.insert = new slide_ttypes.SlideInsert();
+        this.insert.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideInsertOne_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_slideInsertOne_args');
+  if (this.insert !== null && this.insert !== undefined) {
+    output.writeFieldBegin('insert', Thrift.Type.STRUCT, 1);
+    this.insert.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideInsertOne_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = new slide_ttypes.Slide(args.success);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_slideInsertOne_result.prototype = {};
+vv.service.VIVUDataService_slideInsertOne_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.success = new slide_ttypes.Slide();
+        this.success.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideInsertOne_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_slideInsertOne_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.STRUCT, 0);
+    this.success.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideInsertMany_args = function(args) {
+  this.models = null;
+  if (args) {
+    if (args.models !== undefined && args.models !== null) {
+      this.models = Thrift.copyList(args.models, [slide_ttypes.SlideInsert]);
+    }
+  }
+};
+vv.service.VIVUDataService_slideInsertMany_args.prototype = {};
+vv.service.VIVUDataService_slideInsertMany_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.LIST) {
+        var _size496 = 0;
+        var _rtmp3500;
+        this.models = [];
+        var _etype499 = 0;
+        _rtmp3500 = input.readListBegin();
+        _etype499 = _rtmp3500.etype;
+        _size496 = _rtmp3500.size;
+        for (var _i501 = 0; _i501 < _size496; ++_i501)
+        {
+          var elem502 = null;
+          elem502 = new slide_ttypes.SlideInsert();
+          elem502.read(input);
+          this.models.push(elem502);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideInsertMany_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_slideInsertMany_args');
+  if (this.models !== null && this.models !== undefined) {
+    output.writeFieldBegin('models', Thrift.Type.LIST, 1);
+    output.writeListBegin(Thrift.Type.STRUCT, this.models.length);
+    for (var iter503 in this.models)
+    {
+      if (this.models.hasOwnProperty(iter503))
+      {
+        iter503 = this.models[iter503];
+        iter503.write(output);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideInsertMany_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = Thrift.copyList(args.success, [slide_ttypes.Slide]);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_slideInsertMany_result.prototype = {};
+vv.service.VIVUDataService_slideInsertMany_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.LIST) {
+        var _size504 = 0;
+        var _rtmp3508;
+        this.success = [];
+        var _etype507 = 0;
+        _rtmp3508 = input.readListBegin();
+        _etype507 = _rtmp3508.etype;
+        _size504 = _rtmp3508.size;
+        for (var _i509 = 0; _i509 < _size504; ++_i509)
+        {
+          var elem510 = null;
+          elem510 = new slide_ttypes.Slide();
+          elem510.read(input);
+          this.success.push(elem510);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideInsertMany_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_slideInsertMany_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+    for (var iter511 in this.success)
+    {
+      if (this.success.hasOwnProperty(iter511))
+      {
+        iter511 = this.success[iter511];
+        iter511.write(output);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideUpdateOne_args = function(args) {
+  this.form = null;
+  if (args) {
+    if (args.form !== undefined && args.form !== null) {
+      this.form = new slide_ttypes.SlideForm(args.form);
+    }
+  }
+};
+vv.service.VIVUDataService_slideUpdateOne_args.prototype = {};
+vv.service.VIVUDataService_slideUpdateOne_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.form = new slide_ttypes.SlideForm();
+        this.form.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideUpdateOne_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_slideUpdateOne_args');
+  if (this.form !== null && this.form !== undefined) {
+    output.writeFieldBegin('form', Thrift.Type.STRUCT, 1);
+    this.form.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideUpdateOne_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = new slide_ttypes.Slide(args.success);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_slideUpdateOne_result.prototype = {};
+vv.service.VIVUDataService_slideUpdateOne_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.success = new slide_ttypes.Slide();
+        this.success.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideUpdateOne_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_slideUpdateOne_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.STRUCT, 0);
+    this.success.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetOneByPk_args = function(args) {
+  this.pk = null;
+  if (args) {
+    if (args.pk !== undefined && args.pk !== null) {
+      this.pk = args.pk;
+    }
+  }
+};
+vv.service.VIVUDataService_slideGetOneByPk_args.prototype = {};
+vv.service.VIVUDataService_slideGetOneByPk_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.I32) {
+        this.pk = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetOneByPk_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_slideGetOneByPk_args');
+  if (this.pk !== null && this.pk !== undefined) {
+    output.writeFieldBegin('pk', Thrift.Type.I32, 1);
+    output.writeI32(this.pk);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetOneByPk_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = new slide_ttypes.Slide(args.success);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_slideGetOneByPk_result.prototype = {};
+vv.service.VIVUDataService_slideGetOneByPk_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.success = new slide_ttypes.Slide();
+        this.success.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetOneByPk_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_slideGetOneByPk_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.STRUCT, 0);
+    this.success.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetOneRelationByPk_args = function(args) {
+  this.pk = null;
+  this.options = null;
+  if (args) {
+    if (args.pk !== undefined && args.pk !== null) {
+      this.pk = args.pk;
+    }
+    if (args.options !== undefined && args.options !== null) {
+      this.options = new options_ttypes.SelectOptions(args.options);
+    }
+  }
+};
+vv.service.VIVUDataService_slideGetOneRelationByPk_args.prototype = {};
+vv.service.VIVUDataService_slideGetOneRelationByPk_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.I32) {
+        this.pk = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.options = new options_ttypes.SelectOptions();
+        this.options.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetOneRelationByPk_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_slideGetOneRelationByPk_args');
+  if (this.pk !== null && this.pk !== undefined) {
+    output.writeFieldBegin('pk', Thrift.Type.I32, 1);
+    output.writeI32(this.pk);
+    output.writeFieldEnd();
+  }
+  if (this.options !== null && this.options !== undefined) {
+    output.writeFieldBegin('options', Thrift.Type.STRUCT, 2);
+    this.options.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetOneRelationByPk_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = new slide_ttypes.Slide(args.success);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_slideGetOneRelationByPk_result.prototype = {};
+vv.service.VIVUDataService_slideGetOneRelationByPk_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.success = new slide_ttypes.Slide();
+        this.success.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetOneRelationByPk_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_slideGetOneRelationByPk_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.STRUCT, 0);
+    this.success.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetMany_args = function(args) {
+  this.pks = null;
+  if (args) {
+    if (args.pks !== undefined && args.pks !== null) {
+      this.pks = Thrift.copyList(args.pks, [null]);
+    }
+  }
+};
+vv.service.VIVUDataService_slideGetMany_args.prototype = {};
+vv.service.VIVUDataService_slideGetMany_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.LIST) {
+        var _size512 = 0;
+        var _rtmp3516;
+        this.pks = [];
+        var _etype515 = 0;
+        _rtmp3516 = input.readListBegin();
+        _etype515 = _rtmp3516.etype;
+        _size512 = _rtmp3516.size;
+        for (var _i517 = 0; _i517 < _size512; ++_i517)
+        {
+          var elem518 = null;
+          elem518 = input.readI32();
+          this.pks.push(elem518);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetMany_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_slideGetMany_args');
+  if (this.pks !== null && this.pks !== undefined) {
+    output.writeFieldBegin('pks', Thrift.Type.LIST, 1);
+    output.writeListBegin(Thrift.Type.I32, this.pks.length);
+    for (var iter519 in this.pks)
+    {
+      if (this.pks.hasOwnProperty(iter519))
+      {
+        iter519 = this.pks[iter519];
+        output.writeI32(iter519);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetMany_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = Thrift.copyList(args.success, [slide_ttypes.Slide]);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_slideGetMany_result.prototype = {};
+vv.service.VIVUDataService_slideGetMany_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.LIST) {
+        var _size520 = 0;
+        var _rtmp3524;
+        this.success = [];
+        var _etype523 = 0;
+        _rtmp3524 = input.readListBegin();
+        _etype523 = _rtmp3524.etype;
+        _size520 = _rtmp3524.size;
+        for (var _i525 = 0; _i525 < _size520; ++_i525)
+        {
+          var elem526 = null;
+          elem526 = new slide_ttypes.Slide();
+          elem526.read(input);
+          this.success.push(elem526);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetMany_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_slideGetMany_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+    for (var iter527 in this.success)
+    {
+      if (this.success.hasOwnProperty(iter527))
+      {
+        iter527 = this.success[iter527];
+        iter527.write(output);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetManyOneRelation_args = function(args) {
+  this.pks = null;
+  this.options = null;
+  if (args) {
+    if (args.pks !== undefined && args.pks !== null) {
+      this.pks = Thrift.copyList(args.pks, [null]);
+    }
+    if (args.options !== undefined && args.options !== null) {
+      this.options = new options_ttypes.SelectOptions(args.options);
+    }
+  }
+};
+vv.service.VIVUDataService_slideGetManyOneRelation_args.prototype = {};
+vv.service.VIVUDataService_slideGetManyOneRelation_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.LIST) {
+        var _size528 = 0;
+        var _rtmp3532;
+        this.pks = [];
+        var _etype531 = 0;
+        _rtmp3532 = input.readListBegin();
+        _etype531 = _rtmp3532.etype;
+        _size528 = _rtmp3532.size;
+        for (var _i533 = 0; _i533 < _size528; ++_i533)
+        {
+          var elem534 = null;
+          elem534 = input.readI32();
+          this.pks.push(elem534);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.options = new options_ttypes.SelectOptions();
+        this.options.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetManyOneRelation_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_slideGetManyOneRelation_args');
+  if (this.pks !== null && this.pks !== undefined) {
+    output.writeFieldBegin('pks', Thrift.Type.LIST, 1);
+    output.writeListBegin(Thrift.Type.I32, this.pks.length);
+    for (var iter535 in this.pks)
+    {
+      if (this.pks.hasOwnProperty(iter535))
+      {
+        iter535 = this.pks[iter535];
+        output.writeI32(iter535);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.options !== null && this.options !== undefined) {
+    output.writeFieldBegin('options', Thrift.Type.STRUCT, 2);
+    this.options.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetManyOneRelation_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = Thrift.copyList(args.success, [slide_ttypes.Slide]);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_slideGetManyOneRelation_result.prototype = {};
+vv.service.VIVUDataService_slideGetManyOneRelation_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.LIST) {
+        var _size536 = 0;
+        var _rtmp3540;
+        this.success = [];
+        var _etype539 = 0;
+        _rtmp3540 = input.readListBegin();
+        _etype539 = _rtmp3540.etype;
+        _size536 = _rtmp3540.size;
+        for (var _i541 = 0; _i541 < _size536; ++_i541)
+        {
+          var elem542 = null;
+          elem542 = new slide_ttypes.Slide();
+          elem542.read(input);
+          this.success.push(elem542);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetManyOneRelation_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_slideGetManyOneRelation_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+    for (var iter543 in this.success)
+    {
+      if (this.success.hasOwnProperty(iter543))
+      {
+        iter543 = this.success[iter543];
+        iter543.write(output);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetAll_args = function(args) {
+};
+vv.service.VIVUDataService_slideGetAll_args.prototype = {};
+vv.service.VIVUDataService_slideGetAll_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    input.skip(ftype);
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetAll_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_slideGetAll_args');
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetAll_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = Thrift.copyList(args.success, [slide_ttypes.Slide]);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_slideGetAll_result.prototype = {};
+vv.service.VIVUDataService_slideGetAll_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.LIST) {
+        var _size544 = 0;
+        var _rtmp3548;
+        this.success = [];
+        var _etype547 = 0;
+        _rtmp3548 = input.readListBegin();
+        _etype547 = _rtmp3548.etype;
+        _size544 = _rtmp3548.size;
+        for (var _i549 = 0; _i549 < _size544; ++_i549)
+        {
+          var elem550 = null;
+          elem550 = new slide_ttypes.Slide();
+          elem550.read(input);
+          this.success.push(elem550);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetAll_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_slideGetAll_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+    for (var iter551 in this.success)
+    {
+      if (this.success.hasOwnProperty(iter551))
+      {
+        iter551 = this.success[iter551];
+        iter551.write(output);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetAllStatus_args = function(args) {
+  this.status = null;
+  if (args) {
+    if (args.status !== undefined && args.status !== null) {
+      this.status = args.status;
+    }
+  }
+};
+vv.service.VIVUDataService_slideGetAllStatus_args.prototype = {};
+vv.service.VIVUDataService_slideGetAllStatus_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.I32) {
+        this.status = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetAllStatus_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_slideGetAllStatus_args');
+  if (this.status !== null && this.status !== undefined) {
+    output.writeFieldBegin('status', Thrift.Type.I32, 1);
+    output.writeI32(this.status);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetAllStatus_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = Thrift.copyList(args.success, [slide_ttypes.Slide]);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_slideGetAllStatus_result.prototype = {};
+vv.service.VIVUDataService_slideGetAllStatus_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.LIST) {
+        var _size552 = 0;
+        var _rtmp3556;
+        this.success = [];
+        var _etype555 = 0;
+        _rtmp3556 = input.readListBegin();
+        _etype555 = _rtmp3556.etype;
+        _size552 = _rtmp3556.size;
+        for (var _i557 = 0; _i557 < _size552; ++_i557)
+        {
+          var elem558 = null;
+          elem558 = new slide_ttypes.Slide();
+          elem558.read(input);
+          this.success.push(elem558);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetAllStatus_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_slideGetAllStatus_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+    for (var iter559 in this.success)
+    {
+      if (this.success.hasOwnProperty(iter559))
+      {
+        iter559 = this.success[iter559];
+        iter559.write(output);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetAllActive_args = function(args) {
+};
+vv.service.VIVUDataService_slideGetAllActive_args.prototype = {};
+vv.service.VIVUDataService_slideGetAllActive_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    input.skip(ftype);
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetAllActive_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_slideGetAllActive_args');
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetAllActive_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = Thrift.copyList(args.success, [slide_ttypes.Slide]);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_slideGetAllActive_result.prototype = {};
+vv.service.VIVUDataService_slideGetAllActive_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.LIST) {
+        var _size560 = 0;
+        var _rtmp3564;
+        this.success = [];
+        var _etype563 = 0;
+        _rtmp3564 = input.readListBegin();
+        _etype563 = _rtmp3564.etype;
+        _size560 = _rtmp3564.size;
+        for (var _i565 = 0; _i565 < _size560; ++_i565)
+        {
+          var elem566 = null;
+          elem566 = new slide_ttypes.Slide();
+          elem566.read(input);
+          this.success.push(elem566);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetAllActive_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_slideGetAllActive_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+    for (var iter567 in this.success)
+    {
+      if (this.success.hasOwnProperty(iter567))
+      {
+        iter567 = this.success[iter567];
+        iter567.write(output);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetAllInactive_args = function(args) {
+};
+vv.service.VIVUDataService_slideGetAllInactive_args.prototype = {};
+vv.service.VIVUDataService_slideGetAllInactive_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    input.skip(ftype);
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetAllInactive_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_slideGetAllInactive_args');
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetAllInactive_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = Thrift.copyList(args.success, [slide_ttypes.Slide]);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_slideGetAllInactive_result.prototype = {};
+vv.service.VIVUDataService_slideGetAllInactive_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.LIST) {
+        var _size568 = 0;
+        var _rtmp3572;
+        this.success = [];
+        var _etype571 = 0;
+        _rtmp3572 = input.readListBegin();
+        _etype571 = _rtmp3572.etype;
+        _size568 = _rtmp3572.size;
+        for (var _i573 = 0; _i573 < _size568; ++_i573)
+        {
+          var elem574 = null;
+          elem574 = new slide_ttypes.Slide();
+          elem574.read(input);
+          this.success.push(elem574);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetAllInactive_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_slideGetAllInactive_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+    for (var iter575 in this.success)
+    {
+      if (this.success.hasOwnProperty(iter575))
+      {
+        iter575 = this.success[iter575];
+        iter575.write(output);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetAllDisabled_args = function(args) {
+};
+vv.service.VIVUDataService_slideGetAllDisabled_args.prototype = {};
+vv.service.VIVUDataService_slideGetAllDisabled_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    input.skip(ftype);
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetAllDisabled_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_slideGetAllDisabled_args');
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetAllDisabled_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = Thrift.copyList(args.success, [slide_ttypes.Slide]);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_slideGetAllDisabled_result.prototype = {};
+vv.service.VIVUDataService_slideGetAllDisabled_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.LIST) {
+        var _size576 = 0;
+        var _rtmp3580;
+        this.success = [];
+        var _etype579 = 0;
+        _rtmp3580 = input.readListBegin();
+        _etype579 = _rtmp3580.etype;
+        _size576 = _rtmp3580.size;
+        for (var _i581 = 0; _i581 < _size576; ++_i581)
+        {
+          var elem582 = null;
+          elem582 = new slide_ttypes.Slide();
+          elem582.read(input);
+          this.success.push(elem582);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetAllDisabled_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_slideGetAllDisabled_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+    for (var iter583 in this.success)
+    {
+      if (this.success.hasOwnProperty(iter583))
+      {
+        iter583 = this.success[iter583];
+        iter583.write(output);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetAllDeleted_args = function(args) {
+};
+vv.service.VIVUDataService_slideGetAllDeleted_args.prototype = {};
+vv.service.VIVUDataService_slideGetAllDeleted_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    input.skip(ftype);
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetAllDeleted_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_slideGetAllDeleted_args');
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetAllDeleted_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = Thrift.copyList(args.success, [slide_ttypes.Slide]);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_slideGetAllDeleted_result.prototype = {};
+vv.service.VIVUDataService_slideGetAllDeleted_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.LIST) {
+        var _size584 = 0;
+        var _rtmp3588;
+        this.success = [];
+        var _etype587 = 0;
+        _rtmp3588 = input.readListBegin();
+        _etype587 = _rtmp3588.etype;
+        _size584 = _rtmp3588.size;
+        for (var _i589 = 0; _i589 < _size584; ++_i589)
+        {
+          var elem590 = null;
+          elem590 = new slide_ttypes.Slide();
+          elem590.read(input);
+          this.success.push(elem590);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetAllDeleted_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_slideGetAllDeleted_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+    for (var iter591 in this.success)
+    {
+      if (this.success.hasOwnProperty(iter591))
+      {
+        iter591 = this.success[iter591];
+        iter591.write(output);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideFilter_args = function(args) {
+  this.filter = null;
+  this.query = null;
+  if (args) {
+    if (args.filter !== undefined && args.filter !== null) {
+      this.filter = new slide_ttypes.SlideFilter(args.filter);
+    }
+    if (args.query !== undefined && args.query !== null) {
+      this.query = new pagination_ttypes.PagingQuery(args.query);
+    }
+  }
+};
+vv.service.VIVUDataService_slideFilter_args.prototype = {};
+vv.service.VIVUDataService_slideFilter_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.filter = new slide_ttypes.SlideFilter();
+        this.filter.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.query = new pagination_ttypes.PagingQuery();
+        this.query.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideFilter_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_slideFilter_args');
+  if (this.filter !== null && this.filter !== undefined) {
+    output.writeFieldBegin('filter', Thrift.Type.STRUCT, 1);
+    this.filter.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.query !== null && this.query !== undefined) {
+    output.writeFieldBegin('query', Thrift.Type.STRUCT, 2);
+    this.query.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideFilter_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = Thrift.copyList(args.success, [slide_ttypes.Slide]);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_slideFilter_result.prototype = {};
+vv.service.VIVUDataService_slideFilter_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.LIST) {
+        var _size592 = 0;
+        var _rtmp3596;
+        this.success = [];
+        var _etype595 = 0;
+        _rtmp3596 = input.readListBegin();
+        _etype595 = _rtmp3596.etype;
+        _size592 = _rtmp3596.size;
+        for (var _i597 = 0; _i597 < _size592; ++_i597)
+        {
+          var elem598 = null;
+          elem598 = new slide_ttypes.Slide();
+          elem598.read(input);
+          this.success.push(elem598);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideFilter_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_slideFilter_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.LIST, 0);
+    output.writeListBegin(Thrift.Type.STRUCT, this.success.length);
+    for (var iter599 in this.success)
+    {
+      if (this.success.hasOwnProperty(iter599))
+      {
+        iter599 = this.success[iter599];
+        iter599.write(output);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_SlideFilterPagination_args = function(args) {
+  this.filter = null;
+  this.query = null;
+  if (args) {
+    if (args.filter !== undefined && args.filter !== null) {
+      this.filter = new slide_ttypes.SlideFilter(args.filter);
+    }
+    if (args.query !== undefined && args.query !== null) {
+      this.query = new pagination_ttypes.PagingQuery(args.query);
+    }
+  }
+};
+vv.service.VIVUDataService_SlideFilterPagination_args.prototype = {};
+vv.service.VIVUDataService_SlideFilterPagination_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.filter = new slide_ttypes.SlideFilter();
+        this.filter.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.query = new pagination_ttypes.PagingQuery();
+        this.query.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_SlideFilterPagination_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_SlideFilterPagination_args');
+  if (this.filter !== null && this.filter !== undefined) {
+    output.writeFieldBegin('filter', Thrift.Type.STRUCT, 1);
+    this.filter.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.query !== null && this.query !== undefined) {
+    output.writeFieldBegin('query', Thrift.Type.STRUCT, 2);
+    this.query.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_SlideFilterPagination_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = new slide_ttypes.PaginationSlide(args.success);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_SlideFilterPagination_result.prototype = {};
+vv.service.VIVUDataService_SlideFilterPagination_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.success = new slide_ttypes.PaginationSlide();
+        this.success.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_SlideFilterPagination_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_SlideFilterPagination_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.STRUCT, 0);
+    this.success.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideDeleteByPk_args = function(args) {
+  this.pk = null;
+  if (args) {
+    if (args.pk !== undefined && args.pk !== null) {
+      this.pk = args.pk;
+    }
+  }
+};
+vv.service.VIVUDataService_slideDeleteByPk_args.prototype = {};
+vv.service.VIVUDataService_slideDeleteByPk_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.I32) {
+        this.pk = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideDeleteByPk_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_slideDeleteByPk_args');
+  if (this.pk !== null && this.pk !== undefined) {
+    output.writeFieldBegin('pk', Thrift.Type.I32, 1);
+    output.writeI32(this.pk);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideDeleteByPk_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = new slide_ttypes.Slide(args.success);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_slideDeleteByPk_result.prototype = {};
+vv.service.VIVUDataService_slideDeleteByPk_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.success = new slide_ttypes.Slide();
+        this.success.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideDeleteByPk_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_slideDeleteByPk_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.STRUCT, 0);
+    this.success.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetOrCreate_args = function(args) {
+  this.form = null;
+  if (args) {
+    if (args.form !== undefined && args.form !== null) {
+      this.form = new slide_ttypes.SlideForm(args.form);
+    }
+  }
+};
+vv.service.VIVUDataService_slideGetOrCreate_args.prototype = {};
+vv.service.VIVUDataService_slideGetOrCreate_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.form = new slide_ttypes.SlideForm();
+        this.form.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetOrCreate_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_slideGetOrCreate_args');
+  if (this.form !== null && this.form !== undefined) {
+    output.writeFieldBegin('form', Thrift.Type.STRUCT, 1);
+    this.form.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetOrCreate_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = new slide_ttypes.Slide(args.success);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_slideGetOrCreate_result.prototype = {};
+vv.service.VIVUDataService_slideGetOrCreate_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.success = new slide_ttypes.Slide();
+        this.success.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_slideGetOrCreate_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_slideGetOrCreate_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.STRUCT, 0);
+    this.success.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
 vv.service.VIVUDataServiceClient = exports.Client = function(output, pClass) {
     this.output = output;
     this.pClass = pClass;
@@ -17030,6 +21728,1704 @@ vv.service.VIVUDataServiceClient.prototype.recv_orderStatusHistoryGetOrCreate = 
   }
   return callback('orderStatusHistoryGetOrCreate failed: unknown result');
 };
+vv.service.VIVUDataServiceClient.prototype.systemSettingInsertOne = function(insert, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_systemSettingInsertOne(insert);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_systemSettingInsertOne(insert);
+  }
+};
+
+vv.service.VIVUDataServiceClient.prototype.send_systemSettingInsertOne = function(insert) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('systemSettingInsertOne', Thrift.MessageType.CALL, this.seqid());
+  var args = new vv.service.VIVUDataService_systemSettingInsertOne_args();
+  args.insert = insert;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+vv.service.VIVUDataServiceClient.prototype.recv_systemSettingInsertOne = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new vv.service.VIVUDataService_systemSettingInsertOne_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.ex) {
+    return callback(result.ex);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('systemSettingInsertOne failed: unknown result');
+};
+vv.service.VIVUDataServiceClient.prototype.systemSettingInsertMany = function(models, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_systemSettingInsertMany(models);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_systemSettingInsertMany(models);
+  }
+};
+
+vv.service.VIVUDataServiceClient.prototype.send_systemSettingInsertMany = function(models) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('systemSettingInsertMany', Thrift.MessageType.CALL, this.seqid());
+  var args = new vv.service.VIVUDataService_systemSettingInsertMany_args();
+  args.models = models;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+vv.service.VIVUDataServiceClient.prototype.recv_systemSettingInsertMany = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new vv.service.VIVUDataService_systemSettingInsertMany_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.ex) {
+    return callback(result.ex);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('systemSettingInsertMany failed: unknown result');
+};
+vv.service.VIVUDataServiceClient.prototype.systemSettingUpdateOne = function(form, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_systemSettingUpdateOne(form);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_systemSettingUpdateOne(form);
+  }
+};
+
+vv.service.VIVUDataServiceClient.prototype.send_systemSettingUpdateOne = function(form) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('systemSettingUpdateOne', Thrift.MessageType.CALL, this.seqid());
+  var args = new vv.service.VIVUDataService_systemSettingUpdateOne_args();
+  args.form = form;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+vv.service.VIVUDataServiceClient.prototype.recv_systemSettingUpdateOne = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new vv.service.VIVUDataService_systemSettingUpdateOne_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.ex) {
+    return callback(result.ex);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('systemSettingUpdateOne failed: unknown result');
+};
+vv.service.VIVUDataServiceClient.prototype.systemSettingGetOneByPk = function(pk, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_systemSettingGetOneByPk(pk);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_systemSettingGetOneByPk(pk);
+  }
+};
+
+vv.service.VIVUDataServiceClient.prototype.send_systemSettingGetOneByPk = function(pk) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('systemSettingGetOneByPk', Thrift.MessageType.CALL, this.seqid());
+  var args = new vv.service.VIVUDataService_systemSettingGetOneByPk_args();
+  args.pk = pk;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+vv.service.VIVUDataServiceClient.prototype.recv_systemSettingGetOneByPk = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new vv.service.VIVUDataService_systemSettingGetOneByPk_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.ex) {
+    return callback(result.ex);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('systemSettingGetOneByPk failed: unknown result');
+};
+vv.service.VIVUDataServiceClient.prototype.systemSettingGetOneRelationByPk = function(pk, options, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_systemSettingGetOneRelationByPk(pk, options);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_systemSettingGetOneRelationByPk(pk, options);
+  }
+};
+
+vv.service.VIVUDataServiceClient.prototype.send_systemSettingGetOneRelationByPk = function(pk, options) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('systemSettingGetOneRelationByPk', Thrift.MessageType.CALL, this.seqid());
+  var args = new vv.service.VIVUDataService_systemSettingGetOneRelationByPk_args();
+  args.pk = pk;
+  args.options = options;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+vv.service.VIVUDataServiceClient.prototype.recv_systemSettingGetOneRelationByPk = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new vv.service.VIVUDataService_systemSettingGetOneRelationByPk_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.ex) {
+    return callback(result.ex);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('systemSettingGetOneRelationByPk failed: unknown result');
+};
+vv.service.VIVUDataServiceClient.prototype.systemSettingGetMany = function(pks, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_systemSettingGetMany(pks);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_systemSettingGetMany(pks);
+  }
+};
+
+vv.service.VIVUDataServiceClient.prototype.send_systemSettingGetMany = function(pks) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('systemSettingGetMany', Thrift.MessageType.CALL, this.seqid());
+  var args = new vv.service.VIVUDataService_systemSettingGetMany_args();
+  args.pks = pks;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+vv.service.VIVUDataServiceClient.prototype.recv_systemSettingGetMany = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new vv.service.VIVUDataService_systemSettingGetMany_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.ex) {
+    return callback(result.ex);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('systemSettingGetMany failed: unknown result');
+};
+vv.service.VIVUDataServiceClient.prototype.systemSettingGetManyOneRelation = function(pks, options, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_systemSettingGetManyOneRelation(pks, options);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_systemSettingGetManyOneRelation(pks, options);
+  }
+};
+
+vv.service.VIVUDataServiceClient.prototype.send_systemSettingGetManyOneRelation = function(pks, options) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('systemSettingGetManyOneRelation', Thrift.MessageType.CALL, this.seqid());
+  var args = new vv.service.VIVUDataService_systemSettingGetManyOneRelation_args();
+  args.pks = pks;
+  args.options = options;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+vv.service.VIVUDataServiceClient.prototype.recv_systemSettingGetManyOneRelation = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new vv.service.VIVUDataService_systemSettingGetManyOneRelation_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.ex) {
+    return callback(result.ex);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('systemSettingGetManyOneRelation failed: unknown result');
+};
+vv.service.VIVUDataServiceClient.prototype.systemSettingGetAll = function(callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_systemSettingGetAll();
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_systemSettingGetAll();
+  }
+};
+
+vv.service.VIVUDataServiceClient.prototype.send_systemSettingGetAll = function() {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('systemSettingGetAll', Thrift.MessageType.CALL, this.seqid());
+  var args = new vv.service.VIVUDataService_systemSettingGetAll_args();
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+vv.service.VIVUDataServiceClient.prototype.recv_systemSettingGetAll = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new vv.service.VIVUDataService_systemSettingGetAll_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.ex) {
+    return callback(result.ex);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('systemSettingGetAll failed: unknown result');
+};
+vv.service.VIVUDataServiceClient.prototype.systemSettingGetAllStatus = function(status, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_systemSettingGetAllStatus(status);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_systemSettingGetAllStatus(status);
+  }
+};
+
+vv.service.VIVUDataServiceClient.prototype.send_systemSettingGetAllStatus = function(status) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('systemSettingGetAllStatus', Thrift.MessageType.CALL, this.seqid());
+  var args = new vv.service.VIVUDataService_systemSettingGetAllStatus_args();
+  args.status = status;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+vv.service.VIVUDataServiceClient.prototype.recv_systemSettingGetAllStatus = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new vv.service.VIVUDataService_systemSettingGetAllStatus_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.ex) {
+    return callback(result.ex);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('systemSettingGetAllStatus failed: unknown result');
+};
+vv.service.VIVUDataServiceClient.prototype.systemSettingGetAllActive = function(callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_systemSettingGetAllActive();
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_systemSettingGetAllActive();
+  }
+};
+
+vv.service.VIVUDataServiceClient.prototype.send_systemSettingGetAllActive = function() {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('systemSettingGetAllActive', Thrift.MessageType.CALL, this.seqid());
+  var args = new vv.service.VIVUDataService_systemSettingGetAllActive_args();
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+vv.service.VIVUDataServiceClient.prototype.recv_systemSettingGetAllActive = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new vv.service.VIVUDataService_systemSettingGetAllActive_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.ex) {
+    return callback(result.ex);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('systemSettingGetAllActive failed: unknown result');
+};
+vv.service.VIVUDataServiceClient.prototype.systemSettingGetAllInactive = function(callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_systemSettingGetAllInactive();
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_systemSettingGetAllInactive();
+  }
+};
+
+vv.service.VIVUDataServiceClient.prototype.send_systemSettingGetAllInactive = function() {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('systemSettingGetAllInactive', Thrift.MessageType.CALL, this.seqid());
+  var args = new vv.service.VIVUDataService_systemSettingGetAllInactive_args();
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+vv.service.VIVUDataServiceClient.prototype.recv_systemSettingGetAllInactive = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new vv.service.VIVUDataService_systemSettingGetAllInactive_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.ex) {
+    return callback(result.ex);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('systemSettingGetAllInactive failed: unknown result');
+};
+vv.service.VIVUDataServiceClient.prototype.systemSettingGetAllDisabled = function(callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_systemSettingGetAllDisabled();
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_systemSettingGetAllDisabled();
+  }
+};
+
+vv.service.VIVUDataServiceClient.prototype.send_systemSettingGetAllDisabled = function() {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('systemSettingGetAllDisabled', Thrift.MessageType.CALL, this.seqid());
+  var args = new vv.service.VIVUDataService_systemSettingGetAllDisabled_args();
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+vv.service.VIVUDataServiceClient.prototype.recv_systemSettingGetAllDisabled = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new vv.service.VIVUDataService_systemSettingGetAllDisabled_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.ex) {
+    return callback(result.ex);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('systemSettingGetAllDisabled failed: unknown result');
+};
+vv.service.VIVUDataServiceClient.prototype.systemSettingGetAllDeleted = function(callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_systemSettingGetAllDeleted();
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_systemSettingGetAllDeleted();
+  }
+};
+
+vv.service.VIVUDataServiceClient.prototype.send_systemSettingGetAllDeleted = function() {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('systemSettingGetAllDeleted', Thrift.MessageType.CALL, this.seqid());
+  var args = new vv.service.VIVUDataService_systemSettingGetAllDeleted_args();
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+vv.service.VIVUDataServiceClient.prototype.recv_systemSettingGetAllDeleted = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new vv.service.VIVUDataService_systemSettingGetAllDeleted_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.ex) {
+    return callback(result.ex);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('systemSettingGetAllDeleted failed: unknown result');
+};
+vv.service.VIVUDataServiceClient.prototype.systemSettingFilter = function(filter, query, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_systemSettingFilter(filter, query);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_systemSettingFilter(filter, query);
+  }
+};
+
+vv.service.VIVUDataServiceClient.prototype.send_systemSettingFilter = function(filter, query) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('systemSettingFilter', Thrift.MessageType.CALL, this.seqid());
+  var args = new vv.service.VIVUDataService_systemSettingFilter_args();
+  args.filter = filter;
+  args.query = query;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+vv.service.VIVUDataServiceClient.prototype.recv_systemSettingFilter = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new vv.service.VIVUDataService_systemSettingFilter_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.ex) {
+    return callback(result.ex);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('systemSettingFilter failed: unknown result');
+};
+vv.service.VIVUDataServiceClient.prototype.SystemSettingFilterPagination = function(filter, query, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_SystemSettingFilterPagination(filter, query);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_SystemSettingFilterPagination(filter, query);
+  }
+};
+
+vv.service.VIVUDataServiceClient.prototype.send_SystemSettingFilterPagination = function(filter, query) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('SystemSettingFilterPagination', Thrift.MessageType.CALL, this.seqid());
+  var args = new vv.service.VIVUDataService_SystemSettingFilterPagination_args();
+  args.filter = filter;
+  args.query = query;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+vv.service.VIVUDataServiceClient.prototype.recv_SystemSettingFilterPagination = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new vv.service.VIVUDataService_SystemSettingFilterPagination_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.ex) {
+    return callback(result.ex);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('SystemSettingFilterPagination failed: unknown result');
+};
+vv.service.VIVUDataServiceClient.prototype.systemSettingDeleteByPk = function(pk, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_systemSettingDeleteByPk(pk);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_systemSettingDeleteByPk(pk);
+  }
+};
+
+vv.service.VIVUDataServiceClient.prototype.send_systemSettingDeleteByPk = function(pk) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('systemSettingDeleteByPk', Thrift.MessageType.CALL, this.seqid());
+  var args = new vv.service.VIVUDataService_systemSettingDeleteByPk_args();
+  args.pk = pk;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+vv.service.VIVUDataServiceClient.prototype.recv_systemSettingDeleteByPk = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new vv.service.VIVUDataService_systemSettingDeleteByPk_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.ex) {
+    return callback(result.ex);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('systemSettingDeleteByPk failed: unknown result');
+};
+vv.service.VIVUDataServiceClient.prototype.systemSettingGetOrCreate = function(form, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_systemSettingGetOrCreate(form);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_systemSettingGetOrCreate(form);
+  }
+};
+
+vv.service.VIVUDataServiceClient.prototype.send_systemSettingGetOrCreate = function(form) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('systemSettingGetOrCreate', Thrift.MessageType.CALL, this.seqid());
+  var args = new vv.service.VIVUDataService_systemSettingGetOrCreate_args();
+  args.form = form;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+vv.service.VIVUDataServiceClient.prototype.recv_systemSettingGetOrCreate = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new vv.service.VIVUDataService_systemSettingGetOrCreate_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.ex) {
+    return callback(result.ex);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('systemSettingGetOrCreate failed: unknown result');
+};
+vv.service.VIVUDataServiceClient.prototype.slideInsertOne = function(insert, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_slideInsertOne(insert);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_slideInsertOne(insert);
+  }
+};
+
+vv.service.VIVUDataServiceClient.prototype.send_slideInsertOne = function(insert) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('slideInsertOne', Thrift.MessageType.CALL, this.seqid());
+  var args = new vv.service.VIVUDataService_slideInsertOne_args();
+  args.insert = insert;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+vv.service.VIVUDataServiceClient.prototype.recv_slideInsertOne = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new vv.service.VIVUDataService_slideInsertOne_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.ex) {
+    return callback(result.ex);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('slideInsertOne failed: unknown result');
+};
+vv.service.VIVUDataServiceClient.prototype.slideInsertMany = function(models, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_slideInsertMany(models);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_slideInsertMany(models);
+  }
+};
+
+vv.service.VIVUDataServiceClient.prototype.send_slideInsertMany = function(models) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('slideInsertMany', Thrift.MessageType.CALL, this.seqid());
+  var args = new vv.service.VIVUDataService_slideInsertMany_args();
+  args.models = models;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+vv.service.VIVUDataServiceClient.prototype.recv_slideInsertMany = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new vv.service.VIVUDataService_slideInsertMany_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.ex) {
+    return callback(result.ex);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('slideInsertMany failed: unknown result');
+};
+vv.service.VIVUDataServiceClient.prototype.slideUpdateOne = function(form, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_slideUpdateOne(form);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_slideUpdateOne(form);
+  }
+};
+
+vv.service.VIVUDataServiceClient.prototype.send_slideUpdateOne = function(form) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('slideUpdateOne', Thrift.MessageType.CALL, this.seqid());
+  var args = new vv.service.VIVUDataService_slideUpdateOne_args();
+  args.form = form;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+vv.service.VIVUDataServiceClient.prototype.recv_slideUpdateOne = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new vv.service.VIVUDataService_slideUpdateOne_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.ex) {
+    return callback(result.ex);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('slideUpdateOne failed: unknown result');
+};
+vv.service.VIVUDataServiceClient.prototype.slideGetOneByPk = function(pk, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_slideGetOneByPk(pk);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_slideGetOneByPk(pk);
+  }
+};
+
+vv.service.VIVUDataServiceClient.prototype.send_slideGetOneByPk = function(pk) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('slideGetOneByPk', Thrift.MessageType.CALL, this.seqid());
+  var args = new vv.service.VIVUDataService_slideGetOneByPk_args();
+  args.pk = pk;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+vv.service.VIVUDataServiceClient.prototype.recv_slideGetOneByPk = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new vv.service.VIVUDataService_slideGetOneByPk_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.ex) {
+    return callback(result.ex);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('slideGetOneByPk failed: unknown result');
+};
+vv.service.VIVUDataServiceClient.prototype.slideGetOneRelationByPk = function(pk, options, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_slideGetOneRelationByPk(pk, options);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_slideGetOneRelationByPk(pk, options);
+  }
+};
+
+vv.service.VIVUDataServiceClient.prototype.send_slideGetOneRelationByPk = function(pk, options) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('slideGetOneRelationByPk', Thrift.MessageType.CALL, this.seqid());
+  var args = new vv.service.VIVUDataService_slideGetOneRelationByPk_args();
+  args.pk = pk;
+  args.options = options;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+vv.service.VIVUDataServiceClient.prototype.recv_slideGetOneRelationByPk = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new vv.service.VIVUDataService_slideGetOneRelationByPk_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.ex) {
+    return callback(result.ex);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('slideGetOneRelationByPk failed: unknown result');
+};
+vv.service.VIVUDataServiceClient.prototype.slideGetMany = function(pks, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_slideGetMany(pks);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_slideGetMany(pks);
+  }
+};
+
+vv.service.VIVUDataServiceClient.prototype.send_slideGetMany = function(pks) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('slideGetMany', Thrift.MessageType.CALL, this.seqid());
+  var args = new vv.service.VIVUDataService_slideGetMany_args();
+  args.pks = pks;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+vv.service.VIVUDataServiceClient.prototype.recv_slideGetMany = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new vv.service.VIVUDataService_slideGetMany_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.ex) {
+    return callback(result.ex);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('slideGetMany failed: unknown result');
+};
+vv.service.VIVUDataServiceClient.prototype.slideGetManyOneRelation = function(pks, options, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_slideGetManyOneRelation(pks, options);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_slideGetManyOneRelation(pks, options);
+  }
+};
+
+vv.service.VIVUDataServiceClient.prototype.send_slideGetManyOneRelation = function(pks, options) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('slideGetManyOneRelation', Thrift.MessageType.CALL, this.seqid());
+  var args = new vv.service.VIVUDataService_slideGetManyOneRelation_args();
+  args.pks = pks;
+  args.options = options;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+vv.service.VIVUDataServiceClient.prototype.recv_slideGetManyOneRelation = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new vv.service.VIVUDataService_slideGetManyOneRelation_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.ex) {
+    return callback(result.ex);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('slideGetManyOneRelation failed: unknown result');
+};
+vv.service.VIVUDataServiceClient.prototype.slideGetAll = function(callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_slideGetAll();
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_slideGetAll();
+  }
+};
+
+vv.service.VIVUDataServiceClient.prototype.send_slideGetAll = function() {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('slideGetAll', Thrift.MessageType.CALL, this.seqid());
+  var args = new vv.service.VIVUDataService_slideGetAll_args();
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+vv.service.VIVUDataServiceClient.prototype.recv_slideGetAll = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new vv.service.VIVUDataService_slideGetAll_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.ex) {
+    return callback(result.ex);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('slideGetAll failed: unknown result');
+};
+vv.service.VIVUDataServiceClient.prototype.slideGetAllStatus = function(status, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_slideGetAllStatus(status);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_slideGetAllStatus(status);
+  }
+};
+
+vv.service.VIVUDataServiceClient.prototype.send_slideGetAllStatus = function(status) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('slideGetAllStatus', Thrift.MessageType.CALL, this.seqid());
+  var args = new vv.service.VIVUDataService_slideGetAllStatus_args();
+  args.status = status;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+vv.service.VIVUDataServiceClient.prototype.recv_slideGetAllStatus = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new vv.service.VIVUDataService_slideGetAllStatus_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.ex) {
+    return callback(result.ex);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('slideGetAllStatus failed: unknown result');
+};
+vv.service.VIVUDataServiceClient.prototype.slideGetAllActive = function(callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_slideGetAllActive();
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_slideGetAllActive();
+  }
+};
+
+vv.service.VIVUDataServiceClient.prototype.send_slideGetAllActive = function() {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('slideGetAllActive', Thrift.MessageType.CALL, this.seqid());
+  var args = new vv.service.VIVUDataService_slideGetAllActive_args();
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+vv.service.VIVUDataServiceClient.prototype.recv_slideGetAllActive = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new vv.service.VIVUDataService_slideGetAllActive_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.ex) {
+    return callback(result.ex);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('slideGetAllActive failed: unknown result');
+};
+vv.service.VIVUDataServiceClient.prototype.slideGetAllInactive = function(callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_slideGetAllInactive();
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_slideGetAllInactive();
+  }
+};
+
+vv.service.VIVUDataServiceClient.prototype.send_slideGetAllInactive = function() {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('slideGetAllInactive', Thrift.MessageType.CALL, this.seqid());
+  var args = new vv.service.VIVUDataService_slideGetAllInactive_args();
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+vv.service.VIVUDataServiceClient.prototype.recv_slideGetAllInactive = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new vv.service.VIVUDataService_slideGetAllInactive_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.ex) {
+    return callback(result.ex);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('slideGetAllInactive failed: unknown result');
+};
+vv.service.VIVUDataServiceClient.prototype.slideGetAllDisabled = function(callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_slideGetAllDisabled();
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_slideGetAllDisabled();
+  }
+};
+
+vv.service.VIVUDataServiceClient.prototype.send_slideGetAllDisabled = function() {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('slideGetAllDisabled', Thrift.MessageType.CALL, this.seqid());
+  var args = new vv.service.VIVUDataService_slideGetAllDisabled_args();
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+vv.service.VIVUDataServiceClient.prototype.recv_slideGetAllDisabled = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new vv.service.VIVUDataService_slideGetAllDisabled_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.ex) {
+    return callback(result.ex);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('slideGetAllDisabled failed: unknown result');
+};
+vv.service.VIVUDataServiceClient.prototype.slideGetAllDeleted = function(callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_slideGetAllDeleted();
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_slideGetAllDeleted();
+  }
+};
+
+vv.service.VIVUDataServiceClient.prototype.send_slideGetAllDeleted = function() {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('slideGetAllDeleted', Thrift.MessageType.CALL, this.seqid());
+  var args = new vv.service.VIVUDataService_slideGetAllDeleted_args();
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+vv.service.VIVUDataServiceClient.prototype.recv_slideGetAllDeleted = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new vv.service.VIVUDataService_slideGetAllDeleted_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.ex) {
+    return callback(result.ex);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('slideGetAllDeleted failed: unknown result');
+};
+vv.service.VIVUDataServiceClient.prototype.slideFilter = function(filter, query, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_slideFilter(filter, query);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_slideFilter(filter, query);
+  }
+};
+
+vv.service.VIVUDataServiceClient.prototype.send_slideFilter = function(filter, query) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('slideFilter', Thrift.MessageType.CALL, this.seqid());
+  var args = new vv.service.VIVUDataService_slideFilter_args();
+  args.filter = filter;
+  args.query = query;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+vv.service.VIVUDataServiceClient.prototype.recv_slideFilter = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new vv.service.VIVUDataService_slideFilter_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.ex) {
+    return callback(result.ex);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('slideFilter failed: unknown result');
+};
+vv.service.VIVUDataServiceClient.prototype.SlideFilterPagination = function(filter, query, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_SlideFilterPagination(filter, query);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_SlideFilterPagination(filter, query);
+  }
+};
+
+vv.service.VIVUDataServiceClient.prototype.send_SlideFilterPagination = function(filter, query) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('SlideFilterPagination', Thrift.MessageType.CALL, this.seqid());
+  var args = new vv.service.VIVUDataService_SlideFilterPagination_args();
+  args.filter = filter;
+  args.query = query;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+vv.service.VIVUDataServiceClient.prototype.recv_SlideFilterPagination = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new vv.service.VIVUDataService_SlideFilterPagination_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.ex) {
+    return callback(result.ex);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('SlideFilterPagination failed: unknown result');
+};
+vv.service.VIVUDataServiceClient.prototype.slideDeleteByPk = function(pk, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_slideDeleteByPk(pk);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_slideDeleteByPk(pk);
+  }
+};
+
+vv.service.VIVUDataServiceClient.prototype.send_slideDeleteByPk = function(pk) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('slideDeleteByPk', Thrift.MessageType.CALL, this.seqid());
+  var args = new vv.service.VIVUDataService_slideDeleteByPk_args();
+  args.pk = pk;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+vv.service.VIVUDataServiceClient.prototype.recv_slideDeleteByPk = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new vv.service.VIVUDataService_slideDeleteByPk_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.ex) {
+    return callback(result.ex);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('slideDeleteByPk failed: unknown result');
+};
+vv.service.VIVUDataServiceClient.prototype.slideGetOrCreate = function(form, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_slideGetOrCreate(form);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_slideGetOrCreate(form);
+  }
+};
+
+vv.service.VIVUDataServiceClient.prototype.send_slideGetOrCreate = function(form) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('slideGetOrCreate', Thrift.MessageType.CALL, this.seqid());
+  var args = new vv.service.VIVUDataService_slideGetOrCreate_args();
+  args.form = form;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+vv.service.VIVUDataServiceClient.prototype.recv_slideGetOrCreate = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new vv.service.VIVUDataService_slideGetOrCreate_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.ex) {
+    return callback(result.ex);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('slideGetOrCreate failed: unknown result');
+};
 vv.service.VIVUDataServiceProcessor = exports.Processor = function(handler) {
   this._handler = handler
 }
@@ -20680,6 +27076,1366 @@ vv.service.VIVUDataServiceProcessor.prototype.process_orderStatusHistoryGetOrCre
       } else {
         var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
         output.writeMessageBegin("orderStatusHistoryGetOrCreate", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+vv.service.VIVUDataServiceProcessor.prototype.process_systemSettingInsertOne = function(seqid, input, output) {
+  var args = new vv.service.VIVUDataService_systemSettingInsertOne_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.systemSettingInsertOne.length === 1) {
+    Q.fcall(this._handler.systemSettingInsertOne, args.insert)
+      .then(function(result) {
+        var result = new vv.service.VIVUDataService_systemSettingInsertOne_result({success: result});
+        output.writeMessageBegin("systemSettingInsertOne", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        if (err instanceof exception_ttypes.DBExceptions) {
+          var result = new vv.service.VIVUDataService_systemSettingInsertOne_result(err);
+          output.writeMessageBegin("systemSettingInsertOne", Thrift.MessageType.REPLY, seqid);
+        } else {
+          var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("systemSettingInsertOne", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.systemSettingInsertOne(args.insert, function (err, result) {
+      if (err == null || err instanceof exception_ttypes.DBExceptions) {
+        var result = new vv.service.VIVUDataService_systemSettingInsertOne_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("systemSettingInsertOne", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("systemSettingInsertOne", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+vv.service.VIVUDataServiceProcessor.prototype.process_systemSettingInsertMany = function(seqid, input, output) {
+  var args = new vv.service.VIVUDataService_systemSettingInsertMany_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.systemSettingInsertMany.length === 1) {
+    Q.fcall(this._handler.systemSettingInsertMany, args.models)
+      .then(function(result) {
+        var result = new vv.service.VIVUDataService_systemSettingInsertMany_result({success: result});
+        output.writeMessageBegin("systemSettingInsertMany", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        if (err instanceof exception_ttypes.DBExceptions) {
+          var result = new vv.service.VIVUDataService_systemSettingInsertMany_result(err);
+          output.writeMessageBegin("systemSettingInsertMany", Thrift.MessageType.REPLY, seqid);
+        } else {
+          var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("systemSettingInsertMany", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.systemSettingInsertMany(args.models, function (err, result) {
+      if (err == null || err instanceof exception_ttypes.DBExceptions) {
+        var result = new vv.service.VIVUDataService_systemSettingInsertMany_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("systemSettingInsertMany", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("systemSettingInsertMany", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+vv.service.VIVUDataServiceProcessor.prototype.process_systemSettingUpdateOne = function(seqid, input, output) {
+  var args = new vv.service.VIVUDataService_systemSettingUpdateOne_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.systemSettingUpdateOne.length === 1) {
+    Q.fcall(this._handler.systemSettingUpdateOne, args.form)
+      .then(function(result) {
+        var result = new vv.service.VIVUDataService_systemSettingUpdateOne_result({success: result});
+        output.writeMessageBegin("systemSettingUpdateOne", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        if (err instanceof exception_ttypes.DBExceptions) {
+          var result = new vv.service.VIVUDataService_systemSettingUpdateOne_result(err);
+          output.writeMessageBegin("systemSettingUpdateOne", Thrift.MessageType.REPLY, seqid);
+        } else {
+          var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("systemSettingUpdateOne", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.systemSettingUpdateOne(args.form, function (err, result) {
+      if (err == null || err instanceof exception_ttypes.DBExceptions) {
+        var result = new vv.service.VIVUDataService_systemSettingUpdateOne_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("systemSettingUpdateOne", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("systemSettingUpdateOne", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+vv.service.VIVUDataServiceProcessor.prototype.process_systemSettingGetOneByPk = function(seqid, input, output) {
+  var args = new vv.service.VIVUDataService_systemSettingGetOneByPk_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.systemSettingGetOneByPk.length === 1) {
+    Q.fcall(this._handler.systemSettingGetOneByPk, args.pk)
+      .then(function(result) {
+        var result = new vv.service.VIVUDataService_systemSettingGetOneByPk_result({success: result});
+        output.writeMessageBegin("systemSettingGetOneByPk", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        if (err instanceof exception_ttypes.DBExceptions) {
+          var result = new vv.service.VIVUDataService_systemSettingGetOneByPk_result(err);
+          output.writeMessageBegin("systemSettingGetOneByPk", Thrift.MessageType.REPLY, seqid);
+        } else {
+          var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("systemSettingGetOneByPk", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.systemSettingGetOneByPk(args.pk, function (err, result) {
+      if (err == null || err instanceof exception_ttypes.DBExceptions) {
+        var result = new vv.service.VIVUDataService_systemSettingGetOneByPk_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("systemSettingGetOneByPk", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("systemSettingGetOneByPk", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+vv.service.VIVUDataServiceProcessor.prototype.process_systemSettingGetOneRelationByPk = function(seqid, input, output) {
+  var args = new vv.service.VIVUDataService_systemSettingGetOneRelationByPk_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.systemSettingGetOneRelationByPk.length === 2) {
+    Q.fcall(this._handler.systemSettingGetOneRelationByPk, args.pk, args.options)
+      .then(function(result) {
+        var result = new vv.service.VIVUDataService_systemSettingGetOneRelationByPk_result({success: result});
+        output.writeMessageBegin("systemSettingGetOneRelationByPk", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        if (err instanceof exception_ttypes.DBExceptions) {
+          var result = new vv.service.VIVUDataService_systemSettingGetOneRelationByPk_result(err);
+          output.writeMessageBegin("systemSettingGetOneRelationByPk", Thrift.MessageType.REPLY, seqid);
+        } else {
+          var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("systemSettingGetOneRelationByPk", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.systemSettingGetOneRelationByPk(args.pk, args.options, function (err, result) {
+      if (err == null || err instanceof exception_ttypes.DBExceptions) {
+        var result = new vv.service.VIVUDataService_systemSettingGetOneRelationByPk_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("systemSettingGetOneRelationByPk", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("systemSettingGetOneRelationByPk", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+vv.service.VIVUDataServiceProcessor.prototype.process_systemSettingGetMany = function(seqid, input, output) {
+  var args = new vv.service.VIVUDataService_systemSettingGetMany_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.systemSettingGetMany.length === 1) {
+    Q.fcall(this._handler.systemSettingGetMany, args.pks)
+      .then(function(result) {
+        var result = new vv.service.VIVUDataService_systemSettingGetMany_result({success: result});
+        output.writeMessageBegin("systemSettingGetMany", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        if (err instanceof exception_ttypes.DBExceptions) {
+          var result = new vv.service.VIVUDataService_systemSettingGetMany_result(err);
+          output.writeMessageBegin("systemSettingGetMany", Thrift.MessageType.REPLY, seqid);
+        } else {
+          var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("systemSettingGetMany", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.systemSettingGetMany(args.pks, function (err, result) {
+      if (err == null || err instanceof exception_ttypes.DBExceptions) {
+        var result = new vv.service.VIVUDataService_systemSettingGetMany_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("systemSettingGetMany", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("systemSettingGetMany", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+vv.service.VIVUDataServiceProcessor.prototype.process_systemSettingGetManyOneRelation = function(seqid, input, output) {
+  var args = new vv.service.VIVUDataService_systemSettingGetManyOneRelation_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.systemSettingGetManyOneRelation.length === 2) {
+    Q.fcall(this._handler.systemSettingGetManyOneRelation, args.pks, args.options)
+      .then(function(result) {
+        var result = new vv.service.VIVUDataService_systemSettingGetManyOneRelation_result({success: result});
+        output.writeMessageBegin("systemSettingGetManyOneRelation", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        if (err instanceof exception_ttypes.DBExceptions) {
+          var result = new vv.service.VIVUDataService_systemSettingGetManyOneRelation_result(err);
+          output.writeMessageBegin("systemSettingGetManyOneRelation", Thrift.MessageType.REPLY, seqid);
+        } else {
+          var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("systemSettingGetManyOneRelation", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.systemSettingGetManyOneRelation(args.pks, args.options, function (err, result) {
+      if (err == null || err instanceof exception_ttypes.DBExceptions) {
+        var result = new vv.service.VIVUDataService_systemSettingGetManyOneRelation_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("systemSettingGetManyOneRelation", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("systemSettingGetManyOneRelation", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+vv.service.VIVUDataServiceProcessor.prototype.process_systemSettingGetAll = function(seqid, input, output) {
+  var args = new vv.service.VIVUDataService_systemSettingGetAll_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.systemSettingGetAll.length === 0) {
+    Q.fcall(this._handler.systemSettingGetAll)
+      .then(function(result) {
+        var result = new vv.service.VIVUDataService_systemSettingGetAll_result({success: result});
+        output.writeMessageBegin("systemSettingGetAll", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        if (err instanceof exception_ttypes.DBExceptions) {
+          var result = new vv.service.VIVUDataService_systemSettingGetAll_result(err);
+          output.writeMessageBegin("systemSettingGetAll", Thrift.MessageType.REPLY, seqid);
+        } else {
+          var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("systemSettingGetAll", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.systemSettingGetAll(function (err, result) {
+      if (err == null || err instanceof exception_ttypes.DBExceptions) {
+        var result = new vv.service.VIVUDataService_systemSettingGetAll_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("systemSettingGetAll", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("systemSettingGetAll", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+vv.service.VIVUDataServiceProcessor.prototype.process_systemSettingGetAllStatus = function(seqid, input, output) {
+  var args = new vv.service.VIVUDataService_systemSettingGetAllStatus_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.systemSettingGetAllStatus.length === 1) {
+    Q.fcall(this._handler.systemSettingGetAllStatus, args.status)
+      .then(function(result) {
+        var result = new vv.service.VIVUDataService_systemSettingGetAllStatus_result({success: result});
+        output.writeMessageBegin("systemSettingGetAllStatus", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        if (err instanceof exception_ttypes.DBExceptions) {
+          var result = new vv.service.VIVUDataService_systemSettingGetAllStatus_result(err);
+          output.writeMessageBegin("systemSettingGetAllStatus", Thrift.MessageType.REPLY, seqid);
+        } else {
+          var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("systemSettingGetAllStatus", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.systemSettingGetAllStatus(args.status, function (err, result) {
+      if (err == null || err instanceof exception_ttypes.DBExceptions) {
+        var result = new vv.service.VIVUDataService_systemSettingGetAllStatus_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("systemSettingGetAllStatus", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("systemSettingGetAllStatus", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+vv.service.VIVUDataServiceProcessor.prototype.process_systemSettingGetAllActive = function(seqid, input, output) {
+  var args = new vv.service.VIVUDataService_systemSettingGetAllActive_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.systemSettingGetAllActive.length === 0) {
+    Q.fcall(this._handler.systemSettingGetAllActive)
+      .then(function(result) {
+        var result = new vv.service.VIVUDataService_systemSettingGetAllActive_result({success: result});
+        output.writeMessageBegin("systemSettingGetAllActive", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        if (err instanceof exception_ttypes.DBExceptions) {
+          var result = new vv.service.VIVUDataService_systemSettingGetAllActive_result(err);
+          output.writeMessageBegin("systemSettingGetAllActive", Thrift.MessageType.REPLY, seqid);
+        } else {
+          var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("systemSettingGetAllActive", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.systemSettingGetAllActive(function (err, result) {
+      if (err == null || err instanceof exception_ttypes.DBExceptions) {
+        var result = new vv.service.VIVUDataService_systemSettingGetAllActive_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("systemSettingGetAllActive", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("systemSettingGetAllActive", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+vv.service.VIVUDataServiceProcessor.prototype.process_systemSettingGetAllInactive = function(seqid, input, output) {
+  var args = new vv.service.VIVUDataService_systemSettingGetAllInactive_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.systemSettingGetAllInactive.length === 0) {
+    Q.fcall(this._handler.systemSettingGetAllInactive)
+      .then(function(result) {
+        var result = new vv.service.VIVUDataService_systemSettingGetAllInactive_result({success: result});
+        output.writeMessageBegin("systemSettingGetAllInactive", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        if (err instanceof exception_ttypes.DBExceptions) {
+          var result = new vv.service.VIVUDataService_systemSettingGetAllInactive_result(err);
+          output.writeMessageBegin("systemSettingGetAllInactive", Thrift.MessageType.REPLY, seqid);
+        } else {
+          var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("systemSettingGetAllInactive", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.systemSettingGetAllInactive(function (err, result) {
+      if (err == null || err instanceof exception_ttypes.DBExceptions) {
+        var result = new vv.service.VIVUDataService_systemSettingGetAllInactive_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("systemSettingGetAllInactive", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("systemSettingGetAllInactive", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+vv.service.VIVUDataServiceProcessor.prototype.process_systemSettingGetAllDisabled = function(seqid, input, output) {
+  var args = new vv.service.VIVUDataService_systemSettingGetAllDisabled_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.systemSettingGetAllDisabled.length === 0) {
+    Q.fcall(this._handler.systemSettingGetAllDisabled)
+      .then(function(result) {
+        var result = new vv.service.VIVUDataService_systemSettingGetAllDisabled_result({success: result});
+        output.writeMessageBegin("systemSettingGetAllDisabled", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        if (err instanceof exception_ttypes.DBExceptions) {
+          var result = new vv.service.VIVUDataService_systemSettingGetAllDisabled_result(err);
+          output.writeMessageBegin("systemSettingGetAllDisabled", Thrift.MessageType.REPLY, seqid);
+        } else {
+          var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("systemSettingGetAllDisabled", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.systemSettingGetAllDisabled(function (err, result) {
+      if (err == null || err instanceof exception_ttypes.DBExceptions) {
+        var result = new vv.service.VIVUDataService_systemSettingGetAllDisabled_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("systemSettingGetAllDisabled", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("systemSettingGetAllDisabled", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+vv.service.VIVUDataServiceProcessor.prototype.process_systemSettingGetAllDeleted = function(seqid, input, output) {
+  var args = new vv.service.VIVUDataService_systemSettingGetAllDeleted_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.systemSettingGetAllDeleted.length === 0) {
+    Q.fcall(this._handler.systemSettingGetAllDeleted)
+      .then(function(result) {
+        var result = new vv.service.VIVUDataService_systemSettingGetAllDeleted_result({success: result});
+        output.writeMessageBegin("systemSettingGetAllDeleted", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        if (err instanceof exception_ttypes.DBExceptions) {
+          var result = new vv.service.VIVUDataService_systemSettingGetAllDeleted_result(err);
+          output.writeMessageBegin("systemSettingGetAllDeleted", Thrift.MessageType.REPLY, seqid);
+        } else {
+          var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("systemSettingGetAllDeleted", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.systemSettingGetAllDeleted(function (err, result) {
+      if (err == null || err instanceof exception_ttypes.DBExceptions) {
+        var result = new vv.service.VIVUDataService_systemSettingGetAllDeleted_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("systemSettingGetAllDeleted", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("systemSettingGetAllDeleted", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+vv.service.VIVUDataServiceProcessor.prototype.process_systemSettingFilter = function(seqid, input, output) {
+  var args = new vv.service.VIVUDataService_systemSettingFilter_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.systemSettingFilter.length === 2) {
+    Q.fcall(this._handler.systemSettingFilter, args.filter, args.query)
+      .then(function(result) {
+        var result = new vv.service.VIVUDataService_systemSettingFilter_result({success: result});
+        output.writeMessageBegin("systemSettingFilter", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        if (err instanceof exception_ttypes.DBExceptions) {
+          var result = new vv.service.VIVUDataService_systemSettingFilter_result(err);
+          output.writeMessageBegin("systemSettingFilter", Thrift.MessageType.REPLY, seqid);
+        } else {
+          var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("systemSettingFilter", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.systemSettingFilter(args.filter, args.query, function (err, result) {
+      if (err == null || err instanceof exception_ttypes.DBExceptions) {
+        var result = new vv.service.VIVUDataService_systemSettingFilter_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("systemSettingFilter", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("systemSettingFilter", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+vv.service.VIVUDataServiceProcessor.prototype.process_SystemSettingFilterPagination = function(seqid, input, output) {
+  var args = new vv.service.VIVUDataService_SystemSettingFilterPagination_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.SystemSettingFilterPagination.length === 2) {
+    Q.fcall(this._handler.SystemSettingFilterPagination, args.filter, args.query)
+      .then(function(result) {
+        var result = new vv.service.VIVUDataService_SystemSettingFilterPagination_result({success: result});
+        output.writeMessageBegin("SystemSettingFilterPagination", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        if (err instanceof exception_ttypes.DBExceptions) {
+          var result = new vv.service.VIVUDataService_SystemSettingFilterPagination_result(err);
+          output.writeMessageBegin("SystemSettingFilterPagination", Thrift.MessageType.REPLY, seqid);
+        } else {
+          var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("SystemSettingFilterPagination", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.SystemSettingFilterPagination(args.filter, args.query, function (err, result) {
+      if (err == null || err instanceof exception_ttypes.DBExceptions) {
+        var result = new vv.service.VIVUDataService_SystemSettingFilterPagination_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("SystemSettingFilterPagination", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("SystemSettingFilterPagination", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+vv.service.VIVUDataServiceProcessor.prototype.process_systemSettingDeleteByPk = function(seqid, input, output) {
+  var args = new vv.service.VIVUDataService_systemSettingDeleteByPk_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.systemSettingDeleteByPk.length === 1) {
+    Q.fcall(this._handler.systemSettingDeleteByPk, args.pk)
+      .then(function(result) {
+        var result = new vv.service.VIVUDataService_systemSettingDeleteByPk_result({success: result});
+        output.writeMessageBegin("systemSettingDeleteByPk", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        if (err instanceof exception_ttypes.DBExceptions) {
+          var result = new vv.service.VIVUDataService_systemSettingDeleteByPk_result(err);
+          output.writeMessageBegin("systemSettingDeleteByPk", Thrift.MessageType.REPLY, seqid);
+        } else {
+          var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("systemSettingDeleteByPk", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.systemSettingDeleteByPk(args.pk, function (err, result) {
+      if (err == null || err instanceof exception_ttypes.DBExceptions) {
+        var result = new vv.service.VIVUDataService_systemSettingDeleteByPk_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("systemSettingDeleteByPk", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("systemSettingDeleteByPk", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+vv.service.VIVUDataServiceProcessor.prototype.process_systemSettingGetOrCreate = function(seqid, input, output) {
+  var args = new vv.service.VIVUDataService_systemSettingGetOrCreate_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.systemSettingGetOrCreate.length === 1) {
+    Q.fcall(this._handler.systemSettingGetOrCreate, args.form)
+      .then(function(result) {
+        var result = new vv.service.VIVUDataService_systemSettingGetOrCreate_result({success: result});
+        output.writeMessageBegin("systemSettingGetOrCreate", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        if (err instanceof exception_ttypes.DBExceptions) {
+          var result = new vv.service.VIVUDataService_systemSettingGetOrCreate_result(err);
+          output.writeMessageBegin("systemSettingGetOrCreate", Thrift.MessageType.REPLY, seqid);
+        } else {
+          var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("systemSettingGetOrCreate", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.systemSettingGetOrCreate(args.form, function (err, result) {
+      if (err == null || err instanceof exception_ttypes.DBExceptions) {
+        var result = new vv.service.VIVUDataService_systemSettingGetOrCreate_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("systemSettingGetOrCreate", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("systemSettingGetOrCreate", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+vv.service.VIVUDataServiceProcessor.prototype.process_slideInsertOne = function(seqid, input, output) {
+  var args = new vv.service.VIVUDataService_slideInsertOne_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.slideInsertOne.length === 1) {
+    Q.fcall(this._handler.slideInsertOne, args.insert)
+      .then(function(result) {
+        var result = new vv.service.VIVUDataService_slideInsertOne_result({success: result});
+        output.writeMessageBegin("slideInsertOne", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        if (err instanceof exception_ttypes.DBExceptions) {
+          var result = new vv.service.VIVUDataService_slideInsertOne_result(err);
+          output.writeMessageBegin("slideInsertOne", Thrift.MessageType.REPLY, seqid);
+        } else {
+          var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("slideInsertOne", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.slideInsertOne(args.insert, function (err, result) {
+      if (err == null || err instanceof exception_ttypes.DBExceptions) {
+        var result = new vv.service.VIVUDataService_slideInsertOne_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("slideInsertOne", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("slideInsertOne", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+vv.service.VIVUDataServiceProcessor.prototype.process_slideInsertMany = function(seqid, input, output) {
+  var args = new vv.service.VIVUDataService_slideInsertMany_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.slideInsertMany.length === 1) {
+    Q.fcall(this._handler.slideInsertMany, args.models)
+      .then(function(result) {
+        var result = new vv.service.VIVUDataService_slideInsertMany_result({success: result});
+        output.writeMessageBegin("slideInsertMany", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        if (err instanceof exception_ttypes.DBExceptions) {
+          var result = new vv.service.VIVUDataService_slideInsertMany_result(err);
+          output.writeMessageBegin("slideInsertMany", Thrift.MessageType.REPLY, seqid);
+        } else {
+          var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("slideInsertMany", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.slideInsertMany(args.models, function (err, result) {
+      if (err == null || err instanceof exception_ttypes.DBExceptions) {
+        var result = new vv.service.VIVUDataService_slideInsertMany_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("slideInsertMany", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("slideInsertMany", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+vv.service.VIVUDataServiceProcessor.prototype.process_slideUpdateOne = function(seqid, input, output) {
+  var args = new vv.service.VIVUDataService_slideUpdateOne_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.slideUpdateOne.length === 1) {
+    Q.fcall(this._handler.slideUpdateOne, args.form)
+      .then(function(result) {
+        var result = new vv.service.VIVUDataService_slideUpdateOne_result({success: result});
+        output.writeMessageBegin("slideUpdateOne", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        if (err instanceof exception_ttypes.DBExceptions) {
+          var result = new vv.service.VIVUDataService_slideUpdateOne_result(err);
+          output.writeMessageBegin("slideUpdateOne", Thrift.MessageType.REPLY, seqid);
+        } else {
+          var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("slideUpdateOne", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.slideUpdateOne(args.form, function (err, result) {
+      if (err == null || err instanceof exception_ttypes.DBExceptions) {
+        var result = new vv.service.VIVUDataService_slideUpdateOne_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("slideUpdateOne", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("slideUpdateOne", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+vv.service.VIVUDataServiceProcessor.prototype.process_slideGetOneByPk = function(seqid, input, output) {
+  var args = new vv.service.VIVUDataService_slideGetOneByPk_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.slideGetOneByPk.length === 1) {
+    Q.fcall(this._handler.slideGetOneByPk, args.pk)
+      .then(function(result) {
+        var result = new vv.service.VIVUDataService_slideGetOneByPk_result({success: result});
+        output.writeMessageBegin("slideGetOneByPk", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        if (err instanceof exception_ttypes.DBExceptions) {
+          var result = new vv.service.VIVUDataService_slideGetOneByPk_result(err);
+          output.writeMessageBegin("slideGetOneByPk", Thrift.MessageType.REPLY, seqid);
+        } else {
+          var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("slideGetOneByPk", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.slideGetOneByPk(args.pk, function (err, result) {
+      if (err == null || err instanceof exception_ttypes.DBExceptions) {
+        var result = new vv.service.VIVUDataService_slideGetOneByPk_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("slideGetOneByPk", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("slideGetOneByPk", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+vv.service.VIVUDataServiceProcessor.prototype.process_slideGetOneRelationByPk = function(seqid, input, output) {
+  var args = new vv.service.VIVUDataService_slideGetOneRelationByPk_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.slideGetOneRelationByPk.length === 2) {
+    Q.fcall(this._handler.slideGetOneRelationByPk, args.pk, args.options)
+      .then(function(result) {
+        var result = new vv.service.VIVUDataService_slideGetOneRelationByPk_result({success: result});
+        output.writeMessageBegin("slideGetOneRelationByPk", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        if (err instanceof exception_ttypes.DBExceptions) {
+          var result = new vv.service.VIVUDataService_slideGetOneRelationByPk_result(err);
+          output.writeMessageBegin("slideGetOneRelationByPk", Thrift.MessageType.REPLY, seqid);
+        } else {
+          var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("slideGetOneRelationByPk", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.slideGetOneRelationByPk(args.pk, args.options, function (err, result) {
+      if (err == null || err instanceof exception_ttypes.DBExceptions) {
+        var result = new vv.service.VIVUDataService_slideGetOneRelationByPk_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("slideGetOneRelationByPk", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("slideGetOneRelationByPk", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+vv.service.VIVUDataServiceProcessor.prototype.process_slideGetMany = function(seqid, input, output) {
+  var args = new vv.service.VIVUDataService_slideGetMany_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.slideGetMany.length === 1) {
+    Q.fcall(this._handler.slideGetMany, args.pks)
+      .then(function(result) {
+        var result = new vv.service.VIVUDataService_slideGetMany_result({success: result});
+        output.writeMessageBegin("slideGetMany", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        if (err instanceof exception_ttypes.DBExceptions) {
+          var result = new vv.service.VIVUDataService_slideGetMany_result(err);
+          output.writeMessageBegin("slideGetMany", Thrift.MessageType.REPLY, seqid);
+        } else {
+          var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("slideGetMany", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.slideGetMany(args.pks, function (err, result) {
+      if (err == null || err instanceof exception_ttypes.DBExceptions) {
+        var result = new vv.service.VIVUDataService_slideGetMany_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("slideGetMany", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("slideGetMany", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+vv.service.VIVUDataServiceProcessor.prototype.process_slideGetManyOneRelation = function(seqid, input, output) {
+  var args = new vv.service.VIVUDataService_slideGetManyOneRelation_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.slideGetManyOneRelation.length === 2) {
+    Q.fcall(this._handler.slideGetManyOneRelation, args.pks, args.options)
+      .then(function(result) {
+        var result = new vv.service.VIVUDataService_slideGetManyOneRelation_result({success: result});
+        output.writeMessageBegin("slideGetManyOneRelation", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        if (err instanceof exception_ttypes.DBExceptions) {
+          var result = new vv.service.VIVUDataService_slideGetManyOneRelation_result(err);
+          output.writeMessageBegin("slideGetManyOneRelation", Thrift.MessageType.REPLY, seqid);
+        } else {
+          var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("slideGetManyOneRelation", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.slideGetManyOneRelation(args.pks, args.options, function (err, result) {
+      if (err == null || err instanceof exception_ttypes.DBExceptions) {
+        var result = new vv.service.VIVUDataService_slideGetManyOneRelation_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("slideGetManyOneRelation", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("slideGetManyOneRelation", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+vv.service.VIVUDataServiceProcessor.prototype.process_slideGetAll = function(seqid, input, output) {
+  var args = new vv.service.VIVUDataService_slideGetAll_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.slideGetAll.length === 0) {
+    Q.fcall(this._handler.slideGetAll)
+      .then(function(result) {
+        var result = new vv.service.VIVUDataService_slideGetAll_result({success: result});
+        output.writeMessageBegin("slideGetAll", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        if (err instanceof exception_ttypes.DBExceptions) {
+          var result = new vv.service.VIVUDataService_slideGetAll_result(err);
+          output.writeMessageBegin("slideGetAll", Thrift.MessageType.REPLY, seqid);
+        } else {
+          var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("slideGetAll", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.slideGetAll(function (err, result) {
+      if (err == null || err instanceof exception_ttypes.DBExceptions) {
+        var result = new vv.service.VIVUDataService_slideGetAll_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("slideGetAll", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("slideGetAll", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+vv.service.VIVUDataServiceProcessor.prototype.process_slideGetAllStatus = function(seqid, input, output) {
+  var args = new vv.service.VIVUDataService_slideGetAllStatus_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.slideGetAllStatus.length === 1) {
+    Q.fcall(this._handler.slideGetAllStatus, args.status)
+      .then(function(result) {
+        var result = new vv.service.VIVUDataService_slideGetAllStatus_result({success: result});
+        output.writeMessageBegin("slideGetAllStatus", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        if (err instanceof exception_ttypes.DBExceptions) {
+          var result = new vv.service.VIVUDataService_slideGetAllStatus_result(err);
+          output.writeMessageBegin("slideGetAllStatus", Thrift.MessageType.REPLY, seqid);
+        } else {
+          var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("slideGetAllStatus", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.slideGetAllStatus(args.status, function (err, result) {
+      if (err == null || err instanceof exception_ttypes.DBExceptions) {
+        var result = new vv.service.VIVUDataService_slideGetAllStatus_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("slideGetAllStatus", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("slideGetAllStatus", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+vv.service.VIVUDataServiceProcessor.prototype.process_slideGetAllActive = function(seqid, input, output) {
+  var args = new vv.service.VIVUDataService_slideGetAllActive_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.slideGetAllActive.length === 0) {
+    Q.fcall(this._handler.slideGetAllActive)
+      .then(function(result) {
+        var result = new vv.service.VIVUDataService_slideGetAllActive_result({success: result});
+        output.writeMessageBegin("slideGetAllActive", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        if (err instanceof exception_ttypes.DBExceptions) {
+          var result = new vv.service.VIVUDataService_slideGetAllActive_result(err);
+          output.writeMessageBegin("slideGetAllActive", Thrift.MessageType.REPLY, seqid);
+        } else {
+          var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("slideGetAllActive", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.slideGetAllActive(function (err, result) {
+      if (err == null || err instanceof exception_ttypes.DBExceptions) {
+        var result = new vv.service.VIVUDataService_slideGetAllActive_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("slideGetAllActive", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("slideGetAllActive", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+vv.service.VIVUDataServiceProcessor.prototype.process_slideGetAllInactive = function(seqid, input, output) {
+  var args = new vv.service.VIVUDataService_slideGetAllInactive_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.slideGetAllInactive.length === 0) {
+    Q.fcall(this._handler.slideGetAllInactive)
+      .then(function(result) {
+        var result = new vv.service.VIVUDataService_slideGetAllInactive_result({success: result});
+        output.writeMessageBegin("slideGetAllInactive", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        if (err instanceof exception_ttypes.DBExceptions) {
+          var result = new vv.service.VIVUDataService_slideGetAllInactive_result(err);
+          output.writeMessageBegin("slideGetAllInactive", Thrift.MessageType.REPLY, seqid);
+        } else {
+          var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("slideGetAllInactive", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.slideGetAllInactive(function (err, result) {
+      if (err == null || err instanceof exception_ttypes.DBExceptions) {
+        var result = new vv.service.VIVUDataService_slideGetAllInactive_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("slideGetAllInactive", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("slideGetAllInactive", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+vv.service.VIVUDataServiceProcessor.prototype.process_slideGetAllDisabled = function(seqid, input, output) {
+  var args = new vv.service.VIVUDataService_slideGetAllDisabled_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.slideGetAllDisabled.length === 0) {
+    Q.fcall(this._handler.slideGetAllDisabled)
+      .then(function(result) {
+        var result = new vv.service.VIVUDataService_slideGetAllDisabled_result({success: result});
+        output.writeMessageBegin("slideGetAllDisabled", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        if (err instanceof exception_ttypes.DBExceptions) {
+          var result = new vv.service.VIVUDataService_slideGetAllDisabled_result(err);
+          output.writeMessageBegin("slideGetAllDisabled", Thrift.MessageType.REPLY, seqid);
+        } else {
+          var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("slideGetAllDisabled", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.slideGetAllDisabled(function (err, result) {
+      if (err == null || err instanceof exception_ttypes.DBExceptions) {
+        var result = new vv.service.VIVUDataService_slideGetAllDisabled_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("slideGetAllDisabled", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("slideGetAllDisabled", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+vv.service.VIVUDataServiceProcessor.prototype.process_slideGetAllDeleted = function(seqid, input, output) {
+  var args = new vv.service.VIVUDataService_slideGetAllDeleted_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.slideGetAllDeleted.length === 0) {
+    Q.fcall(this._handler.slideGetAllDeleted)
+      .then(function(result) {
+        var result = new vv.service.VIVUDataService_slideGetAllDeleted_result({success: result});
+        output.writeMessageBegin("slideGetAllDeleted", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        if (err instanceof exception_ttypes.DBExceptions) {
+          var result = new vv.service.VIVUDataService_slideGetAllDeleted_result(err);
+          output.writeMessageBegin("slideGetAllDeleted", Thrift.MessageType.REPLY, seqid);
+        } else {
+          var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("slideGetAllDeleted", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.slideGetAllDeleted(function (err, result) {
+      if (err == null || err instanceof exception_ttypes.DBExceptions) {
+        var result = new vv.service.VIVUDataService_slideGetAllDeleted_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("slideGetAllDeleted", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("slideGetAllDeleted", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+vv.service.VIVUDataServiceProcessor.prototype.process_slideFilter = function(seqid, input, output) {
+  var args = new vv.service.VIVUDataService_slideFilter_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.slideFilter.length === 2) {
+    Q.fcall(this._handler.slideFilter, args.filter, args.query)
+      .then(function(result) {
+        var result = new vv.service.VIVUDataService_slideFilter_result({success: result});
+        output.writeMessageBegin("slideFilter", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        if (err instanceof exception_ttypes.DBExceptions) {
+          var result = new vv.service.VIVUDataService_slideFilter_result(err);
+          output.writeMessageBegin("slideFilter", Thrift.MessageType.REPLY, seqid);
+        } else {
+          var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("slideFilter", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.slideFilter(args.filter, args.query, function (err, result) {
+      if (err == null || err instanceof exception_ttypes.DBExceptions) {
+        var result = new vv.service.VIVUDataService_slideFilter_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("slideFilter", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("slideFilter", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+vv.service.VIVUDataServiceProcessor.prototype.process_SlideFilterPagination = function(seqid, input, output) {
+  var args = new vv.service.VIVUDataService_SlideFilterPagination_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.SlideFilterPagination.length === 2) {
+    Q.fcall(this._handler.SlideFilterPagination, args.filter, args.query)
+      .then(function(result) {
+        var result = new vv.service.VIVUDataService_SlideFilterPagination_result({success: result});
+        output.writeMessageBegin("SlideFilterPagination", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        if (err instanceof exception_ttypes.DBExceptions) {
+          var result = new vv.service.VIVUDataService_SlideFilterPagination_result(err);
+          output.writeMessageBegin("SlideFilterPagination", Thrift.MessageType.REPLY, seqid);
+        } else {
+          var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("SlideFilterPagination", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.SlideFilterPagination(args.filter, args.query, function (err, result) {
+      if (err == null || err instanceof exception_ttypes.DBExceptions) {
+        var result = new vv.service.VIVUDataService_SlideFilterPagination_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("SlideFilterPagination", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("SlideFilterPagination", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+vv.service.VIVUDataServiceProcessor.prototype.process_slideDeleteByPk = function(seqid, input, output) {
+  var args = new vv.service.VIVUDataService_slideDeleteByPk_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.slideDeleteByPk.length === 1) {
+    Q.fcall(this._handler.slideDeleteByPk, args.pk)
+      .then(function(result) {
+        var result = new vv.service.VIVUDataService_slideDeleteByPk_result({success: result});
+        output.writeMessageBegin("slideDeleteByPk", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        if (err instanceof exception_ttypes.DBExceptions) {
+          var result = new vv.service.VIVUDataService_slideDeleteByPk_result(err);
+          output.writeMessageBegin("slideDeleteByPk", Thrift.MessageType.REPLY, seqid);
+        } else {
+          var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("slideDeleteByPk", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.slideDeleteByPk(args.pk, function (err, result) {
+      if (err == null || err instanceof exception_ttypes.DBExceptions) {
+        var result = new vv.service.VIVUDataService_slideDeleteByPk_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("slideDeleteByPk", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("slideDeleteByPk", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+vv.service.VIVUDataServiceProcessor.prototype.process_slideGetOrCreate = function(seqid, input, output) {
+  var args = new vv.service.VIVUDataService_slideGetOrCreate_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.slideGetOrCreate.length === 1) {
+    Q.fcall(this._handler.slideGetOrCreate, args.form)
+      .then(function(result) {
+        var result = new vv.service.VIVUDataService_slideGetOrCreate_result({success: result});
+        output.writeMessageBegin("slideGetOrCreate", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        if (err instanceof exception_ttypes.DBExceptions) {
+          var result = new vv.service.VIVUDataService_slideGetOrCreate_result(err);
+          output.writeMessageBegin("slideGetOrCreate", Thrift.MessageType.REPLY, seqid);
+        } else {
+          var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("slideGetOrCreate", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.slideGetOrCreate(args.form, function (err, result) {
+      if (err == null || err instanceof exception_ttypes.DBExceptions) {
+        var result = new vv.service.VIVUDataService_slideGetOrCreate_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("slideGetOrCreate", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("slideGetOrCreate", Thrift.MessageType.EXCEPTION, seqid);
       }
       result.write(output);
       output.writeMessageEnd();

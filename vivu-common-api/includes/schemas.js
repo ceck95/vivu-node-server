@@ -23,5 +23,7 @@ module.exports = {
   quoteItem: require('../schemas/quote-item'),
   order: require('../schemas/order'),
   orderItem: require('../schemas/order-item'),
-  orderPayment: require('../schemas/order-payment')
+  orderPayment: require('../schemas/order-payment'),
+  setting: require('../schemas/setting'),
+  slide: require('../schemas/slide')
 };
