@@ -91,14 +91,16 @@ class CustomerAddress extends Controller {
       form = request.payload.data,
       customerAddressId = request.params.id,
       selectOptions = new options.SelectOptions(),
-      addressCurrent = request.auth.credentials.profile.address,
+      addressCurrent = request.auth.credentials.profile ? request.auth.credentials.profile.address : null,
       updateFunc = () => {
-        if (customerAddressId === addressCurrent.id) {
-          if (form.isDefault === false) {
-            return reply(request.errorManager.translate({
-              code: '509',
-              source: 'addrress'
-            })).code(400);
+        if (addressCurrent) {
+          if (customerAddressId === addressCurrent.id) {
+            if (form.isDefault === false) {
+              return reply(request.errorManager.translate({
+                code: '509',
+                source: 'addrress'
+              })).code(400);
+            }
           }
         }
 

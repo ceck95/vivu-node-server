@@ -76,6 +76,7 @@ class ProductAdapter extends nodePg.adapters.Adapter {
 
     if (params.search) {
       let toStringSplit = (str) => {
+        str = str.toLowerCase();
         let s = str.split(' ').join(`','`);
         return `'${s}'`;
       };
