@@ -8,7 +8,8 @@
 const Joi = require('joi');
 
 let response = Joi.object({
-  appName: Joi.string()
+  appName: Joi.string(),
+  textHeader: Joi.string()
 });
 
 module.exports = {

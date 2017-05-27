@@ -31,7 +31,8 @@ class SettingController extends BaseController {
         data: {
           slides: respSlide,
           setting: {
-            appName: getKey('app_name')
+            appName: getKey('app_name'),
+            textHeader: getKey('text_header')
           }
         }
       }));

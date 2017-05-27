@@ -91,7 +91,17 @@ class CustomerAddress extends Controller {
       form = request.payload.data,
       customerAddressId = request.params.id,
       selectOptions = new options.SelectOptions(),
+      addressCurrent = request.auth.credentials.profile.address,
       updateFunc = () => {
+        if (customerAddressId === addressCurrent.id) {
+          if (form.isDefault === false) {
+            return reply(request.errorManager.translate({
+              code: '509',
+              source: 'addrress'
+            })).code(400);
+          }
+        }
+
         return customerAddressBusiness.getStringAddress(request, reply, form).then(string => {
 
           form.province = string.province;
