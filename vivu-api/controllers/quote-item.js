@@ -35,7 +35,7 @@ class QuoteItemController extends Controller {
           code: '510',
           source: 'add quote item',
           params: {
-            name: rawProduct.name
+            '{{name}}': rawProduct.name
           }
         })).code(400);
       }
