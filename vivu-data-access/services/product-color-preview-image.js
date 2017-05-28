@@ -13,7 +13,7 @@
 const nodePg = require('node-pg');
 const exceptionHelper = require('../helpers/exception');
 const ProductColorPreviewImageAdapter = require('../adapters/product-color-preview-image');
-
+const helpers = require('node-helpers');
 
 class ProductColorPreviewImageService extends nodePg.services.Base {
 
@@ -37,9 +37,10 @@ class ProductColorPreviewImageService extends nodePg.services.Base {
 
   getManyByProductColor(listProductColorId, result) {
     let opts = {};
-
+    let tableAlias = this.adapterClass.modelClass().tableAlias;
     return this.getAllCondition({
-      where: [`product_color_id IN (${listProductColorId.join(',')})`]
+      where: [`product_color_id IN (${listProductColorId.join(',')})`, `${tableAlias}.status = $1`],
+      args: [helpers.Const.status.ACTIVE]
     }, opts, result);
 
   }
