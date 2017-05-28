@@ -69,6 +69,20 @@ class ProductService extends nodePg.services.Base {
 
   }
 
+  getManyByCategoryDetail(categoryId, productId, opts, result) {
+
+    opts = opts || {};
+    let tableAlias = (new Product()).tableAlias;
+
+    return this.getAllCondition({
+      where: ['category_id = $1', `NOT ${tableAlias}.id = $2 `, `${tableAlias}.status = ${helpers.Const.status.ACTIVE}`],
+      args: [categoryId, productId],
+      limit: opts.limit,
+      order: opts.order
+    }, opts, result);
+
+  }
+
   getOneProduct(urlKey, result) {
 
     return this.getOne({

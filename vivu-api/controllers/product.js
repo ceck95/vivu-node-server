@@ -181,7 +181,7 @@ class ProductController {
           selectOptions.limit = request.common.params.filter.limit;
           selectOptions.order = '-created_at';
 
-          return productStore.getManyByCategory(result.categoryId, selectOptions).then(rawProducts => {
+          return productStore.getManyByCategoryDetail(result.categoryId, result.id, selectOptions).then(rawProducts => {
 
             let respProduct = productStore.createModel(result).responseObject({
                 schema: productSchema.response
@@ -193,7 +193,9 @@ class ProductController {
               rawProductColorPreviewImage.forEach(a => {
                 if (e.id === a.productColorId) {
                   if (!rawProductColor[i].productColorPreviewImages) {
-                    rawProductColor[i].productColorPreviewImages = [];
+                    rawProductColor[i].productColorPreviewImages = [{
+                      imagePath: respProduct.imagePath
+                    }];
                   }
                   rawProductColor[i].productColorPreviewImages.push(productColorPreviewImageStore.createModel(a).responseObject({
                     schema: productColorPreviewImageSchema.response
