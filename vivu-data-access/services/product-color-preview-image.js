@@ -37,7 +37,7 @@ class ProductColorPreviewImageService extends nodePg.services.Base {
 
   getManyByProductColor(listProductColorId, result) {
     let opts = {};
-    let tableAlias = this.adapterClass.modelClass().tableAlias;
+    let tableAlias = (new this.adapterClass.modelClass).tableAlias;
     return this.getAllCondition({
       where: [`product_color_id IN (${listProductColorId.join(',')})`, `${tableAlias}.status = $1`],
       args: [helpers.Const.status.ACTIVE]
