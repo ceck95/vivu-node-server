@@ -11,7 +11,7 @@
 const Joi = require('joi');
 
 let response = Joi.object({
-  imagePath: Joi.string()
+  imagePath: Joi.string().allow([''])
 });
 
 module.exports = {
