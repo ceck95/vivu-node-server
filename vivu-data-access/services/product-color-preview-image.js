@@ -14,6 +14,7 @@ const nodePg = require('node-pg');
 const exceptionHelper = require('../helpers/exception');
 const ProductColorPreviewImageAdapter = require('../adapters/product-color-preview-image');
 const helpers = require('node-helpers');
+const ProductColorPreviewImage = require('vivu-common-api').models.ProductColorPreviewImage;
 
 class ProductColorPreviewImageService extends nodePg.services.Base {
 
@@ -37,7 +38,7 @@ class ProductColorPreviewImageService extends nodePg.services.Base {
 
   getManyByProductColor(listProductColorId, result) {
     let opts = {};
-    let tableAlias = (new this.adapterClass.modelClass).tableAlias;
+    let tableAlias = (new ProductColorPreviewImage).tableAlias;
     return this.getAllCondition({
       where: [`product_color_id IN (${listProductColorId.join(',')})`, `${tableAlias}.status = $1`],
       args: [helpers.Const.status.ACTIVE]
