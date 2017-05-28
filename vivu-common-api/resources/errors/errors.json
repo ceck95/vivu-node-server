@@ -5,5 +5,6 @@
   "506": "Cart was ordered",
   "507": "Cannot delete default address of customer",
   "508": "Phone number was exist",
-  "509": "This is address default cannot so this isn't update"
+  "509": "This is address default cannot so this isn't update",
+  "510": "{name} was sold out"
 }

@@ -30,6 +30,16 @@ class QuoteItemController extends Controller {
     selectOptions.includes = [productColorStore.tableAlias];
 
     return productStore.getOneProductAndProductColor(form.productId, form.selectedProductColorId, selectOptions).then(rawProduct => {
+      if (rawProduct.isSoldOut) {
+        return reply(request.errorManager.translate({
+          code: '510',
+          source: 'add quote item',
+          params: {
+            name: rawProduct.name
+          }
+        })).code(400);
+      }
+
       let basePrice = rawProduct.basePrice + rawProduct.productColor.price,
         respFunc = (rawQuoteItem) => {
 
