@@ -55,7 +55,9 @@ class ProductController {
         search = params.filter.search;
 
       if (search ? search.length > 0 : false) {
-        rawPaging.data = ProductBusiness.sort(rawPaging.data, search);
+        if (!params.filter.priceOrder) {
+          rawPaging.data = ProductBusiness.sort(rawPaging.data, search);
+        }
       }
 
       rawPaging.data.forEach(e => {
