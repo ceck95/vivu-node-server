@@ -76,15 +76,13 @@ class ProductAdapter extends nodePg.adapters.Adapter {
 
     if (params.search) {
       let toStringSplit = (str) => {
-        str = str.toLowerCase();
-        let s = str.split(' ').join(`','`);
-        return `'${s}'`;
-      };
-      where.push(`search && ARRAY[${toStringSplit(params.search)}] OR search_full && ARRAY[${toStringSplit(params.search)}]`);
+          str = str.toLowerCase();
+          let s = str.split(' ').join(`','`);
+          return `'${s}'`;
+        },
+        active = helpers.Const.status.ACTIVE;
+      where.push(`${tableAlias}.status = ${active} AND search && ARRAY[${toStringSplit(params.search)}] OR search_full && ARRAY[${toStringSplit(params.search)}] AND ${tableAlias}.status = ${active}`);
     }
-
-    where.push(`${tableAlias}.status = $${paramCount++}`);
-    args.push(helpers.Const.status.ACTIVE);
 
     return {
       where: where,
