@@ -84,6 +84,11 @@ class ProductAdapter extends nodePg.adapters.Adapter {
       where.push(`${tableAlias}.status = ${active} AND search && ARRAY[${toStringSplit(params.search)}] OR search_full && ARRAY[${toStringSplit(params.search)}] AND ${tableAlias}.status = ${active}`);
     }
 
+    if (!params.search) {
+      where.push(`${tableAlias}.status = $${paramCount++}`);
+      args.push(helpers.Const.status.ACTIVE);
+    }
+
     return {
       where: where,
       args: args
