@@ -192,18 +192,24 @@ class ProductController {
 
             rawProductColor.forEach((e, i) => {
               rawProductColor[i] = productColorStore.createModel(e);
-              rawProductColorPreviewImage.forEach(a => {
-                if (e.id === a.productColorId) {
-                  if (!rawProductColor[i].productColorPreviewImages) {
-                    rawProductColor[i].productColorPreviewImages = [{
-                      imagePath: respProduct.imagePath
-                    }];
+              if (rawProductColorPreviewImage.length === 0) {
+                rawProductColor[i].productColorPreviewImages = [{
+                  imagePath: respProduct.imagePath
+                }];
+              } else {
+                rawProductColorPreviewImage.forEach(a => {
+                  if (e.id === a.productColorId) {
+                    if (!rawProductColor[i].productColorPreviewImages) {
+                      rawProductColor[i].productColorPreviewImages = [{
+                        imagePath: respProduct.imagePath
+                      }];
+                    }
+                    rawProductColor[i].productColorPreviewImages.push(productColorPreviewImageStore.createModel(a).responseObject({
+                      schema: productColorPreviewImageSchema.response
+                    }));
                   }
-                  rawProductColor[i].productColorPreviewImages.push(productColorPreviewImageStore.createModel(a).responseObject({
-                    schema: productColorPreviewImageSchema.response
-                  }));
-                }
-              });
+                });
+              }
             });
 
             rawProductColor.forEach(e => {
