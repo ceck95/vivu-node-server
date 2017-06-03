@@ -8,6 +8,7 @@ class QuoteBusiness {
     let quoteStore = request.dataStore.getStore('Quote'),
       quoteItemStore = request.dataStore.getStore('QuoteItem'),
       quotePaymentStore = request.dataStore.getStore('QuotePayment'),
+      productStore = request.dataStore.getStore('Product'),
       form = request.payload.data,
       profile = request.auth.credentials.profile;
 
@@ -19,14 +20,29 @@ class QuoteBusiness {
           source: 'check order quote'
         })).code(400);
       }
+      let selectOptions = new optionTypes.SelectOptions();
+      selectOptions.includes = [productStore.tableAlias];
 
-      return quoteItemStore.getManyByQuote(quoteId, new optionTypes.SelectOptions()).then(respListQuoteItem => {
+      return quoteItemStore.getManyByQuote(quoteId, selectOptions).then(respListQuoteItem => {
+
 
         if (respListQuoteItem.length === 0) {
           return reply(request.errorManager.translate({
             code: '505',
             source: 'get many quote item'
           })).code(400);
+        }
+
+        for (let e of respListQuoteItem) {
+          if (e.product.isSoldOut) {
+            return reply(request.errorManager.translate({
+              code: '511',
+              source: 'product sold out',
+              params:{
+                '{{name}}':e.product.name
+              }
+            })).code(400);
+          }
         }
 
         let subtotal = 0;
