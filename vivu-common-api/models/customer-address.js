@@ -12,7 +12,7 @@ const helpers = require('node-helpers');
 const customerAddressTypes = require('../gen-nodejs/customer_address_types');
 
 const TYPE = {
-  CustomerAddress: 'CustomerAddress'
+  CustomerAddress: 'CUSTOMER_HOME'
 };
 
 class CustomerAddress extends helpers.models.Base {
