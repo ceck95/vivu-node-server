@@ -11,6 +11,7 @@ class CustomerAddressBusiness {
         district: '',
         ward: ''
       },
+      form = request.payload.data,
       getStore = (storeName) => {
         return request.dataStore.getStore(storeName);
       },
@@ -26,7 +27,7 @@ class CustomerAddressBusiness {
         province: results[1].provinceCode,
         district: results[2].districtCode,
         ward: results[3].wardCode,
-        fullName: `${request.payload.data.street},${results[3].type} ${results[3].name},${results[2].type} ${results[2].name},${results[1].type}  ${results[1].name},${results[0].name}`
+        fullName: `${form.street||form.address.street},${results[3].type} ${results[3].name},${results[2].type} ${results[2].name},${results[1].type}  ${results[1].name},${results[0].name}`
       };
 
       return result;
