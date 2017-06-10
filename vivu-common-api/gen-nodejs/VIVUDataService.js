@@ -2074,6 +2074,131 @@ vv.service.VIVUDataService_customerAddressInsertOne_result.prototype.write = fun
   return;
 };
 
+vv.service.VIVUDataService_customerAddressGetOneByPk_args = function(args) {
+  this.pks = null;
+  if (args) {
+    if (args.pks !== undefined && args.pks !== null) {
+      this.pks = args.pks;
+    }
+  }
+};
+vv.service.VIVUDataService_customerAddressGetOneByPk_args.prototype = {};
+vv.service.VIVUDataService_customerAddressGetOneByPk_args.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.I32) {
+        this.pks = input.readI32();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_customerAddressGetOneByPk_args.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_customerAddressGetOneByPk_args');
+  if (this.pks !== null && this.pks !== undefined) {
+    output.writeFieldBegin('pks', Thrift.Type.I32, 1);
+    output.writeI32(this.pks);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_customerAddressGetOneByPk_result = function(args) {
+  this.success = null;
+  this.ex = null;
+  if (args instanceof exception_ttypes.DBExceptions) {
+    this.ex = args;
+    return;
+  }
+  if (args) {
+    if (args.success !== undefined && args.success !== null) {
+      this.success = new customer_address_ttypes.CustomerAddress(args.success);
+    }
+    if (args.ex !== undefined && args.ex !== null) {
+      this.ex = args.ex;
+    }
+  }
+};
+vv.service.VIVUDataService_customerAddressGetOneByPk_result.prototype = {};
+vv.service.VIVUDataService_customerAddressGetOneByPk_result.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.success = new customer_address_ttypes.CustomerAddress();
+        this.success.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 1:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.ex = new exception_ttypes.DBExceptions();
+        this.ex.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+vv.service.VIVUDataService_customerAddressGetOneByPk_result.prototype.write = function(output) {
+  output.writeStructBegin('VIVUDataService_customerAddressGetOneByPk_result');
+  if (this.success !== null && this.success !== undefined) {
+    output.writeFieldBegin('success', Thrift.Type.STRUCT, 0);
+    this.success.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.ex !== null && this.ex !== undefined) {
+    output.writeFieldBegin('ex', Thrift.Type.STRUCT, 1);
+    this.ex.write(output);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
 vv.service.VIVUDataService_customerAddressGetOneDefault_args = function(args) {
 };
 vv.service.VIVUDataService_customerAddressGetOneDefault_args.prototype = {};
@@ -18148,6 +18273,56 @@ vv.service.VIVUDataServiceClient.prototype.recv_customerAddressInsertOne = funct
   }
   return callback('customerAddressInsertOne failed: unknown result');
 };
+vv.service.VIVUDataServiceClient.prototype.customerAddressGetOneByPk = function(pks, callback) {
+  this._seqid = this.new_seqid();
+  if (callback === undefined) {
+    var _defer = Q.defer();
+    this._reqs[this.seqid()] = function(error, result) {
+      if (error) {
+        _defer.reject(error);
+      } else {
+        _defer.resolve(result);
+      }
+    };
+    this.send_customerAddressGetOneByPk(pks);
+    return _defer.promise;
+  } else {
+    this._reqs[this.seqid()] = callback;
+    this.send_customerAddressGetOneByPk(pks);
+  }
+};
+
+vv.service.VIVUDataServiceClient.prototype.send_customerAddressGetOneByPk = function(pks) {
+  var output = new this.pClass(this.output);
+  output.writeMessageBegin('customerAddressGetOneByPk', Thrift.MessageType.CALL, this.seqid());
+  var args = new vv.service.VIVUDataService_customerAddressGetOneByPk_args();
+  args.pks = pks;
+  args.write(output);
+  output.writeMessageEnd();
+  return this.output.flush();
+};
+
+vv.service.VIVUDataServiceClient.prototype.recv_customerAddressGetOneByPk = function(input,mtype,rseqid) {
+  var callback = this._reqs[rseqid] || function() {};
+  delete this._reqs[rseqid];
+  if (mtype == Thrift.MessageType.EXCEPTION) {
+    var x = new Thrift.TApplicationException();
+    x.read(input);
+    input.readMessageEnd();
+    return callback(x);
+  }
+  var result = new vv.service.VIVUDataService_customerAddressGetOneByPk_result();
+  result.read(input);
+  input.readMessageEnd();
+
+  if (null !== result.ex) {
+    return callback(result.ex);
+  }
+  if (null !== result.success) {
+    return callback(null, result.success);
+  }
+  return callback('customerAddressGetOneByPk failed: unknown result');
+};
 vv.service.VIVUDataServiceClient.prototype.customerAddressGetOneDefault = function(callback) {
   this._seqid = this.new_seqid();
   if (callback === undefined) {
@@ -24305,6 +24480,46 @@ vv.service.VIVUDataServiceProcessor.prototype.process_customerAddressInsertOne =
       } else {
         var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
         output.writeMessageBegin("customerAddressInsertOne", Thrift.MessageType.EXCEPTION, seqid);
+      }
+      result.write(output);
+      output.writeMessageEnd();
+      output.flush();
+    });
+  }
+}
+
+vv.service.VIVUDataServiceProcessor.prototype.process_customerAddressGetOneByPk = function(seqid, input, output) {
+  var args = new vv.service.VIVUDataService_customerAddressGetOneByPk_args();
+  args.read(input);
+  input.readMessageEnd();
+  if (this._handler.customerAddressGetOneByPk.length === 1) {
+    Q.fcall(this._handler.customerAddressGetOneByPk, args.pks)
+      .then(function(result) {
+        var result = new vv.service.VIVUDataService_customerAddressGetOneByPk_result({success: result});
+        output.writeMessageBegin("customerAddressGetOneByPk", Thrift.MessageType.REPLY, seqid);
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      }, function (err) {
+        if (err instanceof exception_ttypes.DBExceptions) {
+          var result = new vv.service.VIVUDataService_customerAddressGetOneByPk_result(err);
+          output.writeMessageBegin("customerAddressGetOneByPk", Thrift.MessageType.REPLY, seqid);
+        } else {
+          var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+          output.writeMessageBegin("customerAddressGetOneByPk", Thrift.MessageType.EXCEPTION, seqid);
+        }
+        result.write(output);
+        output.writeMessageEnd();
+        output.flush();
+      });
+  } else {
+    this._handler.customerAddressGetOneByPk(args.pks, function (err, result) {
+      if (err == null || err instanceof exception_ttypes.DBExceptions) {
+        var result = new vv.service.VIVUDataService_customerAddressGetOneByPk_result((err != null ? err : {success: result}));
+        output.writeMessageBegin("customerAddressGetOneByPk", Thrift.MessageType.REPLY, seqid);
+      } else {
+        var result = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN, err.message);
+        output.writeMessageBegin("customerAddressGetOneByPk", Thrift.MessageType.EXCEPTION, seqid);
       }
       result.write(output);
       output.writeMessageEnd();

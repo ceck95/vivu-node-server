@@ -38,8 +38,8 @@ class QuoteBusiness {
             return reply(request.errorManager.translate({
               code: '511',
               source: 'product sold out',
-              params:{
-                '{{name}}':e.product.name
+              params: {
+                '{{name}}': e.product.name
               }
             })).code(400);
           }
@@ -124,6 +124,7 @@ class QuoteBusiness {
           });
 
           return orderPaymentStore.insertOne(modelOrderPayment).then(() => {
+            QuoteBusiness.sendEmail(request, reply, respListQuoteItem, respOrder, profile);
             return orderStore.createModel(respOrder);
           }).catch(err => {
             return helpers.HAPI.replyError(request, reply, err, {
@@ -149,6 +150,76 @@ class QuoteBusiness {
       });
     });
 
+  }
+
+  static sendEmail(request, reply, listOrderItem, order, profile) {
+    if (profile) {
+      let listProduct = [];
+      const customerAddressStore = request.dataStore.getStore('CustomerAddress');
+      return customerAddressStore.getOneByPk(order.shippingAddressId).then(address => {
+        listOrderItem.forEach(e => {
+          listProduct.push(`
+				<tr style="border-top: 1px solid black;">
+        <td width="10%"><img class="img-product" src="${request.config.cdn.link}${e.imagePath}" /></td>
+        <td>
+          <p style=" margin: 0;">${e.product.name}</p>
+          <p style=" margin: 0;">Số lượng: ${e.quantity}</p>
+        </td>
+        <td style="text-align:right">${e.basePrice} đ</td>
+      </tr>`);
+        });
+        const mail = new helpers.Mailer(),
+          html = `
+<h3>Kính chào quý khách ${profile.fullName},</h1>
+   <div style="border-top: 1px solid #2D2D2D;
+    background-color: #F2F4F6;
+    margin-bottom: 1%;">
+    <p style=" margin: 0;color: grey;">Đơn hàng sẽ được giao đến:</p>
+    <b style="margin: 0;color:#F36F21">${address.customerName}</b>
+    <p style=" margin: 0;">${address.fullName}</p>
+    <p style=" margin: 0;">Phone: ${address.phone}</p>
+  </div>
+  <table>
+	<table style=" border-collapse: collapse;
+    width: 100%;">
+		 <thead style="background-color: #FFF8E7;">
+        <tr>
+          <td colspan="3">
+            Đơn hàng được mua vào ${helpers.Data.toDateString(order.createdAt)}
+          </td>
+        </tr>
+      </thead>
+    <tbody>
+      ${listProduct.join(' ')}
+      <tr style="border-top: 1px solid black;">
+        <td style="text-align:right" colspan="2">
+          <p style=" margin: 0;">Thành tiền:</p>
+          <p style=" margin: 0;">Phí giao hàng:</p>
+          <p style="margin: 0;font-size:21px;font-weight:bold">Tổng cộng:</p>
+        </td>
+        <td style="text-align:right">
+          <p style=" margin: 0;">${order.grandTotal}</p>
+          <p style=" margin: 0;">${order.shippingAmount}</p>
+          <p style="margin: 0;font-size:21px;font-weight:bold">${order.grandTotal}</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+			`;
+        return mail.send({
+          html: html,
+          to: profile.email,
+          subject: `Thông tin đơn hàng #${order.code}`
+        }).then(() => {
+          console.log('sent email successfully');
+        }).catch(err => {
+          console.log(err);
+        });
+      }).catch(err => {
+       console.log(err);
+      });
+    }
+    return true;
   }
 
 }
