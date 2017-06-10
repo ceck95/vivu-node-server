@@ -160,7 +160,8 @@ class QuoteBusiness {
         listOrderItem.forEach(e => {
           listProduct.push(`
 				<tr style="border-top: 1px solid black;">
-        <td width="10%"><img class="img-product" src="${request.config.cdn.link}${e.product.imagePath}" /></td>
+        <td width="10%"><img style="height: 70px;
+    width: 80px;" src="${request.config.cdn.link}${e.product.imagePath}" /></td>
         <td>
           <p style=" margin: 0;">${e.product.name}</p>
           <p style=" margin: 0;">Số lượng: ${e.quantity}</p>
