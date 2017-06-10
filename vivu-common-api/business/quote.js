@@ -165,7 +165,7 @@ class QuoteBusiness {
           <p style=" margin: 0;">${e.product.name}</p>
           <p style=" margin: 0;">Số lượng: ${e.quantity}</p>
         </td>
-        <td style="text-align:right">${e.basePrice} đ</td>
+        <td style="text-align:right">${QuoteBusiness.formatCurrency(e.basePrice)}</td>
       </tr>`);
         });
         const mail = new helpers.Mailer(),
@@ -185,7 +185,7 @@ class QuoteBusiness {
 		 <thead style="background-color: #FFF8E7;">
         <tr>
           <td colspan="3">
-            Đơn hàng được mua vào ${helpers.Data.toDateString(order.createdAt)}
+            Đơn hàng được mua vào ${helpers.Data.toDateString(order.createdAt,'DD/MM/YYYY HH:mm:ss')}
           </td>
         </tr>
       </thead>
@@ -198,9 +198,9 @@ class QuoteBusiness {
           <p style="margin: 0;font-size:21px;font-weight:bold">Tổng cộng:</p>
         </td>
         <td style="text-align:right">
-          <p style=" margin: 0;">${order.grandTotal}</p>
-          <p style=" margin: 0;">${order.shippingAmount}</p>
-          <p style="margin: 0;font-size:21px;font-weight:bold">${order.grandTotal}</p>
+          <p style=" margin: 0;">${QuoteBusiness.formatCurrency(order.grandTotal)}</p>
+          <p style=" margin: 0;">${QuoteBusiness.formatCurrency(order.shippingAmount)}</p>
+          <p style="margin: 0;font-size:21px;font-weight:bold">${QuoteBusiness.formatCurrency(order.grandTotal)}</p>
         </td>
       </tr>
     </tbody>
@@ -216,10 +216,14 @@ class QuoteBusiness {
           console.log(err);
         });
       }).catch(err => {
-       console.log(err);
+        console.log(err);
       });
     }
     return true;
+  }
+
+  static formatCurrency(src) {
+    return `${src.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} đ`;
   }
 
 }
