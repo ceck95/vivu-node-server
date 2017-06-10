@@ -211,6 +211,7 @@ class QuoteBusiness {
           to: profile.email,
           subject: `Thông tin đơn hàng #${order.code}`
         }).then(() => {
+					console.log(request.config.cdn.link,listOrderItem);
           console.log('sent email successfully');
         }).catch(err => {
           console.log(err);
