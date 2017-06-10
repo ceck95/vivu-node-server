@@ -6,7 +6,7 @@
     "basePath": "/api"
   },
   "cdn": {
-    "link": "http://cdn.vivu.dev/"
+    "link": "http://cdn.vivu.nhutuit.com/"
   },
   "logger": {
     "isDebug": true,
