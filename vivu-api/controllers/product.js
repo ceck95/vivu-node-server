@@ -106,6 +106,7 @@ class ProductController {
       listPromise = [],
       listPromiseProductPrice = [],
       selectOptions = new optionTypes.SelectOptions(),
+      selectOptionsRight = new optionTypes.SelectOptions(),
       categoryStore = request.dataStore.getStore('Category'),
       categoryGroupStore = request.dataStore.getStore('CategoryGroup');
 
@@ -117,10 +118,11 @@ class ProductController {
       listPromise.push(productStore.getManyByCategoryGroupHome(e, selectOptions));
     });
 
-    selectOptions.limit = query.filter.limitProductRight;
-    selectOptions.order = 'base_price';
+    selectOptionsRight.limit = query.filter.limitProductRight;
+    selectOptionsRight.order = 'base_price';
+    selectOptionsRight.includes = [productColorStore.tableAlias, categoryStore.tableAlias, categoryGroupStore.tableAlias];
     listCategoryGroupId.forEach(e => {
-      listPromiseProductPrice.push(productStore.getManyByCategoryGroupHome(e, selectOptions));
+      listPromiseProductPrice.push(productStore.getManyByCategoryGroupHome(e, selectOptionsRight));
     });
 
     return BPromise.all(listPromise).then(results => {
