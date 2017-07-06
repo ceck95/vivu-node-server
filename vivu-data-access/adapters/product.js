@@ -85,7 +85,7 @@ class ProductAdapter extends nodePg.adapters.Adapter {
         sqlWhereOld = whereOld ? ` AND ${whereOld} ` : '';
 
       where = [];
-      where.push(`${tableAlias}.status = ${active} ${sqlWhereOld} AND search && ARRAY[${toStringSplit(params.search)}] OR ${sqlWhereOld} search_full && ARRAY[${toStringSplit(params.search)}] ${sqlWhereOld} AND ${tableAlias}.status = ${active}`);
+      where.push(`${tableAlias}.status = ${active} ${sqlWhereOld} AND search && ARRAY[${toStringSplit(params.search)}] OR  search_full && ARRAY[${toStringSplit(params.search)}] ${sqlWhereOld} AND ${tableAlias}.status = ${active}`);
     }
 
     if (!params.search) {
