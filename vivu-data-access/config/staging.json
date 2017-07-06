@@ -7,10 +7,10 @@
     "postgres": {
       "default": {
         "connection": {
-          "user": "nhutuit",
+          "user": "nhutdev",
           "password": "nhutnhut",
           "database": "vivu",
-          "host": "139.59.105.245",
+          "host": "128.199.85.232",
           "port": 5432,
           "max": 20,
           "min": 0
