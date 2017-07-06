@@ -57,7 +57,7 @@ class ProductAdapter extends nodePg.adapters.Adapter {
     }
 
     if (params.categoryGroupId) {
-      where.push(`${tableAliasCategoryGroup}.id IN (${params.categoryGroupId})`);
+      where.push(`${tableAliasCategory}.category_group_id IN (${params.categoryGroupId})`);
     }
 
     if (params.urlKeyCategory) {
@@ -80,8 +80,12 @@ class ProductAdapter extends nodePg.adapters.Adapter {
           let s = str.split(' ').join(`','`);
           return `'${s}'`;
         },
-        active = helpers.Const.status.ACTIVE;
-      where.push(`${tableAlias}.status = ${active} AND search && ARRAY[${toStringSplit(params.search)}] OR search_full && ARRAY[${toStringSplit(params.search)}] AND ${tableAlias}.status = ${active}`);
+        active = helpers.Const.status.ACTIVE,
+        whereOld = where.length > 0 ? where.join(' AND ') : null,
+        sqlWhereOld = whereOld ? ` AND ${whereOld} ` : '';
+
+      where = [];
+      where.push(`${tableAlias}.status = ${active} ${sqlWhereOld} AND search && ARRAY[${toStringSplit(params.search)}] OR ${sqlWhereOld} search_full && ARRAY[${toStringSplit(params.search)}] ${sqlWhereOld} AND ${tableAlias}.status = ${active}`);
     }
 
     if (!params.search) {
